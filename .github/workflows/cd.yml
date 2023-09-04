@@ -24,7 +24,7 @@ jobs:
         port: 2222
         script: |
           echo $PRIVATE_KEY
-          cd /home/charlie/apps/node1
+          cd /home/charlie/website/node1
           git pull origin master
           git status
           npm install
