@@ -4,8 +4,13 @@ name: Node.js CD
 #on:
 #  pull_request:
 #    branches: [ master ]
-on: push
+#on: push
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
+on:
+  release:
+    types: [published]
+
 jobs:
   # This workflow contains a single job called "build"
   build:
