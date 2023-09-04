@@ -1,4 +1,4 @@
-
+art
 name: Node.js CD
 
 # Controls when the action will run. 
@@ -27,4 +27,4 @@ jobs:
           git pull origin main
           git status
           npm install
-          npm run-script dev
+          npm run-script restart
