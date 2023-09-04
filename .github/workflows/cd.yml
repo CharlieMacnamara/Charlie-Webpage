@@ -23,9 +23,8 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 2222
         script: |
-          echo $PRIVATE_KEY
           cd /home/charlie/website/node1/Charlie-Webpage
           git pull origin main
           git status
           npm install
-          pm2 restart Charlie-Webpage
+          npm run-script dev
