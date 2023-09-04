@@ -21,7 +21,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
-        port: 22
+        port: 2222
         script: |
           echo $PRIVATE_KEY
           cd ~/home/charlie/apps/node1
