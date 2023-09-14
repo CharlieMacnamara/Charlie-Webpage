@@ -15,7 +15,6 @@ import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
-import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
@@ -223,7 +222,7 @@ function Photos() {
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
+        {[image2, image3, image4, image5].map((image, imageIndex) => (
           <div
             key={image.src}
             className={clsx(

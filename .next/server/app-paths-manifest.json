@@ -1,3 +1,8 @@
 {
-  "/page": "app/page.js"
+  "/not-found": "app/not-found.js",
+  "/page": "app/page.js",
+  "/articles/page": "app/articles/page.js",
+  "/about/page": "app/about/page.js",
+  "/speaking/page": "app/speaking/page.js",
+  "/articles/rewriting-the-cosmos-kernel-in-rust/page": "app/articles/rewriting-the-cosmos-kernel-in-rust/page.js"
 }
