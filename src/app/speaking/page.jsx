@@ -16,7 +16,6 @@ function Appearance({ title, description, event, cta, href }) {
       <Card.Title as="h3" href={href}>
         {title}
       </Card.Title>
-      <Card.Eyebrow decorate>{event}</Card.Eyebrow>
       <Card.Description>{description}</Card.Description>
       <Card.Cta>{cta}</Card.Cta>
     </Card>
@@ -33,37 +32,40 @@ export default function Speaking() {
   return (
     <SimpleLayout
       title="I’ve spoken at events all around the world and been interviewed for many podcasts."
-      intro="One of my favorite ways to share my ideas is live on stage, where there’s so much more communication bandwidth than there is in writing, and I love podcast interviews because they give me the opportunity to answer questions instead of just present my opinions."
+      intro="Hello, and thank you for visiting my portfolio! I'm an experienced Technical Writer focusing on API, SDK, and product documentation. Rather than overwhelm you with an exhaustive list of similar pieces, I've chosen a selection of my work from previous jobs that best displays my talents and capabilities."
     >
       <div className="space-y-20">
-        <SpeakingSection title="Conferences">
+        <SpeakingSection title="Blogs/Guides">
           <Appearance
-            href="#"
-            title="In space, no one can watch you stream — until now"
-            description="A technical deep-dive into HelioStream, the real-time streaming library I wrote for transmitting live video back to Earth."
-            event="SysConf 2021"
-            cta="Watch video"
+            href="https://transloadit.com/blog/2022/06/image-facedetect-cdn-support/"
+            title="Our Smart CDN now supports AI Face Detection!"
+            description="A technical deep-dive into an updated piece of software."
+            cta="View"
           />
           <Appearance
-            href="#"
-            title="Lessons learned from our first product recall"
-            description="They say that if you’re not embarassed by your first version, you’re doing it wrong. Well when you’re selling DIY space shuttle kits it turns out it’s a bit more complicated."
-            event="Business of Startups 2020"
-            cta="Watch video"
+            href="https://transloadit.com/blog/2022/05/geolocation-watermark/"
+            title="Let’s Build: Geolocation image watermarker"
+            description="A demonstration of how to integrate multiple APIs seamlessly with Transloadit's product. (including a photo from my favourite city)"
+            cta="View"
+          />
+          <Appearance
+            href="https://configcat.com/blog/2020/07/08/introduction-to-configcat-api/"
+            title="Getting acquainted with the ConfigCat Public Management API"
+            description="A technical deep-dive into an updated piece of software."
+            cta="View"
           />
         </SpeakingSection>
-        <SpeakingSection title="Podcasts">
+        <SpeakingSection title="Documentation">
           <Appearance
-            href="#"
-            title="Using design as a competitive advantage"
-            description="How we used world-class visual design to attract a great team, win over customers, and get more press for Planetaria."
-            event="Encoding Design, July 2022"
-            cta="Listen to podcast"
+            href="https://transloadit.com/docs/transcoding/document-processing/document-convert/"
+            title="/document/convert Robot Documentation"
+            description="A demonstration of how to integrate multiple APIs seamlessly with Transloadit's product. (including a photo from my favourite city)"
+            cta="View"
           />
           <Appearance
-            href="#"
-            title="Bootstrapping an aerospace company to $17M ARR"
-            description="The story of how we built one of the most promising space startups in the world without taking any capital from investors."
+            href="https://docs.wisej.com/docs/releases/whats-new-in-3.0"
+            title="Wisej.NET 3.0"
+            description="A comprehensive document that thoroughly details all the changes introduced with a major version release, with a particular emphasis on highlighting each new addition."
             event="The Escape Velocity Show, March 2022"
             cta="Listen to podcast"
           />
