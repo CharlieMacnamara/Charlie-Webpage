@@ -1,0 +1,403 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'Charlie Macnamara',
+  date: '2023-09-28',
+  title: 'How to Dockerize a Django, Preact, and Postgres Application',
+  description:
+    'When you’re building a website for a company as ambitious as Planetaria, you need to make an impression. I wanted people to visit our website and see animations that looked more realistic than reality itself.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+I've recently had more free time, so I've been learning new technologies. Anyone working in tech or interested in giving it a bash has surely experienced the troubles of getting different technologies to play together nicely. I decided to document the process to save you the agony I experienced while figuring this out.
+
+Containerisation is the process of packaging software with everything needed to run it in a self-contained environment. This allows multiple machines to run the same code, simplifying deployment and all the other cogs. We'll be using Docker for this, and while the setup takes a little longer, it's well worth it.
+## Prerequisites
+
+To follow along with this tutorial make sure you have the following:
+
+- [Docker](https://docs.docker.com/get-docker/) 
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Django](https://www.djangoproject.com/download/) 
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com)
+
+
+We'll start a Django application and then a Preact application, containerise them both, run the containers, and then create an API to ensure the stack works correctly.
+
+## Getting Started
+
+To start, create an empty folder, we'll name ours `django-preact-docker`, and navigate to this folder from the terminal.
+
+We'll follow the first steps of making a Django application - making a virtual environment, activating it, and then installing Django.
+
+(If `virtualenv` is not installed, run `pip install virtualenv`)
+
+Run these commands in the terminal:
+
+```bash
+virtualenv venv
+source ./venv/bin/activate
+```
+
+Then with our virtual environment running install Django along with some other dependencies:
+
+```bash
+pip install django django-cors-headers psycopg2-binary
+```
+
+Now we can create a new Django project and get it running on our local server.
+
+### Setting Up Django Project
+
+From the terminal navigate to `django-preact-docker`, and run:
+
+```bash
+django-admin startproject backend
+```
+
+This creates a new folder `backend`, navigate into this folder:
+
+```bash
+cd backend
+```
+
+And then start the project:
+
+```bash
+python manage.py runserver
+```
+
+You can test if the server is running by going to: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+Finally, create a requirements file that will hold our requirements for the project, while in `django-preact-docker/backend` run:
+
+```bash
+pip freeze > requirements.txt
+```
+
+### Setting Up Our Preact Application
+
+Head back to our root folder `django-preact-docker`.
+
+In terminal run:
+
+```bash
+npm init preact
+```
+
+When prompted, change the project directory to 'frontend', and then hit enter for the rest of the options.
+
+Once installed, from terminal navigate into `django-preact-docker/frontend` and run:
+
+```bash
+npm run dev
+```
+
+This will set up a development server. Once the server has started, it will print a local development URL to open in your browser. Check this is working before moving on!
+
+## Containerising
+
+We just need to create some configuration files, so Docker knows what to do.
+
+### Containerise Django
+
+Navigate to `django-preact-docker/backend`, and create a new file:
+
+```bash
+touch .dockerignore
+```
+
+Open the file and add the following:
+
+```text
+# The file may be hidden on Finder, default macOS is Shift-Command-. to show hidden files
+venv
+env
+.env
+Dockerfile
+```
+
+Next, run:
+
+```bash
+touch Dockerfile
+```
+
+Open it and add:
+
+```Dockerfile
+FROM python:3.8-alpine
+
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /app/backend
+
+COPY requirements.txt /app/backend/
+
+RUN apk add --update --no-cache postgresql-dev gcc python3-dev musl-dev
+
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+```
+
+In the above code:
+
+- `FROM` specifies the parent image that we'll be using
+- `ENV` sets the environment variable `PYTHONUNBUFFERED` to 1 for giving us real-time log output.
+- `WORKDIR` specifies the working directory within the container.
+- `COPY` the requirements file to the working directory and later install the requirements.
+- `RUN`, install some more dependencies for psycopg-2,
+- `COPY` the content of our backend to the Docker container
+- The starting command for our container
+
+### Containerise Preact
+
+Initially same as before.
+
+Go to `django-preact-docker/frontend`, and create a new file:
+
+```bash
+touch .dockerignore
+```
+
+Open the file in your text editor and add the following:
+
+```text
+node_modules
+npm-debug.log
+Dockerfile
+yarn-error.log
+```
+
+Go back to terminal in `frontend` and create another Dockerfile:
+
+```bash
+touch Dockerfile
+```
+
+Open and edit to contain:
+
+```Dockerfile
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]
+```
+
+Commands are effectively the same as with Django, although slightly different with Vite using `dev`.
+
+There's some further configurations to do:
+
+Head to `frontend/package.json` and change scripts too:
+
+```json
+"scripts": {
+	"dev": "vite --host 0.0.0.0",
+}
+```
+
+## Packaging Our Applications with Docker Compose
+
+We need to create a configuration file that defines how our multiple Docker containers should be run together.
+
+In the main folder, `django-preact-docker`, create a new file called `docker-compose.yml`:
+
+```bash
+touch docker-compose.yml
+```
+
+Open it and edit to contain:
+
+```yaml
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data/
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./frontend:/app/frontend
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./backend:/app/backend
+    depends_on:
+      - db
+```
+
+The Docker Compose file simply tells Docker how the different containers work together.
+
+## Build the Containers
+
+Go to the root `django-preact-docker` from terminal and run:
+
+```bash
+docker-compose build
+```
+
+This will take a bit, once active you can see the images in Docker Desktop.
+
+You can then run the containers with:
+
+```bash
+docker-compose up
+```
+
+After this, the servers are accessible at the ports
+
+ 5173 for frontend, 8000 for backend, and 5432 for the database. You should check that they're running correctly first before moving on.
+
+To stop the containers, press `Ctrl + C` or run `docker-compose down`.
+
+## Additional Setup
+
+We need to change a few settings,
+
+Navigate to the `backend` folder and change `settings.py` to:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
+}
+```
+
+Also, we need to change CORS further below in `settings.py`, this is too allow our different applications to communicate with each other:
+
+```python
+INSTALLED_APPS = [
+    'corsheaders',  # add this
+]
+
+MIDDLEWARE = [
+    ...,
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    ...,
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+```
+
+## Everything is Now Setup
+
+### Building a Basic API to Test the Stack Works Together
+
+We're gonna build a simple API to send some data from the Django backend and make sure everything is working together,
+
+In `backend/backend`, create a new file `views.py` and paste the following:
+
+```python
+from django.http import JsonResponse
+
+def get_text(request):
+    text = "All operational from the Django backend!"
+    
+    data = {
+        'text': text,
+    }
+
+    return JsonResponse(data)
+```
+
+Then open `urls.py` and add these two lines:
+
+```python
+from .views import get_text
+```
+
+And in URL patterns:
+
+```python
+urlpatterns = [
+    # other code
+    path('test/', get_text),
+]
+```
+
+You can now see this text on [http://localhost:8000/test/](http://localhost:8000/test/).
+
+To display it in our frontend, navigate to `frontend/src/index.jsx` and change it to the following:
+
+```jsx
+import { render } from 'preact';
+import preactLogo from './assets/preact.svg';
+import './style.css';
+import { useState, useEffect } from 'react';
+
+export function App() {
+    const [text, setText] = useState(null);
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8000/test/')
+            .then(res => res.json())
+            .then(data => {
+                setText(data.text);
+            });
+    });
+
+    return (
+        <div>
+            <h1>An unbeatable tech stack</h1>
+            <a href="https://preactjs.com" target="_blank">
+                <img src={preactLogo} alt="Preact logo" height="160" width="160" />
+            </a>
+            <p>Running Preact, Django, Postgres, and Docker</p>
+            <p>{text}</p>
+        </div>
+    );
+}
+
+render(<App />, document.getElementById('app'));
+```
+Refresh and reload, and you should see a working Preact front page! Fingers crossed this saved you an aneurysm. If you have any questions feel free to ask me on my linked socials.
