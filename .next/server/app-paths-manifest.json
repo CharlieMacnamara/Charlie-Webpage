@@ -1,5 +1,7 @@
 {
   "/page": "app/page.js",
   "/articles/page": "app/articles/page.js",
-  "/articles/crafting-a-design-system-for-a-multiplanetary-future/page": "app/articles/crafting-a-design-system-for-a-multiplanetary-future/page.js"
+  "/about/page": "app/about/page.js",
+  "/portfolio/page": "app/portfolio/page.js",
+  "/articles/how-to-dockerize-a-django-preact-and-postgres-application/page": "app/articles/how-to-dockerize-a-django-preact-and-postgres-application/page.js"
 }

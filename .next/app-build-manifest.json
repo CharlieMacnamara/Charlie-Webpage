@@ -1,15 +1,15 @@
 {
   "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
-    ],
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
     ],
     "/not-found": [
       "static/chunks/webpack.js",
@@ -21,10 +21,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/articles/page.js"
     ],
-    "/articles/crafting-a-design-system-for-a-multiplanetary-future/page": [
+    "/about/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/articles/crafting-a-design-system-for-a-multiplanetary-future/page.js"
+      "static/chunks/app/about/page.js"
+    ],
+    "/portfolio/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/portfolio/page.js"
+    ],
+    "/articles/how-to-dockerize-a-django-preact-and-postgres-application/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/articles/how-to-dockerize-a-django-preact-and-postgres-application/page.js"
     ]
   }
 }
