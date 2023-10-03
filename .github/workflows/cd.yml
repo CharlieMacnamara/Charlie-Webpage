@@ -28,7 +28,6 @@ jobs:
         port: 2222
         script: |
           cd /home/charlie/website/Charlie-Webpage
-          git pull origin main
-          git status
-          npm install
+          git fetch origin master
+          git reset --hard FETCH_HEAD
           npm run dev
