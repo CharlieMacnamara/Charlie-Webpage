@@ -30,4 +30,5 @@ jobs:
           cd /home/charlie/website/Charlie-Webpage
           git fetch origin master
           git reset --hard FETCH_HEAD
-          npm run dev
+#         pm2 start npm --name "Charlie" -- run dev
+          pm2 restart all
