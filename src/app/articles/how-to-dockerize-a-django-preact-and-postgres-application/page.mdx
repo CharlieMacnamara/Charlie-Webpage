@@ -1,4 +1,11 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+
+import one from './1.png'
+import two from './2.png'
+import three from './3.png'
+import four from './4.png'
+import five from './5.png'
 
 export const article = {
   author: 'Charlie Macnamara',
@@ -76,12 +83,15 @@ python manage.py runserver
 
 You can test if the server is running by going to: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
+<Image src={one} alt="" />
+
 Finally, create a requirements file that will hold our requirements for the project, while in `django-preact-docker/backend` run:
 
 ```bash
 pip freeze > requirements.txt
 ```
 
+<Image src={two} alt="" />
 ### Setting Up Our Preact Application
 
 Head back to our root folder `django-preact-docker`.
@@ -101,6 +111,8 @@ npm run dev
 ```
 
 This will set up a development server. Once the server has started, it will print a local development URL to open in your browser. Check this is working before moving on!
+
+<Image src={three} alt="" />
 
 ## Containerising
 
@@ -365,6 +377,8 @@ urlpatterns = [
 ]
 ```
 
+<Image src={four} alt="" />
+
 You can now see this text on [http://localhost:8000/test/](http://localhost:8000/test/).
 
 To display it in our frontend, navigate to `frontend/src/index.jsx` and change it to the following:
@@ -401,3 +415,5 @@ export function App() {
 render(<App />, document.getElementById('app'));
 ```
 Refresh and reload, and you should see a working Preact front page! Fingers crossed this saved you an aneurysm. If you have any questions feel free to ask me on my linked socials.
+
+<Image src={five} alt="" />
