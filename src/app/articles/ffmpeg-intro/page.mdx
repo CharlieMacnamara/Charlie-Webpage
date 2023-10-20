@@ -17,9 +17,6 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-
-<DynamicPlayer mediaUrl="https://giistyxelor.s3.amazonaws.com/giists/video/video0cP3w019TiZYYcUy22WY.mp4" mediaType="video" />
-
 FFmpeg is a robust multimedia tool that I learned about during my first job as a Technical Writer. At Transloadit (The first company I worked for), FFmpeg was integrated into their feature stack, enabling users to manipulate images, videos, and audio using FFmpeg's parameters when the API didn't natively support specific functions.
 
 I was also a Support Engineer during my final year with Transloadit, and I would deal with many requests for creating custom ffmpeg parameters. Imagine an on request demo like [this](https://transloadit.com/demos/audio-encoding/ffmpeg-distant-audio/).
@@ -78,7 +75,7 @@ Watermarks can be crucial for branding or context. This command places the 'Your
 ```shell
 ffmpeg -i sample.mp4 -vf "drawtext=fontfile=/Windows/fonts/calibri.ttf:fontsize=60:fontcolor=white:x=W-tw-10:y=10:text='Your Watermark'" output_watermarked.mp4
 ```
-
+<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=ZKPNXWyIhu0" mediaType="video" />
 
 ### 2\. Format Conversion
 
@@ -87,28 +84,21 @@ Converting media formats couldn't be easier. This command converts `sample.mp4` 
 ```shell
 ffmpeg -i sample.mp4 output.avi
 ```
-
-### 3\. Extracting Audio from Video
-
-This extracts audio from `sample.mp4` and saves it as `output_audio.mp3`. High audio quality is preserved using the filter `-q:a 0`, ensuring no compromise on the extracted audio.
-
+if you run `ls *.avi`, you will see the following:
 ```shell
-ffmpeg -i sample.mp4 -q:a 0 -map a output_audio.mp3
+output.avi
 ```
 
-Output: output\_audio.mp3\](INSERT OUTPUT FILE LINK HERE)
-
-### 4\. Removing Audio from Video
+### 3\. Removing Audio from Video
 
 To remove a video's audio stream, include the `-an` flag.
 
 ```shell
 ffmpeg -i sample.mp4 -an output_silent.mp4
 ```
+<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=70JP38JO8wo" mediaType="video" />
 
-\[Output: output\_silent.mp4\](INSERT OUTPUT FILE LINK HERE)
-
-### 5\. Combining Audio and Video
+### 4\. Combining Audio and Video
 
 Combine a video and external audio files by merging `output_silent.mp4` and `track.mp3` into a single video. The video codec remains unchanged, and the audio codec is set to AAC.
 
@@ -116,9 +106,9 @@ Combine a video and external audio files by merging `output_silent.mp4` and `tr
 ffmpeg -i output_silent.mp4 -i track.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4
 ```
 
-\[Output: output\_combined.mp4\](INSERT OUTPUT FILE LINK HERE)
+<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=wOuI6tFFbAc" mediaType="video" />
 
-### 6\. Extracting Specific Duration from Video
+### 5\. Extracting Specific Duration from Video
 
 To extract a specific segment, use the -ss flag to set the segment start time along with the -t flag to select the duration from the starting time:
 
@@ -126,9 +116,9 @@ To extract a specific segment, use the -ss flag to set the segment start time al
 ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 output_segment.mp4
 ```
 
-\[Output: output\_segment.mp4\](INSERT OUTPUT FILE LINK HERE)
+<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=zeg2Qm1zmm4" mediaType="video" />
 
-### 7\. Speed Alteration
+### 6\. Speed Alteration
 
 This command doubles the speed of `sample.mp4`. Modify the multiplier to control speed:
 
@@ -136,9 +126,9 @@ This command doubles the speed of `sample.mp4`. Modify the multiplier to control
 ffmpeg -i sample.mp4 -vf "setpts=0.5*PTS" -af "atempo=2.0" output_fast.mp4
 ```
 
-\[Output: output\_fast.mp4\](INSERT OUTPUT FILE LINK HERE)
+<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=Bwkn_XdTfbw" mediaType="video" />
 
-### 8\. Video Resizing
+### 7\. Video Resizing
 
 This command resizes the video to 1280x720 pixels. Adjust values as needed. Reducing resolution decreases file size without compression:
 
@@ -146,45 +136,25 @@ This command resizes the video to 1280x720 pixels. Adjust values as needed. Redu
 ffmpeg -i sample.mp4 -vf "scale=1280:720" output_resized.mp4
 ```
 
-\[Output: output\_resized.mp4\](INSERT OUTPUT FILE LINK HERE)
-
-## Deep Dive: Video Compression
-
-Compression is crucial for reducing file sizes while preserving quality (I used it before hosting this blog asset:smile:), especially for streaming and cloud storage.
-
-### 1\. H.264 (or AVC)
-
-H.264 offers high-quality video at lower bit rates, ideal for storage and streaming. To compress with the H.264 codec:
+Inspecting the output shows the resize was successfull:
 
 ```shell
+Source Image Width              : 1280
+Source Image Height             : 720
+```
+
+## Video Compression
+
+Effective video compression is essential for reducing file sizes while maintaining quality, a technique I've used for this blog😄 It's particularly crucial for streaming and cloud storage, though it involves a trade-off between file size and quality.
+
+Experiment with `-crf` values for optimal results and explore various codecs. Below I've shared an example using the H.264 (AVC) codec, renowned for its high-quality output at lower bit rates, is perfect for storage and streaming.
+
+```bash
 ffmpeg -i sample.mp4 -vcodec libx264 -crf 40 output_compressed264.mp4
-```
+``` 
+This shrank my 27MB input file to 2MB.
 
-\[Output: output\_compressed264.mp4\](INSERT OUTPUT FILE LINK HERE)
-
-### 2\. HEVC (H.265)
-
-For even more efficient compression with HEVC:§§
-
-```shell
-ffmpeg -i sample.mp4 -vcodec libx265 -crf 40 output_compressed265.mp4
-```
-
-\[Output: output\_compressed265.mp4\](INSERT OUTPUT FILE LINK HERE)
-
-### 3\. VP9
-
-To compress with VP9:
-
-```shell
-ffmpeg -i sample.mp4 -vcodec libvpx-vp9 -b:v 1M -crf 50 output_vp9.webm
-```
-
-\[Output: output\_vp9.webm\](INSERT OUTPUT FILE LINK HERE)
-
-Compression involves a trade-off between file size and quality, so play around with the `-crf` values for optimal results.
-
-## Reasons to Convert & Compress
+### Reasons to Convert & Compress
 
 - **Compatibility:** Different devices and platforms may require specific formats.
 - **Quality vs. Size:** Compression balances quality and file size.
@@ -201,10 +171,8 @@ These commands showcase FFmpeg's efficiency and flexibility in handling multiple
 ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 -vcodec libx264 -crf 30 batchoutput_segment.avi
 ```
 
-\[Output: batchoutput\_segment.avi\](INSERT OUTPUT FILE LINK HERE)
+<DynamicPlayer mediaUrl="https://youtu.be/zwNbb-J4Jlg" mediaType="video" />
 
 ## Final Thoughts
 
 The commands I've gone over barely scratch the surface of what FFmpeg is capable of - it's a potent tool. I would suggest thoroughly reading through FFmpeg's documentation, as there are undoubtedly thousands of cases that I haven't talked about. Thank you for reading, and if you would like to see some of my other ffmpeg creations, you can view the Transloadit demos on my portfolio page.
-
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>

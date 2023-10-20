@@ -1,6 +1,4 @@
 {
-  "/not-found": "app/not-found.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/articles/page": "app/articles/page.js",
   "/articles/ffmpeg-intro/page": "app/articles/ffmpeg-intro/page.js"
 }
