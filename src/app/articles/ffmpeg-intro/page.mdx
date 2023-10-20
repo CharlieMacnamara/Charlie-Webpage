@@ -1,8 +1,6 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+import { ArticleLayout, DynamicPlayer } from '@/components/ArticleLayout'
 import Image from 'next/image'
 import React from 'react'
-
-
 
 export const article = {
   author: 'Charlie Macnamara',
@@ -19,7 +17,8 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-# Working with FFmpeg
+
+<DynamicPlayer mediaUrl="https://giistyxelor.s3.amazonaws.com/giists/video/video0cP3w019TiZYYcUy22WY.mp4" mediaType="video" />
 
 FFmpeg is a robust multimedia tool that I learned about during my first job as a Technical Writer. At Transloadit (The first company I worked for), FFmpeg was integrated into their feature stack, enabling users to manipulate images, videos, and audio using FFmpeg's parameters when the API didn't natively support specific functions.
 

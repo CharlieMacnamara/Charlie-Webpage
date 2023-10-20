@@ -1,5 +1,6 @@
 'use client'
 
+import ReactPlayer from 'react-player';
 import { useContext } from 'react'
 import { useRouter } from 'next/navigation'
 
@@ -19,6 +20,20 @@ function ArrowLeftIcon(props) {
       />
     </svg>
   )
+}
+
+export function DynamicPlayer({ mediaUrl, mediaType }) {
+  const isVideo = mediaType === 'video';
+  const isAudio = mediaType === 'audio';
+
+  return (
+    <ReactPlayer
+      url={mediaUrl}
+      playing={true}
+      controls={true}
+      type={isVideo ? 'video' : isAudio ? 'audio' : 'unknown'}
+    />
+  );
 }
 
 export function ArticleLayout({ children, article, isRssFeed = false }) {
