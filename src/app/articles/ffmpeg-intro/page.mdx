@@ -1,0 +1,211 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import React from 'react'
+
+
+
+export const article = {
+  author: 'Charlie Macnamara',
+  date: '2023-09-28',
+  title: 'How to Dockerize a Django, Preact, and Postgres Application',
+  description:
+    'When you’re building a website for a company as ambitious as Planetaria, you need to make an impression. I wanted people to visit our website and see animations that looked more realistic than reality itself.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+# Working with FFmpeg
+
+FFmpeg is a robust multimedia tool that I learned about during my first job as a Technical Writer. At Transloadit (The first company I worked for), FFmpeg was integrated into their feature stack, enabling users to manipulate images, videos, and audio using FFmpeg's parameters when the API didn't natively support specific functions.
+
+I was also a Support Engineer during my final year with Transloadit, and I would deal with many requests for creating custom ffmpeg parameters. Imagine an on request demo like [this](https://transloadit.com/demos/audio-encoding/ffmpeg-distant-audio/).
+
+I've recently been using FFmpeg in a project and quickly realised I remembered less than I expected, so I wanted to do a write-up to cement some of the skills I've gained from reteaching myself while also making something informative for those unfamiliar.
+
+## Getting Started
+
+Whether you need to convert audio formats or perform advanced video editing, FFmpeg's a straight shot. In this article, I'll help you get started, demonstrate common use cases, and showcase the power of FFmpeg.
+
+To follow along using the same input samples as me, source from [Pexels](https://www.pexels.com/video/watching-rain-on-the-road-in-worm-s-eye-view-3343679/) and [Pixabay](https://pixabay.com/music/beats-cinematic-background-hip-hop-music-for-vlog-video-38-sec-154214/).
+
+## Installing FFmpeg on Windows
+
+### Step 1: Download FFmpeg for Windows
+
+Begin by visiting the FFmpeg [download page](https://ffmpeg.org/download.html)., and click the "Windows builds from gyan.dev" link. In the "git master builds" segment, select the ffmpeg-git-full-7z link (the complete build with the latest libraries).
+
+While this guide references the gyan.dev build, alternative builds work similarly.
+
+### Step 2: Extract the Downloaded Files Using WinRAR
+
+Navigate to the location of your downloaded file and extract the contents, renaming the outputted folder to "ffmpeg." Move this folder to the root of your C: drive or another directory.
+
+### Step 3: Integrate FFmpeg into Windows PATH
+
+Search for "system variables" using the search bar and choose "Edit the system environment variables." In the subsequent window, click "Environment Variables..." then under the "User variables" tab, locate and select "Path," then click "Edit." Click "New" and add `C:\ffmpeg\bin to the path`.
+
+### Step 4: Verify Your FFmpeg Installation
+
+To ensure FFmpeg is working correctly, open Command Prompt or PowerShell and enter:
+
+```shell
+ffmpeg
+```
+
+Details about your FFmpeg version will be displayed if everything is set up correctly.
+
+## Getting Started
+
+Before diving into specific commands, let's look at some foundational concepts:
+
+The basic syntax of the FFmpeg command is `ffmpeg -i input.mp4 output.mp4`. Here’s an explanation for the commands:
+
+- `ffmpeg`: This calls the program.
+- `-i`: This identifies the input file.
+- `input_url`: This specifies the input file URL.
+- `output_url`: This specifies the output file URL.
+
+In the examples, I've used `sample.mp4` as a placeholder. Replace it with the name of your actual file. The same is true for output files. Also, ensure the specified input file exists in your working directory, or FFmpeg will throw an error and prompt you to confirm you're in the correct directory in the command line.
+
+### 1\. Adding a Watermark
+
+Watermarks can be crucial for branding or context. This command places the 'Your Watermark' text on the top-right corner of the video, saved as `output_watermarked.mp4`. Adjust text properties as needed.
+
+```shell
+ffmpeg -i sample.mp4 -vf "drawtext=fontfile=/Windows/fonts/calibri.ttf:fontsize=60:fontcolor=white:x=W-tw-10:y=10:text='Your Watermark'" output_watermarked.mp4
+```
+
+
+### 2\. Format Conversion
+
+Converting media formats couldn't be easier. This command converts `sample.mp4` to AVI format, resulting in `output.avi`.
+
+```shell
+ffmpeg -i sample.mp4 output.avi
+```
+
+### 3\. Extracting Audio from Video
+
+This extracts audio from `sample.mp4` and saves it as `output_audio.mp3`. High audio quality is preserved using the filter `-q:a 0`, ensuring no compromise on the extracted audio.
+
+```shell
+ffmpeg -i sample.mp4 -q:a 0 -map a output_audio.mp3
+```
+
+Output: output\_audio.mp3\](INSERT OUTPUT FILE LINK HERE)
+
+### 4\. Removing Audio from Video
+
+To remove a video's audio stream, include the `-an` flag.
+
+```shell
+ffmpeg -i sample.mp4 -an output_silent.mp4
+```
+
+\[Output: output\_silent.mp4\](INSERT OUTPUT FILE LINK HERE)
+
+### 5\. Combining Audio and Video
+
+Combine a video and external audio files by merging `output_silent.mp4` and `track.mp3` into a single video. The video codec remains unchanged, and the audio codec is set to AAC.
+
+```shell
+ffmpeg -i output_silent.mp4 -i track.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4
+```
+
+\[Output: output\_combined.mp4\](INSERT OUTPUT FILE LINK HERE)
+
+### 6\. Extracting Specific Duration from Video
+
+To extract a specific segment, use the -ss flag to set the segment start time along with the -t flag to select the duration from the starting time:
+
+```shell
+ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 output_segment.mp4
+```
+
+\[Output: output\_segment.mp4\](INSERT OUTPUT FILE LINK HERE)
+
+### 7\. Speed Alteration
+
+This command doubles the speed of `sample.mp4`. Modify the multiplier to control speed:
+
+```shell
+ffmpeg -i sample.mp4 -vf "setpts=0.5*PTS" -af "atempo=2.0" output_fast.mp4
+```
+
+\[Output: output\_fast.mp4\](INSERT OUTPUT FILE LINK HERE)
+
+### 8\. Video Resizing
+
+This command resizes the video to 1280x720 pixels. Adjust values as needed. Reducing resolution decreases file size without compression:
+
+```shell
+ffmpeg -i sample.mp4 -vf "scale=1280:720" output_resized.mp4
+```
+
+\[Output: output\_resized.mp4\](INSERT OUTPUT FILE LINK HERE)
+
+## Deep Dive: Video Compression
+
+Compression is crucial for reducing file sizes while preserving quality (I used it before hosting this blog asset:smile:), especially for streaming and cloud storage.
+
+### 1\. H.264 (or AVC)
+
+H.264 offers high-quality video at lower bit rates, ideal for storage and streaming. To compress with the H.264 codec:
+
+```shell
+ffmpeg -i sample.mp4 -vcodec libx264 -crf 40 output_compressed264.mp4
+```
+
+\[Output: output\_compressed264.mp4\](INSERT OUTPUT FILE LINK HERE)
+
+### 2\. HEVC (H.265)
+
+For even more efficient compression with HEVC:§§
+
+```shell
+ffmpeg -i sample.mp4 -vcodec libx265 -crf 40 output_compressed265.mp4
+```
+
+\[Output: output\_compressed265.mp4\](INSERT OUTPUT FILE LINK HERE)
+
+### 3\. VP9
+
+To compress with VP9:
+
+```shell
+ffmpeg -i sample.mp4 -vcodec libvpx-vp9 -b:v 1M -crf 50 output_vp9.webm
+```
+
+\[Output: output\_vp9.webm\](INSERT OUTPUT FILE LINK HERE)
+
+Compression involves a trade-off between file size and quality, so play around with the `-crf` values for optimal results.
+
+## Reasons to Convert & Compress
+
+- **Compatibility:** Different devices and platforms may require specific formats.
+- **Quality vs. Size:** Compression balances quality and file size.
+- **Editing:** Lossless formats like WAV preserve quality during edits.
+- **Streaming & Storage:** Efficient compression is crucial for cloud storage and streaming.
+
+## Multiple Task Execution in One Command
+
+FFmpeg's strength lies in executing multiple tasks in a single command. Everything just discussed can be combined to create some pretty cool stuff.
+
+These commands showcase FFmpeg's efficiency and flexibility in handling multiple tasks simultaneously. Understanding FFmpeg's flags and options empowers you to create powerful commands tailored to your multimedia needs.
+
+```shell
+ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 -vcodec libx264 -crf 30 batchoutput_segment.avi
+```
+
+\[Output: batchoutput\_segment.avi\](INSERT OUTPUT FILE LINK HERE)
+
+## Final Thoughts
+
+The commands I've gone over barely scratch the surface of what FFmpeg is capable of - it's a potent tool. I would suggest thoroughly reading through FFmpeg's documentation, as there are undoubtedly thousands of cases that I haven't talked about. Thank you for reading, and if you would like to see some of my other ffmpeg creations, you can view the Transloadit demos on my portfolio page.
+
+<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
