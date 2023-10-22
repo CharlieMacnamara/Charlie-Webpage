@@ -62,30 +62,14 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I’ve loved making things for as long as I can remember, and wrote
-              my first program when I was 6 years old, just two weeks after my
-              mom brought home the brand new Macintosh LC 550 that I taught
-              myself to type on.
+            I'm Charlie, from Edinburgh in Scotland. I've always been interested in technology. Since I was a kid, I've discovered immense amount of gratification using computers, yet this presented some challenges. For me, learning has always been a bit of a puzzle. As a person with dyslexia (yes, a dyslexic writer), my school years presented more obstacles than most. If a subject didn't captivate my interest, my attention waned. Though I don't have such a black-and-white approach now, that lingering tendency to disengage is still there. Learning to code when I was a kid faced similar challenges to me. I desperately wanted to learn these new technologies. Still, my instinct was to disengage when I found content dry.
             </p>
             <p>
-              The only thing I loved more than computers as a kid was space.
-              When I was 8, I climbed the 40-foot oak tree at the back of our
-              yard while wearing my older sister’s motorcycle helmet, counted
-              down from three, and jumped — hoping the tree was tall enough that
-              with just a bit of momentum I’d be able to get to orbit.
+            As a technical writer, I've found a way to allow myself to craft content that resonates with individuals who share my journey or, in general, want less dry technical content (I'm sure this is a familiar feeling). I aim to prevent another young Charlie from giving up. I achieve this by aiming to produce materials that are not only informative but also captivating.
+k
             </p>
             <p>
-              I spent the next few summers indoors working on a rocket design,
-              while I recovered from the multiple surgeries it took to fix my
-              badly broken legs. It took nine iterations, but when I was 15 I
-              sent my dad’s Blackberry into orbit and was able to transmit a
-              photo back down to our family computer from space.
-            </p>
-            <p>
-              Today, I’m the founder of Planetaria, where we’re working on
-              civilian space suits and manned shuttle kits you can assemble at
-              home so that the next generation of kids really <em>can</em> make
-              it to orbit — from the comfort of their own backyards.
+            This is my writing philosophy. As much as delving into topics like API features is thrilling, I understand that not everyone shares my enthusiasm.
             </p>
           </div>
         </div>

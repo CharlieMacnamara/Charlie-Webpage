@@ -12,11 +12,9 @@ import {
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
-import image2 from '@/images/photos/image-2.jpg'
+import logoEVORA from '@/images/logos/evora_global_logo.svg'
+import logoTransloadit from '@/images/logos/transloadit.svg'
+import logoFreelance from '@/images/logos/freelance.svg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
@@ -110,35 +108,25 @@ function SocialLink({ icon: Icon, ...props }) {
 function Resume() {
   let resume = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
-      logo: logoPlanetaria,
+      company: 'Freelance',
+      title: 'API/SDK Technical Writer',
+      logo: logoFreelance,
+      start: '2020',
+      end: 'present',
+    },
+    {
+      company: 'EVORA Global',
+      title: 'Technical Writer',
+      logo: logoEVORA,
+      start: '2022',
+      end: '2023',
+    },
+    {
+      company: 'Transloadit',
+      title: 'Technical Writer & Support Engineer',
+      logo: logoTransloadit,
       start: '2019',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear(),
-      },
-    },
-    {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
-      start: '2014',
-      end: '2019',
-    },
-    {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
-      logo: logoFacebook,
-      start: '2011',
-      end: '2014',
-    },
-    {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
-      logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      end: '2022',
     },
   ]
 
@@ -196,7 +184,7 @@ function Photos() {
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image2, image3, image4, image5].map((image, imageIndex) => (
+        {[image3, image4, image5].map((image, imageIndex) => (
           <div
             key={image.src}
             className={clsx(
@@ -228,10 +216,7 @@ export default async function Home() {
             Software designer, founder, and amateur astronaut.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Charile, a software designer and entrepreneur based in New York
-            City. I’m the founder and CEO of Planetaria, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
+          I'm Charlie, a Scottish technical writer trying to make content more engaging. I work mainly on API/SDKs, but I have a more comprehensive range of writing skills, from informative to marketing.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
