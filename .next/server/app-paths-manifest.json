@@ -1,7 +1,7 @@
 {
   "/page": "app/page.js",
-  "/not-found": "app/not-found.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/about/page": "app/about/page.js",
-  "/articles/ffmpeg-intro/page": "app/articles/ffmpeg-intro/page.js"
+  "/portfolio/page": "app/portfolio/page.js",
+  "/articles/page": "app/articles/page.js",
+  "/articles/how-to-dockerize-a-django-preact-and-postgres-application/page": "app/articles/how-to-dockerize-a-django-preact-and-postgres-application/page.js"
 }

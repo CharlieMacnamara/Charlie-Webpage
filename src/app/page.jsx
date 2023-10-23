@@ -15,34 +15,11 @@ import {
 import logoEVORA from '@/images/logos/evora_global_logo.svg'
 import logoTransloadit from '@/images/logos/transloadit.svg'
 import logoFreelance from '@/images/logos/freelance.svg'
+import image1 from '@/images/photos/image-1.jpg'
+import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
-import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
 import { getAllArticles } from '@/lib/getAllArticles'
-
-function MailIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
 
 function BriefcaseIcon(props) {
   return (
@@ -112,7 +89,7 @@ function Resume() {
       title: 'API/SDK Technical Writer',
       logo: logoFreelance,
       start: '2020',
-      end: 'present',
+      end: 'Present',
     },
     {
       company: 'EVORA Global',
@@ -170,7 +147,7 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="/images/resume.pdf" target="_blank" rel="noopener noreferrer" className="group mt-6 w-full">
+      <Button href="https://drive.google.com/file/d/1nreZD4S1AFcDLWNAXUtztPDGkQAIFZ2N/view?usp=share_link" target="_blank" rel="noopener noreferrer" className="group mt-6 w-full">
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
@@ -184,7 +161,7 @@ function Photos() {
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image3, image4, image5].map((image, imageIndex) => (
+        {[image1, image2, image3].map((image, imageIndex) => (
           <div
             key={image.src}
             className={clsx(
@@ -213,29 +190,24 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software designer, founder, and amateur astronaut.
+            Technical Writer, Programmer and Attempting Author.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
           I'm Charlie, a Scottish technical writer trying to make content more engaging. I work mainly on API/SDKs, but I have a more comprehensive range of writing skills, from informative to marketing.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://twitter.com"
-              aria-label="Follow on Twitter"
-              icon={TwitterIcon}
-            />
-            <SocialLink
-              href="https://instagram.com"
+              href="https://www.instagram.com/charliemacnamaraa/"
               aria-label="Follow on Instagram"
               icon={InstagramIcon}
             />
             <SocialLink
-              href="https://github.com"
+              href="https://github.com/CharlieMacnamara"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />
             <SocialLink
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/charliemacnamara/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
             />

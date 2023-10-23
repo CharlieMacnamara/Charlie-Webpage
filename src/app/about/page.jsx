@@ -65,34 +65,30 @@ export default function About() {
             I'm Charlie, from Edinburgh in Scotland. I've always been interested in technology. Since I was a kid, I've discovered immense amount of gratification using computers, yet this presented some challenges. For me, learning has always been a bit of a puzzle. As a person with dyslexia (yes, a dyslexic writer), my school years presented more obstacles than most. If a subject didn't captivate my interest, my attention waned. Though I don't have such a black-and-white approach now, that lingering tendency to disengage is still there. Learning to code when I was a kid faced similar challenges to me. I desperately wanted to learn these new technologies. Still, my instinct was to disengage when I found content dry.
             </p>
             <p>
-            As a technical writer, I've found a way to allow myself to craft content that resonates with individuals who share my journey or, in general, want less dry technical content (I'm sure this is a familiar feeling). I aim to prevent another young Charlie from giving up. I achieve this by aiming to produce materials that are not only informative but also captivating.
-k
+            As a technical writer, I've found a way to allow myself to craft content that resonates with individuals who share my journey or, in general, want less dry technical content (I'm sure this is a familiar feeling). I aim to prevent another young Charlie from struggling. I achieve this by producing materials that are not only informative but also captivating.
             </p>
             <p>
-            This is my writing philosophy. As much as delving into topics like API features is thrilling, I understand that not everyone shares my enthusiasm.
+            This is my writing philosophy. As much as I find delving into topics like API features thrilling, I understand that not everyone shares my enthusiasm.
             </p>
           </div>
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="#" icon={TwitterIcon}>
-              Follow on Twitter
-            </SocialLink>
-            <SocialLink href="#" icon={InstagramIcon} className="mt-4">
+            <SocialLink href="https://www.instagram.com/charliemacnamaraa/" icon={InstagramIcon} className="mt-4">
               Follow on Instagram
             </SocialLink>
-            <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+            <SocialLink href="https://github.com/CharlieMacnamara" icon={GitHubIcon} className="mt-4">
               Follow on GitHub
             </SocialLink>
-            <SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+            <SocialLink href="https://www.linkedin.com/in/charliemacnamara/" icon={LinkedInIcon} className="mt-4">
               Follow on LinkedIn
             </SocialLink>
             <SocialLink
-              href="mailto:spencer@planetaria.tech"
+              href="mailto:macnamara.charlie@gmail.com"
               icon={MailIcon}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
-              spencer@planetaria.tech
+              macnamara.charlie@gmail.com
             </SocialLink>
           </ul>
         </div>
