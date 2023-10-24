@@ -28,7 +28,6 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 2222
         script: |
-          cd /home/charlie/website/Charlie-Webpage
-          git pull
-          npm install
-          pm2 restart all
+          cd /home/charlie/Charlie-Webpage
+          git pull          
+          pm2 restart npm -- run dev
