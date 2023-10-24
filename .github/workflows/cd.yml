@@ -29,6 +29,6 @@ jobs:
         port: 2222
         script: |
           cd /home/charlie/website/Charlie-Webpage
-          git fetch origin master
-          git reset --hard FETCH_HEAD
+          git pull
+          npm install
           pm2 restart all
