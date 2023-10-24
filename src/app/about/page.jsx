@@ -39,7 +39,7 @@ function MailIcon(props) {
 export const metadata = {
   title: 'About',
   description:
-    'I’m Charlie. I live in Edinburgh, Scotland, where I write about anything that pieques my interest - but mainly APIs.',
+    'I’m Charlie... I live in Edinburgh, Scotland, where I write about anything that pieques my interest - but mainly APIs.',
 }
 
 export default function About() {
