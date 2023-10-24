@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
-  "/portfolio/page": "app/portfolio/page.js",
-  "/articles/page": "app/articles/page.js",
-  "/articles/how-to-dockerize-a-django-preact-and-postgres-application/page": "app/articles/how-to-dockerize-a-django-preact-and-postgres-application/page.js"
-}
