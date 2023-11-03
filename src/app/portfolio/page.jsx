@@ -35,7 +35,6 @@ export default function Speaking() {
       intro="Thanks for visiting my portfolio! I'm an experienced Technical Writer focusing on API, SDK, and product documentation. Rather than overwhelm you with an exhaustive list of similar pieces, I've chosen a selection of my work from previous jobs that best displays my talents and capabilities."
     >
       <div className="space-y-20">
-        <SpeakingSection title="Blogs/Guides">
           <Appearance
             href="https://transloadit.com/blog/2022/06/image-facedetect-cdn-support/"
             title="Our Smart CDN now supports AI Face Detection!"
@@ -60,8 +59,6 @@ export default function Speaking() {
             description="Explaining ."
             cta="View"
           />
-        </SpeakingSection>
-        <SpeakingSection title="Documentation">
           <Appearance
             href="https://transloadit.com/docs/transcoding/document-processing/document-convert/"
             title="/document/convert Robot Documentation"
@@ -82,7 +79,6 @@ export default function Speaking() {
             event="How They Work Radio, September 2021"
             cta="Listen to podcast"
           />
-        </SpeakingSection>
       </div>
     </SimpleLayout>
   )
