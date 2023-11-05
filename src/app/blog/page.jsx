@@ -7,7 +7,7 @@ function Article({ article }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
-        <Card.Title href={`/articles/${article.slug}`}>
+        <Card.Title href={`/blog/${article.slug}`}>
           {article.title}
         </Card.Title>
         <Card.Eyebrow
@@ -33,9 +33,9 @@ function Article({ article }) {
 }
 
 export const metadata = {
-  title: 'Articles',
+  title: 'Blog',
   description:
-    'Where I go to write unrelated to work things.',
+    'Where I publish writing unrelated to work things.',
 }
 
 export default async function ArticlesIndex() {
@@ -43,7 +43,7 @@ export default async function ArticlesIndex() {
 
   return (
     <SimpleLayout
-      title="Where I go to write unrelated to work things."
+      title="Where I publish writing unrelated to work things."
       intro="Writing on films, books, software and anything else that picks my fancy."
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
