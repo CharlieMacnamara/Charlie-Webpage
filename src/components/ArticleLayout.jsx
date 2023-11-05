@@ -29,7 +29,7 @@ export function DynamicPlayer({ mediaUrl, mediaType }) {
   return (
     <ReactPlayer
       url={mediaUrl}
-      playing={true}
+      playing={false}
       controls={true}
       type={isVideo ? 'video' : isAudio ? 'audio' : 'unknown'}
     />

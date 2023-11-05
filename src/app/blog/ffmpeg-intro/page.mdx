@@ -75,7 +75,7 @@ Watermarks can be crucial for branding or context. This command places the 'Your
 ```shell
 ffmpeg -i sample.mp4 -vf "drawtext=fontfile=/Windows/fonts/calibri.ttf:fontsize=60:fontcolor=white:x=W-tw-10:y=10:text='Your Watermark'" output_watermarked.mp4
 ```
-<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_vp9.webm" mediaType="video" playing="false"/>
+<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_watermarked.mp4" mediaType="video" playing="false"/>
 
 ### 2\. Format Conversion
 
@@ -96,7 +96,7 @@ To remove a video's audio stream, include the `-an` flag.
 ```shell
 ffmpeg -i sample.mp4 -an output_silent.mp4
 ```
-<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=70JP38JO8wo" mediaType="video" />
+<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_silent.mp4" mediaType="video" />
 
 ### 4\. Combining Audio and Video
 
@@ -106,7 +106,7 @@ Combine a video and external audio files by merging `output_silent.mp4` and `tr
 ffmpeg -i output_silent.mp4 -i track.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4
 ```
 
-<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=wOuI6tFFbAc" mediaType="video" />
+<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_combined.mp4" mediaType="video" />
 
 ### 5\. Extracting Specific Duration from Video
 
@@ -116,7 +116,7 @@ To extract a specific segment, use the -ss flag to set the segment start time al
 ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 output_segment.mp4
 ```
 
-<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=zeg2Qm1zmm4" mediaType="video" />
+<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_segment.mp4" mediaType="video" />
 
 ### 6\. Speed Alteration
 
@@ -126,7 +126,7 @@ This command doubles the speed of `sample.mp4`. Modify the multiplier to control
 ffmpeg -i sample.mp4 -vf "setpts=0.5*PTS" -af "atempo=2.0" output_fast.mp4
 ```
 
-<DynamicPlayer mediaUrl="https://www.youtube.com/watch?v=Bwkn_XdTfbw" mediaType="video" />
+<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_fast.mp4" mediaType="video" />
 
 ### 7\. Video Resizing
 
@@ -168,10 +168,10 @@ FFmpeg's strength lies in executing multiple tasks in a single command. Everythi
 These commands showcase FFmpeg's efficiency and flexibility in handling multiple tasks simultaneously. Understanding FFmpeg's flags and options empowers you to create powerful commands tailored to your multimedia needs.
 
 ```shell
-ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 -vcodec libx264 -crf 30 batchoutput_segment.avi
+ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 -vcodec libx264 -crf 30 -vf "drawtext=fontfile=/Windows/fonts/calibri.ttf:fontsize=60:fontcolor=white:x=W-tw-10:y=10:text='Your Watermark'" batchoutput_segment.mkv
 ```
 
-<DynamicPlayer mediaUrl="https://youtu.be/zwNbb-J4Jlg" mediaType="video" />
+<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/batchoutput_segment.mkv" mediaType="video" />
 
 ## Final Thoughts
 
