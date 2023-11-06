@@ -18,6 +18,7 @@ import logoFreelance from '@/images/logos/freelance.svg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
+import image4 from '@/images/photos/image-4.jpg'
 import { formatDate } from '@/lib/formatDate'
 import { getAllArticles } from '@/lib/getAllArticles'
 
@@ -161,7 +162,7 @@ function Photos() {
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3].map((image, imageIndex) => (
+        {[image1, image2, image3, image4].map((image, imageIndex) => (
           <div
             key={image.src}
             className={clsx(
@@ -190,7 +191,7 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Technical Writer, Programmer and Attempting Author.
+            Technical Writer, Hobbiest Programmer and Amateur Author.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
           I'm Charlie, a Scottish technical writer trying to make content more engaging. I work mainly on API/SDKs, but I have a more comprehensive range of writing skills, from informative to marketing.
