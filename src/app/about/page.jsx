@@ -62,7 +62,7 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-            Since I was a kid, I've discovered immense joy in using computers, yet this presented some challenges. For me, learning has always been a bit of a puzzle. As a dyslexic, my school years presented more obstacles than most. If a subject didn't captivate my interest, my attention waned, and I'd disengage. Though I don't have such a black-and-white approach, that lingering tendency to disengage is still there. Learning to code when I was a kid brought up similar challenges. I desperately wanted to learn these new technologies, yet my instinct was to disengage when I found content dry.</p>
+            Since I was a kid, I've discovered immense joy in using computers, yet this presented some challenges. For me, learning has always been a bit of a puzzle. As a dyslexic, my school years presented more obstacles than most. If a subject didn't captivate my interest, my attention waned, and I'd disengage. Though I don't have such a black-and-white approach now, that lingering tendency to disengage is still there. Learning to code when I was a kid brought up similar challenges. I desperately wanted to learn these new technologies, yet my instinct was to disengage when I found content dry.</p>
             <p>
             As a technical writer, I've found a way to allow myself to craft content that resonates with individuals who share my journey or, in general, want less dry technical content (I'm sure this is a familiar feeling). I aim to prevent another young Charlie from giving up. </p>
             <p>

@@ -85,7 +85,7 @@ export default function Speaking() {
             title="Wisej.NET 3.0"
             description="A comprehensive document that thoroughly details all the changes introduced with a major version release."
             event="The Escape Velocity Show, March 2022"
-            cta="Listen to podcast"
+            cta="View"
           />
       </SpeakingSection>
       <SpeakingSection title="Miscellaneous">
