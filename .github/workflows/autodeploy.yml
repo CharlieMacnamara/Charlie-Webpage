@@ -1,5 +1,4 @@
-name: Node.js CI
-
+name: Auto Depoy App
 on:
   push:
     branches: [ "master" ]
