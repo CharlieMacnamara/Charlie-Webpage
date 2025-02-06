@@ -1,7 +1,8 @@
 import { useId } from 'react'
+import { memo } from 'react'
 
-export function Section({ title, children }) {
-  let id = useId()
+export const Section = memo(function Section({ title, children }) {
+  const id = useId()
 
   return (
     <section
@@ -19,4 +20,4 @@ export function Section({ title, children }) {
       </div>
     </section>
   )
-}
+})

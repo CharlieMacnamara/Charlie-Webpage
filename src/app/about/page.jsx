@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -7,11 +8,11 @@ import {
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
-  TwitterIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+import { generateMetadata } from '@/components/SEO'
 
-function SocialLink({ className, href, children, icon: Icon }) {
+const SocialLink = memo(function SocialLink({ className, href, children, icon: Icon }) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
@@ -23,9 +24,9 @@ function SocialLink({ className, href, children, icon: Icon }) {
       </Link>
     </li>
   )
-}
+})
 
-function MailIcon(props) {
+const MailIcon = memo(function MailIcon(props) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -34,63 +35,70 @@ function MailIcon(props) {
       />
     </svg>
   )
-}
+})
 
-export const metadata = {
-  title: 'About',
-  description:
-    'I’m Charlie... I live in Edinburgh, Scotland, where I write about anything that pieques my interest - but mainly APIs.',
-}
+export const metadata = generateMetadata({
+  title: "About",
+  description: "I'm Charlie... I live in Edinburgh, Scotland, where I write about anything that pieques my interest - but mainly APIs.",
+  path: "/about"
+})
+
+const AboutContent = memo(function AboutContent() {
+  return (
+    <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
+      <div className="lg:pl-20">
+        <div className="max-w-xs px-2.5 lg:max-w-none">
+          <Image
+            src={portraitImage}
+            alt="Portrait of Charlie Macnamara"
+            sizes="(min-width: 1024px) 32rem, 20rem"
+            className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+            priority
+          />
+        </div>
+      </div>
+      <div className="lg:order-first lg:row-span-2">
+        <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+          I'm Charlie Macnamara. I live in Edinburgh.
+        </h1>
+        <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+          <p>
+          Since I was a kid, I've discovered immense joy in using computers, yet this presented some challenges. For me, learning has always been a bit of a puzzle. As a dyslexic, my school years presented more obstacles than most. If a subject didn't captivate my interest, my attention waned, and I'd disengage. Though I don't have such a black-and-white approach now, that lingering tendency to disengage is still there. Learning to code when I was a kid brought up similar challenges. I desperately wanted to learn these new technologies, yet my instinct was to disengage when I found content dry.</p>
+          <p>
+          As a technical writer, I've found a way to allow myself to craft content that resonates with individuals who share my journey or, in general, want less dry technical content (I'm sure this is a familiar feeling). I aim to prevent another young Charlie from giving up. </p>
+          <p>
+          This is my writing philosophy, and while researching API features is interesting, I recognise that only some people share my excitement. But please don't get me wrong. My work is for more than just beginners. While I've addressed many complex topics, it's ideal to keep things as basic as possible so that your message, product, or service can be presented as efficiently and entertainingly as feasible.
+          </p>
+        </div>
+      </div>
+      <div className="lg:pl-20">
+        <ul role="list">
+          <SocialLink href="https://www.instagram.com/charliemacnamaraa/" icon={InstagramIcon} className="mt-4">
+            Follow on Instagram
+          </SocialLink>
+          <SocialLink href="https://github.com/CharlieMacnamara" icon={GitHubIcon} className="mt-4">
+            Follow on GitHub
+          </SocialLink>
+          <SocialLink href="https://www.linkedin.com/in/charliemacnamara/" icon={LinkedInIcon} className="mt-4">
+            Follow on LinkedIn
+          </SocialLink>
+          <SocialLink
+            href="mailto:macnamara.charlie@gmail.com"
+            icon={MailIcon}
+            className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+          >
+            macnamara.charlie@gmail.com
+          </SocialLink>
+        </ul>
+      </div>
+    </div>
+  )
+})
 
 export default function About() {
   return (
     <Container className="mt-16 sm:mt-32">
-      <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-        <div className="lg:pl-20">
-          <div className="max-w-xs px-2.5 lg:max-w-none">
-            <Image
-              src={portraitImage}
-              alt=""
-              sizes="(min-width: 1024px) 32rem, 20rem"
-              className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-            />
-          </div>
-        </div>
-        <div className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            I’m Charlie Macnamara. I live in Edinburgh.
-          </h1>
-          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-            <p>
-            Since I was a kid, I've discovered immense joy in using computers, yet this presented some challenges. For me, learning has always been a bit of a puzzle. As a dyslexic, my school years presented more obstacles than most. If a subject didn't captivate my interest, my attention waned, and I'd disengage. Though I don't have such a black-and-white approach now, that lingering tendency to disengage is still there. Learning to code when I was a kid brought up similar challenges. I desperately wanted to learn these new technologies, yet my instinct was to disengage when I found content dry.</p>
-            <p>
-            As a technical writer, I've found a way to allow myself to craft content that resonates with individuals who share my journey or, in general, want less dry technical content (I'm sure this is a familiar feeling). I aim to prevent another young Charlie from giving up. </p>
-            <p>
-            This is my writing philosophy, and while researching API features is interesting, I recognise that only some people share my excitement. But please don't get me wrong. My work is for more than just beginners. While I've addressed many complex topics, it's ideal to keep things as basic as possible so that your message, product, or service can be presented as efficiently and entertainingly as feasible.
-            </p>
-          </div>
-        </div>
-        <div className="lg:pl-20">
-          <ul role="list">
-            <SocialLink href="https://www.instagram.com/charliemacnamaraa/" icon={InstagramIcon} className="mt-4">
-              Follow on Instagram
-            </SocialLink>
-            <SocialLink href="https://github.com/CharlieMacnamara" icon={GitHubIcon} className="mt-4">
-              Follow on GitHub
-            </SocialLink>
-            <SocialLink href="https://www.linkedin.com/in/charliemacnamara/" icon={LinkedInIcon} className="mt-4">
-              Follow on LinkedIn
-            </SocialLink>
-            <SocialLink
-              href="mailto:macnamara.charlie@gmail.com"
-              icon={MailIcon}
-              className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
-            >
-              macnamara.charlie@gmail.com
-            </SocialLink>
-          </ul>
-        </div>
-      </div>
+      <AboutContent />
     </Container>
   )
 }
