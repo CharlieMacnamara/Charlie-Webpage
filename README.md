@@ -1,42 +1,91 @@
-# Spotlight 2
+# Charlie Macnamara - Personal Website
 
-Spotlight is a [Tailwind UI](https://tailwindui.com) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+My personal website showcasing my work as a Technical Writer and Developer. Built with Next.js, TailwindCSS, and MDX.
 
-## Getting started
+## Overview
 
-To get started with this template, first install the npm dependencies:
+This website serves as my professional portfolio and blog, where I share:
+- Technical writing samples and API documentation
+- Blog posts about software development and technical communication
+- Projects and contributions to the developer community
+- Insights about making complex technical concepts accessible
 
+## Features
+
+- **Responsive Design**: Optimized for all devices using TailwindCSS
+- **Dark Mode**: System-aware theme switching
+- **MDX Blog**: Technical articles with code syntax highlighting
+- **Accessibility**: ARIA-compliant with semantic HTML
+- **Performance**: Optimized images and lazy loading
+- **SEO**: Meta tags and structured data for better visibility
+
+## Tech Stack
+
+- **Framework**: Next.js 15
+- **Styling**: TailwindCSS
+- **Content**: MDX
+- **Deployment**: Vercel
+- **Media**: Optimized with Sharp
+- **Performance Monitoring**: Custom implementation
+
+## Local Development
+
+1. Clone the repository:
+```bash
+git clone https://github.com/CharlieMacnamara/Charlie-Webpage.git
+cd Charlie-Webpage
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-Next, create a `.env.local` file in the root of your project and set the `NEXT_PUBLIC_SITE_URL` variable to your site's public URL:
+3. Create a `.env.local` file in the root directory and add any necessary environment variables.
 
-```
-NEXT_PUBLIC_SITE_URL=https://example.com
-```
-
-Next, run the development server:
-
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Customizing
+## Build and Deploy
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
+To create a production build:
+
+```bash
+npm run build
+npm run start
+```
+
+## Image Optimization
+
+To optimize images for the web:
+
+```bash
+npm run optimize-images
+```
+
+This script will:
+- Convert images to WebP format
+- Optimize quality and file size
+- Maintain aspect ratios
+- Generate responsive sizes
+
+## Contributing
+
+While this is my personal website, I welcome:
+- Bug reports
+- Accessibility improvements
+- Performance optimization suggestions
+
+## Contact
+
+- Email: macnamara.charlie@gmail.com
+- LinkedIn: [Charlie Macnamara](https://www.linkedin.com/in/charliemacnamara/)
+- GitHub: [@CharlieMacnamara](https://github.com/CharlieMacnamara)
 
 ## License
 
-This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
-
-## Learn more
-
-To learn more about the technologies used in this site template, see the following resources:
-
-- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
-- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
-- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
-- [MDX](https://mdxjs.com) - the MDX documentation
+This project is licensed under the MIT License - see the LICENSE file for details.
