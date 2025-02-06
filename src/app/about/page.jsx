@@ -39,7 +39,7 @@ const MailIcon = memo(function MailIcon(props) {
 
 export const metadata = generateMetadata({
   title: "About",
-  description: "I'm Charlie... I live in Edinburgh, Scotland, where I write about anything that pieques my interest - but mainly APIs.",
+  description: "I'm Charlie, a technical writer in Edinburgh, Scotland, specializing in `API` documentation and engaging technical content.",
   path: "/about"
 })
 
@@ -50,7 +50,7 @@ const AboutContent = memo(function AboutContent() {
         <div className="max-w-xs px-2.5 lg:max-w-none">
           <Image
             src={portraitImage}
-            alt="Portrait of Charlie Macnamara"
+            alt="Professional headshot of Charlie Macnamara, technical writer and developer"
             sizes="(min-width: 1024px) 32rem, 20rem"
             className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
             priority
@@ -63,11 +63,11 @@ const AboutContent = memo(function AboutContent() {
         </h1>
         <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
           <p>
-          Since I was a kid, I've discovered immense joy in using computers, yet this presented some challenges. For me, learning has always been a bit of a puzzle. As a dyslexic, my school years presented more obstacles than most. If a subject didn't captivate my interest, my attention waned, and I'd disengage. Though I don't have such a black-and-white approach now, that lingering tendency to disengage is still there. Learning to code when I was a kid brought up similar challenges. I desperately wanted to learn these new technologies, yet my instinct was to disengage when I found content dry.</p>
+          Since childhood, I've found joy in computing, though learning presented unique challenges. As someone with dyslexia, my school years required extra effort. When topics didn't capture my interest, focusing became difficult. While I've developed better strategies now, that initial tendency to disengage remains. Learning to code brought similar challenges - I was eager to learn new technologies but struggled with dry content.</p>
           <p>
-          As a technical writer, I've found a way to allow myself to craft content that resonates with individuals who share my journey or, in general, want less dry technical content (I'm sure this is a familiar feeling). I aim to prevent another young Charlie from giving up. </p>
+          As a technical writer, I craft content that resonates with others who share similar experiences or prefer engaging technical documentation. My goal is to make complex topics accessible and prevent others from giving up as I almost did.</p>
           <p>
-          This is my writing philosophy, and while researching API features is interesting, I recognise that only some people share my excitement. But please don't get me wrong. My work is for more than just beginners. While I've addressed many complex topics, it's ideal to keep things as basic as possible so that your message, product, or service can be presented as efficiently and entertainingly as feasible.
+          This philosophy guides my work with `APIs`, technical documentation, and software development. While I'm passionate about exploring technical features, I understand not everyone shares this enthusiasm. My work serves both beginners and experienced developers, presenting complex topics clearly and engagingly while maintaining technical accuracy.
           </p>
         </div>
       </div>

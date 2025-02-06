@@ -1,8 +1,9 @@
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { generateMetadata } from '@/components/SEO'
 
-function SpeakingSection({ children, ...props }) {
+function PortfolioSection({ children, ...props }) {
   return (
     <Section {...props}>
       <div className="space-y-16">{children}</div>
@@ -10,7 +11,7 @@ function SpeakingSection({ children, ...props }) {
   )
 }
 
-function Appearance({ title, description, event, cta, href }) {
+function ProjectCard({ title, description, event, cta, href }) {
   return (
     <Card as="article">
       <Card.Title as="h3" href={href}>
@@ -22,86 +23,87 @@ function Appearance({ title, description, event, cta, href }) {
   )
 }
 
-export const metadata = {
+export const metadata = generateMetadata({
   title: 'Portfolio',
-  description:
-    'I’ve done too much stuff.',
-}
+  description: 'Selected works showcasing technical writing, API documentation, and content strategy.',
+  path: '/portfolio'
+})
 
-export default function Speaking() {
+export default function Portfolio() {
   return (
     <SimpleLayout
-      title="I’ve done too much stuff."
-      intro="Rather than overwhelm you with an exhaustive list of similar pieces, I've chosen a selection of my work from previous jobs that best displays my talents and capabilities. For more examples of specific types of content please reach out at my email."
+      title="Selected Works and Projects"
+      intro="A curated collection of my work demonstrating expertise in technical writing, API documentation, and content strategy. Each piece represents different aspects of my skills in making complex technical concepts accessible and engaging."
     >
       <div className="space-y-20">
-      <SpeakingSection title="Blogs/Demos">
-          <Appearance
+        <PortfolioSection title="Technical Blog Posts">
+          <ProjectCard
             href="https://transloadit.com/blog/2022/06/image-facedetect-cdn-support/"
-            title="Our Smart CDN now supports AI Face Detection!"
-            description="Feature announcement blog."
-            cta="View"
+            title="Implementing AI Face Detection in Smart CDN"
+            description="Technical announcement showcasing the integration of `AI`-powered face detection capabilities in our CDN infrastructure."
+            cta="Read Article"
           />
-          <Appearance
+          <ProjectCard
             href="https://transloadit.com/blog/2022/05/geolocation-watermark/"
-            title="Let’s Build: Geolocation image watermarker"
-            description="A demonstration of how to integrate multiple APIs seamlessly with Transloadit's product. (including a photo from my favourite city)"
-            cta="View"
+            title="Building a Geolocation Image Watermarker"
+            description="Step-by-step tutorial demonstrating the integration of multiple `APIs` to create a location-aware image processing system."
+            cta="View Tutorial"
           />
-          <Appearance
+          <ProjectCard
             href="https://configcat.com/blog/2020/07/08/introduction-to-configcat-api/"
-            title="Getting acquainted with the ConfigCat Public Management API"
-            description="A technical deep-dive into an updated piece of software."
-            cta="View"
+            title="Deep Dive: ConfigCat Public Management `API`"
+            description="Comprehensive technical exploration of the ConfigCat Management `API`, focusing on practical implementation and best practices."
+            cta="Read Guide"
           />
-          <Appearance
+          <ProjectCard
             href="https://transloadit.com/demos/video-encoding/encode-blurout-effect/"
-            title="Encode blur-out effect into video file"
-            description="Using additional FFmpeg flags demonstration."
-            cta="View"
+            title="Advanced Video Processing with FFmpeg"
+            description="Technical demonstration of implementing complex video effects using FFmpeg's advanced features and custom parameters."
+            cta="View Demo"
           />
-      </SpeakingSection>
-      <SpeakingSection title="Documentation">
-        <Appearance
+        </PortfolioSection>
+
+        <PortfolioSection title="Technical Documentation">
+          <ProjectCard
             href="https://evoraglobal.github.io/sieraapi-docs/#consumption-get-consumption-summary-of-a-meter/"
-            title="Get Consumption Summary of a Meter"
-            description="API documentation for SIERA."
-            cta="View"
+            title="SIERA `API` Reference: Consumption Metrics"
+            description="Detailed `API` documentation for meter consumption data retrieval and analysis."
+            cta="View Docs"
           />
-          <Appearance
+          <ProjectCard
             href="https://transloadit.com/docs/transcoding/document-processing/document-convert/"
-            title="/document/convert Robot Documentation"
-            description="Feature documentation for use with Transloadit API."
-            cta="View"
+            title="Document Conversion `API` Reference"
+            description="Comprehensive guide to the document conversion `API` endpoints and implementation examples."
+            cta="Read Documentation"
           />
-          <Appearance
+          <ProjectCard
             href="https://sieraglobal.zendesk.com/hc/en-gb/articles/11107134286877-Gap-Filling-Methodology/"
-            title="Gap Filling Mehtodology"
-            description="Explaining sector specific information."
-            cta="View"
+            title="Data Gap Analysis Methodology"
+            description="Technical explanation of data analysis methodologies for identifying and addressing data gaps in environmental metrics."
+            cta="View Guide"
           />
-          <Appearance
+          <ProjectCard
             href="https://docs.wisej.com/docs/releases/whats-new-in-3.0"
-            title="Wisej.NET 3.0"
-            description="A comprehensive document that thoroughly details all the changes introduced with a major version release."
-            event="The Escape Velocity Show, March 2022"
-            cta="View"
+            title="Wisej.NET 3.0 Release Documentation"
+            description="Comprehensive documentation covering new features, improvements, and migration guidelines for the Wisej.NET 3.0 release."
+            cta="View Release Notes"
           />
-      </SpeakingSection>
-      <SpeakingSection title="Miscellaneous">
-      <Appearance
+        </PortfolioSection>
+
+        <PortfolioSection title="Technical Content">
+          <ProjectCard
             href="https://www.youtube.com/watch?v=yj36Ki0V2MI&t=207s/"
-            title="Installing Wisej.NET for Visual Studio "
-            description="Video demoing how to install and use a service."
-            cta="View"
+            title="Wisej.NET Visual Studio Integration Guide"
+            description="Video tutorial demonstrating the setup and configuration of Wisej.NET in Visual Studio, with practical examples."
+            cta="Watch Tutorial"
           />
-          <Appearance
+          <ProjectCard
             href="https://charliewebsite.s3.eu-west-2.amazonaws.com/email-example.pdf/"
-            title="Wisej.NET service email"
-            description="An example of publishing a quick feature announcment via email."
-            cta="View"
+            title="Technical Feature Announcement"
+            description="Concise technical communication announcing new Wisej.NET features to the developer community."
+            cta="View Example"
           />
-      </SpeakingSection>
+        </PortfolioSection>
       </div>
     </SimpleLayout>
   )

@@ -5,9 +5,9 @@ import React from 'react'
 export const article = {
   author: 'Charlie Macnamara',
   date: '2023-10-23',
-  title: 'FFmpeg intro',
+  title: 'A Comprehensive Guide to FFmpeg: From Installation to Advanced Usage',
   description:
-    'A detailed look at FFmpeg, a program I should have remembered much more about, while I brush up on some fundamentals.',
+    'A detailed guide to FFmpeg, the powerful multimedia framework. Learn installation, basic commands, and advanced techniques for video and audio manipulation, with practical examples and best practices.',
 }
 
 export const metadata = {
@@ -17,9 +17,9 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-FFmpeg is a robust multimedia tool that I learned about during my first job as a Technical Writer. At Transloadit (The first company I worked for), FFmpeg was integrated into their feature stack, enabling users to manipulate images, videos, and audio using FFmpeg's parameters when the API didn't natively support specific functions. I also did my fair share of support tickets, and often, I would deal with requests asking for help creating custom ffmpeg parameters. Imagine an on request demo like [this](https://transloadit.com/demos/audio-encoding/ffmpeg-distant-audio/).
+FFmpeg is a versatile and powerful multimedia framework that I initially encountered during my tenure as a Technical Writer at Transloadit. There, FFmpeg was deeply integrated into their feature stack, enabling users to perform sophisticated media manipulations through API parameters. My experience included developing documentation and providing technical support for custom FFmpeg implementations, similar to this [audio processing demo](https://transloadit.com/demos/audio-encoding/ffmpeg-distant-audio/).
 
-I've recently been using FFmpeg in a project and quickly realised I remembered less than I expected, so I wanted to do a write-up to cement some of the skills I've gained from reteaching myself while also making something informative for those unfamiliar.
+Having recently revisited FFmpeg for a new project, I realized the depth of its capabilities warranted a comprehensive guide. This article aims to provide both newcomers and experienced users with practical insights into FFmpeg's functionality, from basic operations to advanced techniques.
 
 ## Getting Started
 
@@ -57,7 +57,7 @@ Details about your FFmpeg version will be displayed if everything is set up corr
 
 Before diving into specific commands, let's look at some foundational concepts:
 
-The basic syntax of the FFmpeg command is `ffmpeg -i input.mp4 output.mp4`. Here’s an explanation for the commands:
+The basic syntax of the FFmpeg command is `ffmpeg -i input.mp4 output.mp4`. Here's an explanation for the commands:
 
 - `ffmpeg`: This calls the program.
 - `-i`: This identifies the input file.
@@ -98,7 +98,7 @@ ffmpeg -i sample.mp4 -an output_silent.mp4
 
 ### 4\. Combining Audio and Video
 
-Combine a video and external audio files by merging `output_silent.mp4` and `track.mp3` into a single video. The video codec remains unchanged, and the audio codec is set to AAC.
+Combine a video and external audio files by merging `output_silent.mp4` and `track.mp3` into a single video. The video codec remains unchanged, and the audio codec is set to AAC.
 
 ```shell
 ffmpeg -i output_silent.mp4 -i track.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4

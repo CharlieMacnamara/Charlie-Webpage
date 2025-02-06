@@ -10,9 +10,9 @@ import five from './5.png'
 export const article = {
   author: 'Charlie Macnamara',
   date: '2023-10-14',
-  title: 'How to Dockerize a Django, Preact, and Postgres Application',
+  title: 'Containerizing a Full-Stack Application: Django, Preact, and PostgreSQL with Docker',
   description:
-    'Attempting to simplify the complexities of making these technologies coexist. This journey was documented to help others avoid the difficulties I encountered. This blog covers the prerequisites, installing Django and Preact, Docker containerisation, and configuring Docker Compose.',
+    'A comprehensive guide to containerizing a modern full-stack application using Docker. Learn how to configure and orchestrate Django, Preact, and PostgreSQL containers, implement best practices for development environments, and ensure seamless integration between services.',
 }
 
 export const metadata = {
@@ -22,7 +22,9 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-I've recently had more free time, so I've been learning new technologies. Anyone working in tech or interested in giving it a bash has surely experienced the troubles of getting different technologies to play together nicely. I decided to document the process to save you the agony I experienced while figuring this out.
+Modern web development often involves integrating multiple technologies, each with its own dependencies and requirements. This complexity can lead to the infamous "it works on my machine" problem and make deployment challenging. This guide demonstrates how to use Docker to create a consistent, reproducible development environment for a full-stack application using Django, Preact, and PostgreSQL.
+
+Containerization with Docker provides a solution by packaging applications and their dependencies into isolated environments. While the initial setup requires careful consideration, the benefits of consistent environments, simplified deployment, and improved development workflow make it invaluable for modern web applications.
 
 Containerisation is the process of packaging software with everything needed to run it in a self-contained environment. This allows multiple machines to run the same code, simplifying deployment and all the other cogs. We'll be using Docker for this, and while the setup takes a little longer, it's well worth it.
 ## Prerequisites
@@ -83,7 +85,7 @@ python manage.py runserver
 
 You can test if the server is running by going to: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-<Image src={one} alt="" />
+<Image src={one} alt="Screenshot of the default Django welcome page showing a successful installation" />
 
 Finally, create a requirements file that will hold our requirements for the project, while in `django-preact-docker/backend` run:
 
@@ -91,7 +93,7 @@ Finally, create a requirements file that will hold our requirements for the proj
 pip freeze > requirements.txt
 ```
 
-<Image src={two} alt="" />
+<Image src={two} alt="Terminal output showing the requirements.txt file being generated" />
 ### Setting Up Our Preact Application
 
 Head back to our root folder `django-preact-docker`.
@@ -112,7 +114,7 @@ npm run dev
 
 This will set up a development server. Once the server has started, it will print a local development URL to open in your browser. Check this is working before moving on!
 
-<Image src={three} alt="" />
+<Image src={three} alt="Screenshot of the default Preact application running in the browser" />
 
 ## Containerising
 
@@ -377,7 +379,7 @@ urlpatterns = [
 ]
 ```
 
-<Image src={four} alt="" />
+<Image src={four} alt="Browser view showing the Django API endpoint returning JSON data" />
 
 You can now see this text on [http://localhost:8000/test/](http://localhost:8000/test/).
 
@@ -416,4 +418,4 @@ render(<App />, document.getElementById('app'));
 ```
 Refresh and reload, and you should see a working Preact front page! Fingers crossed this saved you an aneurysm. If you have any questions feel free to ask me on my linked socials.
 
-<Image src={five} alt="" />
+<Image src={five} alt="Final application view showing the integrated Preact frontend with data from Django backend" />

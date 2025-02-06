@@ -1,11 +1,11 @@
 'use client'
 
-import { createContext, useEffect, useRef } from 'react'
+import { createContext, useEffect, useRef, memo, useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 import { ThemeProvider, useTheme } from 'next-themes'
 
-function usePrevious(value) {
-  let ref = useRef()
+const usePrevious = (value) => {
+  const ref = useRef()
 
   useEffect(() => {
     ref.current = value
@@ -14,14 +14,14 @@ function usePrevious(value) {
   return ref.current
 }
 
-function ThemeWatcher() {
-  let { resolvedTheme, setTheme } = useTheme()
+const ThemeWatcher = memo(function ThemeWatcher() {
+  const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
-    let media = window.matchMedia('(prefers-color-scheme: dark)')
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
 
     function onMediaChange() {
-      let systemTheme = media.matches ? 'dark' : 'light'
+      const systemTheme = media.matches ? 'dark' : 'light'
       if (resolvedTheme === systemTheme) {
         setTheme('system')
       }
@@ -36,20 +36,30 @@ function ThemeWatcher() {
   }, [resolvedTheme, setTheme])
 
   return null
-}
+})
 
-export const AppContext = createContext()
+export const AppContext = createContext(undefined)
+
+const MemoizedThemeProvider = memo(function MemoizedThemeProvider({ children }) {
+  return (
+    <ThemeProvider attribute="class" disableTransitionOnChange>
+      <ThemeWatcher />
+      {children}
+    </ThemeProvider>
+  )
+})
 
 export function Providers({ children }) {
-  let pathname = usePathname()
-  let previousPathname = usePrevious(pathname)
+  const pathname = usePathname()
+  const previousPathname = usePrevious(pathname)
+  
+  const contextValue = useMemo(() => ({ previousPathname }), [previousPathname])
 
   return (
-    <AppContext.Provider value={{ previousPathname }}>
-      <ThemeProvider attribute="class" disableTransitionOnChange>
-        <ThemeWatcher />
+    <AppContext.Provider value={contextValue}>
+      <MemoizedThemeProvider>
         {children}
-      </ThemeProvider>
+      </MemoizedThemeProvider>
     </AppContext.Provider>
   )
 }

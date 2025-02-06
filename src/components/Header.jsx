@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState, memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -11,7 +11,7 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
 
-function CloseIcon(props) {
+const CloseIcon = memo(function CloseIcon(props) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -24,9 +24,9 @@ function CloseIcon(props) {
       />
     </svg>
   )
-}
+})
 
-function ChevronDownIcon(props) {
+const ChevronDownIcon = memo(function ChevronDownIcon(props) {
   return (
     <svg viewBox="0 0 8 6" aria-hidden="true" {...props}>
       <path
@@ -38,9 +38,9 @@ function ChevronDownIcon(props) {
       />
     </svg>
   )
-}
+})
 
-function SunIcon(props) {
+const SunIcon = memo(function SunIcon(props) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -57,9 +57,9 @@ function SunIcon(props) {
       />
     </svg>
   )
-}
+})
 
-function MoonIcon(props) {
+const MoonIcon = memo(function MoonIcon(props) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -70,22 +70,32 @@ function MoonIcon(props) {
       />
     </svg>
   )
-}
+})
 
-function MobileNavItem({ href, children }) {
+const MobileNavItem = memo(function MobileNavItem({ href, children }) {
+  const isActive = usePathname() === href
+  
   return (
     <li>
-      <Popover.Button as={Link} href={href} className="block py-2">
+      <Popover.Button 
+        as={Link} 
+        href={href} 
+        className="block py-2"
+        aria-current={isActive ? 'page' : undefined}
+      >
         {children}
       </Popover.Button>
     </li>
   )
-}
+})
 
-function MobileNavigation(props) {
+const MobileNavigation = memo(function MobileNavigation(props) {
   return (
     <Popover {...props}>
-      <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
+      <Popover.Button 
+        className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
+        aria-label="Open navigation menu"
+      >
         Menu
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
       </Popover.Button>
@@ -115,18 +125,18 @@ function MobileNavigation(props) {
             className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
           >
             <div className="flex flex-row-reverse items-center justify-between">
-              <Popover.Button aria-label="Close menu" className="-m-1 p-1">
+              <Popover.Button aria-label="Close navigation menu" className="-m-1 p-1">
                 <CloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
               </Popover.Button>
               <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                Navigation
+                Site Navigation
               </h2>
             </div>
-            <nav className="mt-6">
+            <nav className="mt-6" aria-label="Mobile navigation">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <MobileNavItem href="/about">About</MobileNavItem>
-                <MobileNavItem href="/blog">Blog</MobileNavItem>
-                <MobileNavItem href="/portfolio">Portfolio</MobileNavItem>
+                <MobileNavItem href="/about">About Me</MobileNavItem>
+                <MobileNavItem href="/blog">Technical Blog</MobileNavItem>
+                <MobileNavItem href="/portfolio">Portfolio & Projects</MobileNavItem>
               </ul>
             </nav>
           </Popover.Panel>
@@ -134,9 +144,9 @@ function MobileNavigation(props) {
       </Transition.Root>
     </Popover>
   )
-}
+})
 
-function NavItem({ href, children }) {
+const MemoizedNavItem = memo(function NavItem({ href, children }) {
   let isActive = usePathname() === href
 
   return (
@@ -149,6 +159,7 @@ function NavItem({ href, children }) {
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400'
         )}
+        aria-current={isActive ? 'page' : undefined}
       >
         {children}
         {isActive && (
@@ -157,19 +168,19 @@ function NavItem({ href, children }) {
       </Link>
     </li>
   )
-}
+})
 
-function DesktopNavigation(props) {
+const MemoizedDesktopNavigation = memo(function DesktopNavigation(props) {
   return (
-    <nav {...props}>
+    <nav {...props} aria-label="Main navigation">
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/blog">Blog</NavItem>
-        <NavItem href="/portfolio">Portfolio</NavItem>
+        <MemoizedNavItem href="/about">About Me</MemoizedNavItem>
+        <MemoizedNavItem href="/blog">Technical Blog</MemoizedNavItem>
+        <MemoizedNavItem href="/portfolio">Portfolio & Projects</MemoizedNavItem>
       </ul>
     </nav>
   )
-}
+})
 
 function ThemeToggle() {
   let { resolvedTheme, setTheme } = useTheme()
@@ -211,17 +222,17 @@ function AvatarContainer({ className, ...props }) {
   )
 }
 
-function Avatar({ large = false, className, ...props }) {
+const MemoizedAvatar = memo(function Avatar({ large = false, className, ...props }) {
   return (
     <Link
       href="/"
-      aria-label="Home"
+      aria-label="Return to homepage"
       className={clsx(className, 'pointer-events-auto')}
       {...props}
     >
       <Image
         src={avatarImage}
-        alt=""
+        alt="Charlie Macnamara - Technical Writer and Developer"
         sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
@@ -231,7 +242,7 @@ function Avatar({ large = false, className, ...props }) {
       />
     </Link>
   )
-}
+})
 
 export function Header() {
   let isHomePage = usePathname() === '/'
@@ -367,7 +378,7 @@ export function Header() {
                       transform: 'var(--avatar-border-transform)',
                     }}
                   />
-                  <Avatar
+                  <MemoizedAvatar
                     large
                     className="block h-16 w-16 origin-left"
                     style={{ transform: 'var(--avatar-image-transform)' }}
@@ -390,13 +401,13 @@ export function Header() {
               <div className="flex flex-1">
                 {!isHomePage && (
                   <AvatarContainer>
-                    <Avatar />
+                    <MemoizedAvatar />
                   </AvatarContainer>
                 )}
               </div>
               <div className="flex flex-1 justify-end md:justify-center">
                 <MobileNavigation className="pointer-events-auto md:hidden" />
-                <DesktopNavigation className="pointer-events-auto hidden md:block" />
+                <MemoizedDesktopNavigation className="pointer-events-auto hidden md:block" />
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto">

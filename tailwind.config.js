@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx}'],
+  content: ['./src/**/*.{js,jsx,mdx}'],
   darkMode: 'class',
   plugins: [require('@tailwindcss/typography')],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     fontSize: {
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],
@@ -18,6 +21,61 @@ module.exports = {
       '7xl': ['4.5rem', { lineHeight: '1' }],
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
+    },
+    extend: {
+      colors: {
+        zinc: {
+          ...require('tailwindcss/colors').zinc,
+        },
+        teal: {
+          ...require('tailwindcss/colors').teal,
+        },
+      },
+      animation: {
+        'fade-in': 'fade-in 0.5s linear forwards',
+        'fade-out': 'fade-out 0.5s linear forwards',
+        marquee: 'marquee var(--marquee-duration) linear infinite',
+        'spin-slow': 'spin 4s linear infinite',
+        'spin-slower': 'spin 6s linear infinite',
+        'spin-reverse': 'spin-reverse 1s linear infinite',
+        'spin-reverse-slow': 'spin-reverse 4s linear infinite',
+        'spin-reverse-slower': 'spin-reverse 6s linear infinite',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '2.5rem',
+      },
+      keyframes: {
+        'fade-in': {
+          from: {
+            opacity: 0,
+          },
+          to: {
+            opacity: 1,
+          },
+        },
+        'fade-out': {
+          from: {
+            opacity: 1,
+          },
+          to: {
+            opacity: 0,
+          },
+        },
+        marquee: {
+          '100%': {
+            transform: 'translateY(-50%)',
+          },
+        },
+        'spin-reverse': {
+          to: {
+            transform: 'rotate(-360deg)',
+          },
+        },
+      },
+      maxWidth: {
+        '2xl': '40rem',
+      },
     },
     typography: (theme) => ({
       invert: {

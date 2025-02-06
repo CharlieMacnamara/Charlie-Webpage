@@ -1,32 +1,69 @@
-import { Providers } from '@/app/providers'
+import { Inter } from 'next/font/google'
+import { Providers } from './providers'
 import { Layout } from '@/components/Layout'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import PerformanceMonitor from '@/components/PerformanceMonitor'
 
 import '@/styles/tailwind.css'
 
+const inter = Inter({ subsets: ['latin'] })
+
 export const metadata = {
   title: {
-    template: '%s - Charlie Mac',
-    default:
-      'Charlie Macnamara - Technical Writer, Programmer and Attempting Author.',
+    template: '%s - Charlie Macnamara',
+    default: 'Charlie Macnamara - Technical Writer and Developer',
   },
-  description:
-    "I'm Charlie, a Scottish technical writer trying to make content more engaging. I work mainly on API/SDKs, but I have a more comprehensive range of writing skills, from informative to marketing.",
-  alternates: {
-    types: {
-      'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
+  description: 'Technical writer and developer specializing in API documentation and web development.',
+  metadataBase: new URL('https://charliemacnamara.com'),
+  openGraph: {
+    title: 'Charlie Macnamara',
+    description: 'Technical writer and developer specializing in API documentation and web development.',
+    url: 'https://charliemacnamara.com',
+    siteName: 'Charlie Macnamara',
+    locale: 'en_GB',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
+  },
+  twitter: {
+    title: 'Charlie Macnamara',
+    card: 'summary_large_image',
+  },
+  verification: {
+    google: 'your-google-verification-code',
   },
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className="flex h-full bg-zinc-50 dark:bg-black">
-        <Providers>
-          <div className="flex w-full">
-            <Layout>{children}</Layout>
-          </div>
-        </Providers>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/inter-var.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body className={`flex h-full bg-zinc-50 dark:bg-black ${inter.className}`}>
+        <ErrorBoundary>
+          <Providers>
+            <PerformanceMonitor />
+            <div className="flex w-full">
+              <Layout>{children}</Layout>
+            </div>
+          </Providers>
+        </ErrorBoundary>
       </body>
     </html>
   )
