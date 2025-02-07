@@ -17,9 +17,9 @@ const NavLink = memo(function NavLink({ href, children }) {
 const Navigation = memo(function Navigation() {
   return (
     <nav aria-label="Footer navigation" className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-      <NavLink href="/about">About Me</NavLink>
-      <NavLink href="/blog">Technical Blog</NavLink>
-      <NavLink href="/portfolio">Portfolio & Projects</NavLink>
+      <NavLink href="/about">About</NavLink>
+      <NavLink href="/blog">Blog</NavLink>
+      <NavLink href="/portfolio">Portfolio</NavLink>
     </nav>
   )
 })
@@ -34,9 +34,14 @@ export const Footer = memo(function Footer() {
           <Container.Inner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <Navigation />
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                © {currentYear} Charlie Macnamara. All rights reserved.
-              </p>
+              <div className="text-center sm:text-right">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  © 2023-2024 Charlie Macnamara. Content and custom code.
+                </p>
+                <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500">
+                  Built with Next.js and TailwindCSS. Design inspired by TailwindUI.
+                </p>
+              </div>
             </div>
           </Container.Inner>
         </div>
