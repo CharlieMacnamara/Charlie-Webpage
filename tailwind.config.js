@@ -7,6 +7,10 @@ module.exports = {
     hoverOnlyWhenSupported: true,
   },
   theme: {
+    fontFamily: {
+      sans: ['Trebuchet MS', 'sans-serif'],
+      display: ['Trebuchet MS', 'sans-serif'],
+    },
     fontSize: {
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],
       sm: ['0.875rem', { lineHeight: '1.5rem' }],

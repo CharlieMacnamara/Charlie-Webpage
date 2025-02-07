@@ -1,23 +1,23 @@
-import { Inter } from 'next/font/google'
 import { Providers } from './providers'
-import { Layout } from '@/components/Layout'
-import { ErrorBoundary } from '@/components/ErrorBoundary'
-import PerformanceMonitor from '@/components/PerformanceMonitor'
+import { ClientLayout } from '@/components/ClientLayout'
 
 import '@/styles/tailwind.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: {
     template: '%s - Charlie Macnamara',
     default: 'Charlie Macnamara - Technical Writer',
   },
-  description: 'Technical writer specializing in API documentation and clear technical content.',
+  description: 'Technical writer making complex systems and concepts clear and accessible.',
   metadataBase: new URL('https://charliemacnamara.com'),
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'Charlie Macnamara',
-    description: 'Technical writer specializing in API documentation and clear technical content.',
+    description: 'Technical writer making complex systems and concepts clear and accessible.',
     url: 'https://charliemacnamara.com',
     siteName: 'Charlie Macnamara',
     locale: 'en_GB',
@@ -46,24 +46,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/inter-var.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body className={`flex h-full bg-zinc-50 dark:bg-black ${inter.className}`}>
-        <ErrorBoundary>
-          <Providers>
-            <PerformanceMonitor />
-            <div className="flex w-full">
-              <Layout>{children}</Layout>
-            </div>
-          </Providers>
-        </ErrorBoundary>
+      <body className="flex h-full bg-zinc-50 dark:bg-black font-['Trebuchet_MS',_sans-serif]">
+        <Providers>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </Providers>
       </body>
     </html>
   )

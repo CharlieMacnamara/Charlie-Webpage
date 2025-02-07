@@ -13,10 +13,18 @@ const Background = memo(function Background() {
 })
 
 const Content = memo(function Content({ children }) {
+  const childrenArray = Array.isArray(children) ? children : [children]
+  
   return (
     <div className="relative flex w-full flex-col">
       <Header />
-      <main className="flex-auto">{children}</main>
+      <main className="flex-auto">
+        {childrenArray.map((child, index) => (
+          <div key={`content-${index}`}>
+            {child}
+          </div>
+        ))}
+      </main>
       <Footer />
     </div>
   )

@@ -7,7 +7,7 @@ export const article = {
   date: '2023-10-23',
   title: 'A Comprehensive Guide to FFmpeg: From Installation to Advanced Usage',
   description:
-    'A detailed guide to FFmpeg, the powerful multimedia framework. Learn installation, basic commands, and advanced techniques for video and audio manipulation, with practical examples and best practices.',
+    'Master FFmpeg: Install the tool, execute your first command in minutes, and learn 7 practical techniques for video manipulation. Includes real-world examples from my work at Transloadit.',
 }
 
 export const metadata = {
@@ -73,7 +73,7 @@ Watermarks can be crucial for branding or context. This command places the 'Your
 ```shell
 ffmpeg -i sample.mp4 -vf "drawtext=fontfile=/Windows/fonts/calibri.ttf:fontsize=60:fontcolor=white:x=W-tw-10:y=10:text='Your Watermark'" output_watermarked.mp4
 ```
-<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_watermarked.mp4" mediaType="video" playing="false"/>
+<DynamicPlayer mediaUrl="/videos/watermarked.mp4" mediaType="video" playing="false"/>
 
 ### 2\. Format Conversion
 
@@ -94,7 +94,7 @@ To remove a video's audio stream, include the `-an` flag.
 ```shell
 ffmpeg -i sample.mp4 -an output_silent.mp4
 ```
-<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_silent.mp4" mediaType="video" />
+<DynamicPlayer mediaUrl="/videos/silent.mp4" mediaType="video" />
 
 ### 4\. Combining Audio and Video
 
@@ -104,7 +104,7 @@ Combine a video and external audio files by merging `output_silent.mp4` and `tra
 ffmpeg -i output_silent.mp4 -i track.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4
 ```
 
-<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_combined.mp4" mediaType="video" />
+<DynamicPlayer mediaUrl="/videos/sample.mp4" mediaType="video" />
 
 ### 5\. Extracting Specific Duration from Video
 
@@ -114,7 +114,7 @@ To extract a specific segment, use the -ss flag to set the segment start time al
 ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 output_segment.mp4
 ```
 
-<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_segment.mp4" mediaType="video" />
+<DynamicPlayer mediaUrl="/videos/segment.mp4" mediaType="video" />
 
 ### 6\. Speed Alteration
 
@@ -124,7 +124,7 @@ This command doubles the speed of `sample.mp4`. Modify the multiplier to control
 ffmpeg -i sample.mp4 -vf "setpts=0.5*PTS" -af "atempo=2.0" output_fast.mp4
 ```
 
-<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/output_fast.mp4" mediaType="video" />
+<DynamicPlayer mediaUrl="/videos/fast.mp4" mediaType="video" />
 
 ### 7\. Video Resizing
 
@@ -169,7 +169,7 @@ These commands showcase FFmpeg's efficiency and flexibility in handling multiple
 ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 -vcodec libx264 -crf 30 -vf "drawtext=fontfile=/Windows/fonts/calibri.ttf:fontsize=60:fontcolor=white:x=W-tw-10:y=10:text='Your Watermark'" batchoutput_segment.mkv
 ```
 
-<DynamicPlayer mediaUrl="https://charliewebsite.s3.eu-west-2.amazonaws.com/batchoutput_segment.mkv" mediaType="video" />
+<DynamicPlayer mediaUrl="/videos/batchoutput_segment.mkv" mediaType="video" />
 
 ## Final Thoughts
 

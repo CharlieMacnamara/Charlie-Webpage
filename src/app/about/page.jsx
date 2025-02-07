@@ -39,7 +39,7 @@ const MailIcon = memo(function MailIcon(props) {
 
 export const metadata = generateMetadata({
   title: "About",
-  description: "Technical writer in Edinburgh specializing in API documentation and clear technical content.",
+  description: "Technical writer in Edinburgh creating clear and accessible documentation for complex systems.",
   path: "/about"
 })
 
@@ -63,11 +63,11 @@ const AboutContent = memo(function AboutContent() {
         </h1>
         <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
           <p>
-          As someone with dyslexia, I've experienced firsthand how traditional technical documentation can be a barrier to learning. This shaped my approach to technical writing.</p>
+          Being dyslexic, I've experienced firsthand how poor technical documentation is a barrier when learning. This approach to technical writing. What makes me unique.</p>
           <p>
-          I create the documentation I wish I had when learning - clear, accessible, and engaging for all learning styles.</p>
+          I create the documentation I wish I had - clear, accessible, and engaging for all learning styles.</p>
           <p>
-          My focus is on API documentation and technical content that bridges the gap between complex systems and their users, making technology accessible to everyone.
+          My focus is on creating technical content that bridges the gap between complex systems and users.
           </p>
         </div>
       </div>

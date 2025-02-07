@@ -2,22 +2,22 @@ import { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
-import dynamic from 'next/dynamic'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
+import { Photos } from '@/components/Photos'
 import {
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
+
+// Critical images loaded immediately
 import logoEVORA from '@/images/logos/evora_global_logo.svg'
 import logoTransloadit from '@/images/logos/transloadit.svg'
 import logoFreelance from '@/images/logos/freelance.svg'
-import image1 from '@/images/photos/image-1.jpg'
-import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
+
 import { formatDate } from '@/lib/formatDate'
 import { getAllArticles } from '@/lib/getAllArticles'
 
@@ -84,7 +84,7 @@ const Resume = memo(function Resume() {
   const resume = [
     {
       company: 'Freelance',
-      title: '`API`/`SDK` Technical Writer',
+      title: 'API/SDK Technical Writer',
       logo: logoFreelance,
       start: '2020',
       end: 'Present',
@@ -158,42 +158,8 @@ const Resume = memo(function Resume() {
   )
 })
 
-const Photos = memo(function Photos() {
-  const rotations = ['rotate-2', '-rotate-2', 'rotate-2']
-  const images = [
-    { src: image1, alt: "API documentation example showing clear reference implementation" },
-    { src: image2, alt: "Interactive SDK documentation with code samples" },
-    { src: image3, alt: "Developer portal with API integration guides" }
-  ]
-
-  return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {images.map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-              rotations[imageIndex]
-            )}
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-              loading={imageIndex === 0 ? 'eager' : 'lazy'}
-              priority={imageIndex === 0}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-})
-
 export default async function Home() {
-  const articles = (await getAllArticles()).slice(0, 4)
+  const articles = await getAllArticles()
 
   return (
     <>
@@ -203,7 +169,7 @@ export default async function Home() {
             Technical Writer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Charlie, making complex APIs and technical concepts clear and accessible.
+            I'm Charlie, making complex technical concepts clear and accessible.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -228,6 +194,14 @@ export default async function Home() {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+                Personal Blog
+              </h2>
+              <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+                Thoughts and explorations beyond my professional work. Deep dives into movies, tech experiments, and personal projects.
+              </p>
+            </div>
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))}

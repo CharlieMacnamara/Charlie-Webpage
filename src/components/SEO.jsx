@@ -1,6 +1,6 @@
 const defaultMetadata = {
   title: 'Charlie Macnamara - Technical Writer',
-  description: 'Technical writer making complex APIs and systems accessible through clear documentation.',
+  description: 'Technical writer making complex systems and concepts accessible through clear documentation.',
   siteUrl: 'https://charliemacnamara.com',
   siteName: 'Charlie Macnamara',
   locale: 'en_GB',
@@ -8,13 +8,13 @@ const defaultMetadata = {
   twitterHandle: '@charliemacnamara',
   keywords: [
     'Technical Writing',
-    'API Documentation',
-    'SDK Documentation',
+    'Technical Documentation',
     'Developer Experience',
     'Documentation',
     'Web Development',
     'Technical Content',
-    'Developer Tools'
+    'Developer Tools',
+    'System Documentation'
   ],
 }
 
