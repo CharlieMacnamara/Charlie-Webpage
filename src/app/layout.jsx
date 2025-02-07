@@ -11,13 +11,13 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: {
     template: '%s - Charlie Macnamara',
-    default: 'Charlie Macnamara - Technical Writer and Developer',
+    default: 'Charlie Macnamara - Technical Writer',
   },
-  description: 'Technical writer and developer specializing in API documentation and web development.',
+  description: 'Technical writer specializing in API documentation and clear technical content.',
   metadataBase: new URL('https://charliemacnamara.com'),
   openGraph: {
     title: 'Charlie Macnamara',
-    description: 'Technical writer and developer specializing in API documentation and web development.',
+    description: 'Technical writer specializing in API documentation and clear technical content.',
     url: 'https://charliemacnamara.com',
     siteName: 'Charlie Macnamara',
     locale: 'en_GB',

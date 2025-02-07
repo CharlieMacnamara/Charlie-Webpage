@@ -161,9 +161,9 @@ const Resume = memo(function Resume() {
 const Photos = memo(function Photos() {
   const rotations = ['rotate-2', '-rotate-2', 'rotate-2']
   const images = [
-    { src: image1, alt: "Screenshot of a technical documentation project showing API reference implementation" },
-    { src: image2, alt: "Screenshot of an interactive SDK documentation with code examples" },
-    { src: image3, alt: "Screenshot of a developer portal showcasing API integration guides" }
+    { src: image1, alt: "API documentation example showing clear reference implementation" },
+    { src: image2, alt: "Interactive SDK documentation with code samples" },
+    { src: image3, alt: "Developer portal with API integration guides" }
   ]
 
   return (
@@ -200,10 +200,10 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Technical Writer, Developer, and Content Strategist
+            Technical Writer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Charlie, a Scottish technical writer specializing in `API` and `SDK` documentation. I transform complex technical concepts into engaging, accessible content, combining expertise in documentation, development, and user experience.
+            I'm Charlie, making complex APIs and technical concepts clear and accessible.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

@@ -5,8 +5,8 @@ export const Loading = memo(function Loading({
   size = 'md', 
   className,
   fullScreen = false,
-  text = 'Loading content...',
-  description = 'Please wait while we load your content.'
+  text = 'Loading...',
+  description = 'Please wait.'
 }) {
   const sizeClasses = {
     sm: 'h-4 w-4',

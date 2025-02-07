@@ -1,6 +1,6 @@
 const defaultMetadata = {
-  title: 'Charlie Macnamara - Technical Writer & API Documentation Specialist',
-  description: 'Technical writer and developer specializing in API documentation, SDK guides, and developer experience. Creating clear, engaging technical content that bridges the gap between complex systems and their users.',
+  title: 'Charlie Macnamara - Technical Writer',
+  description: 'Technical writer making complex APIs and systems accessible through clear documentation.',
   siteUrl: 'https://charliemacnamara.com',
   siteName: 'Charlie Macnamara',
   locale: 'en_GB',
@@ -11,10 +11,10 @@ const defaultMetadata = {
     'API Documentation',
     'SDK Documentation',
     'Developer Experience',
-    'Technical Content Strategy',
+    'Documentation',
     'Web Development',
-    'Documentation Engineering',
-    'Developer Relations',
+    'Technical Content',
+    'Developer Tools'
   ],
 }
 

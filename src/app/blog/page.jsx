@@ -101,7 +101,7 @@ const ArticlesList = memo(function ArticlesList() {
 
 export const metadata = generateMetadata({
   title: 'Technical Blog',
-  description: 'Insights on API documentation, technical writing, web development, and software engineering. Practical guides and industry perspectives from a technical writer and developer.',
+  description: 'Practical insights on API documentation, technical writing, and software development from a technical writer and developer.',
   path: '/blog'
 })
 
@@ -116,8 +116,8 @@ function ArticlesLoading() {
 export default function ArticlesIndex() {
   return (
     <SimpleLayout
-      title="Technical Writing & Development Insights"
-      intro="Exploring the intersection of technical writing, API documentation, and software development. Here, I share practical guides, industry insights, and lessons learned from my experience in making complex technical concepts accessible and engaging."
+      title="Technical Writing & Development"
+      intro="Practical guides and insights on technical writing, API documentation, and software development."
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <Suspense fallback={<ArticlesLoading />}>

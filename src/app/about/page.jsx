@@ -39,7 +39,7 @@ const MailIcon = memo(function MailIcon(props) {
 
 export const metadata = generateMetadata({
   title: "About",
-  description: "I'm Charlie, a technical writer in Edinburgh, Scotland, specializing in `API` documentation and engaging technical content.",
+  description: "Technical writer in Edinburgh specializing in API documentation and clear technical content.",
   path: "/about"
 })
 
@@ -63,11 +63,11 @@ const AboutContent = memo(function AboutContent() {
         </h1>
         <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
           <p>
-          Since childhood, I've found joy in computing, though learning presented unique challenges. As someone with dyslexia, my school years required extra effort. When topics didn't capture my interest, focusing became difficult. While I've developed better strategies now, that initial tendency to disengage remains. Learning to code brought similar challenges - I was eager to learn new technologies but struggled with dry content.</p>
+          As someone with dyslexia, I've experienced firsthand how traditional technical documentation can be a barrier to learning. This shaped my approach to technical writing.</p>
           <p>
-          As a technical writer, I craft content that resonates with others who share similar experiences or prefer engaging technical documentation. My goal is to make complex topics accessible and prevent others from giving up as I almost did.</p>
+          I create the documentation I wish I had when learning - clear, accessible, and engaging for all learning styles.</p>
           <p>
-          This philosophy guides my work with `APIs`, technical documentation, and software development. While I'm passionate about exploring technical features, I understand not everyone shares this enthusiasm. My work serves both beginners and experienced developers, presenting complex topics clearly and engagingly while maintaining technical accuracy.
+          My focus is on API documentation and technical content that bridges the gap between complex systems and their users, making technology accessible to everyone.
           </p>
         </div>
       </div>

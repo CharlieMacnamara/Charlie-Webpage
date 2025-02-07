@@ -42,8 +42,8 @@ const RetryIcon = memo(function RetryIcon() {
 })
 
 export const ErrorMessage = memo(function ErrorMessage({
-  title = 'An error occurred',
-  message = 'We encountered an unexpected issue. Please try again or refresh the page.',
+  title = 'Error',
+  message = 'Please try again or refresh the page.',
   retry,
   className = '',
 }) {
