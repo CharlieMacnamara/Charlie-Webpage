@@ -4,8 +4,8 @@ import { ClientArticles } from './ClientArticles'
 import { getAllArticles } from '@/lib/getAllArticles'
 
 export const metadata = generateMetadata({
-  title: 'Technical Blog',
-  description: 'Practical insights on technical writing, documentation, and software development.',
+  title: 'Non-work Blog',
+  description: 'Thoughts beyond my professional work. Dives into movies, tech, and personal projects.',
   path: '/blog'
 })
 

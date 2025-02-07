@@ -84,7 +84,6 @@ const Resume = memo(function Resume() {
   const resume = [
     {
       company: 'Freelance',
-      title: 'API/SDK Technical Writer',
       logo: logoFreelance,
       start: '2020',
       end: 'Present',
@@ -169,7 +168,7 @@ export default async function Home() {
             Technical Writer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Charlie, making complex technical concepts clear and accessible.
+            Hi, I'm Charlie. I try make complex concepts clear and engaging.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -198,9 +197,6 @@ export default async function Home() {
               <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
                 Personal Blog
               </h2>
-              <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                Thoughts and explorations beyond my professional work. Deep dives into movies, tech experiments, and personal projects.
-              </p>
             </div>
             {articles.map((article) => (
               <Article key={article.slug} article={article} />

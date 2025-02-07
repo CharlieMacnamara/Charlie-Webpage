@@ -36,10 +36,10 @@ export const Footer = memo(function Footer() {
               <Navigation />
               <div className="text-center sm:text-right">
                 <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                  © 2023-2024 Charlie Macnamara. Content and custom code.
+                  © 2023-2025 Charlie Macnamara. Content and custom code.
                 </p>
                 <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500">
-                  Built with Next.js and TailwindCSS. Design inspired by TailwindUI.
+                  Built from TailwindUI.
                 </p>
               </div>
             </div>
