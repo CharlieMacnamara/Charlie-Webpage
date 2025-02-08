@@ -96,8 +96,8 @@ function ArticlesLoading() {
 export function ClientArticles({ initialArticles }) {
   return (
     <SimpleLayout
-      title="Non-work Blog"
-      intro="Thoughts beyond my professional work. Dives into movies, tech, and personal projects"
+      title="Non-work Thoughts"
+      intro="Writing beyond professional work: movies, tech and personal projects. That sort."
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <Suspense fallback={<ArticlesLoading />}>

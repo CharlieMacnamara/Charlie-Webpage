@@ -39,7 +39,7 @@ export const Footer = memo(function Footer() {
                   © 2023-2025 Charlie Macnamara. Content and custom code.
                 </p>
                 <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500">
-                  Built from TailwindUI.
+                  Built on TailwindUI.
                 </p>
               </div>
             </div>

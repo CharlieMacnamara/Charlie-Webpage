@@ -63,11 +63,13 @@ const AboutContent = memo(function AboutContent() {
         </h1>
         <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
           <p>
-          Being dyslexic, I've experienced firsthand how poor technical documentation is a barrier when learning. This approach to technical writing. What makes me unique.</p>
+            Being a dyslexic writer—yes, I see the irony—I know firsthand how poor documentation can be a barrier. Though, I find this makes me unique.
+          </p>
           <p>
-          I create the documentation I wish I had - clear, accessible, and engaging for all learning styles.</p>
+            I create the documentation I wish I had: clear, accessible, and engaging.
+          </p>
           <p>
-          My focus is on creating technical content that bridges the gap between complex systems and users.
+            I aim to create technical content that bridges intricate systems and users; often, understanding is the hardest part.
           </p>
         </div>
       </div>

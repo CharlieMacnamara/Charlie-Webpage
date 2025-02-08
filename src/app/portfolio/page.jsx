@@ -45,9 +45,18 @@ export default function Portfolio() {
   return (
     <SimpleLayout
       title="Selected Works"
-      intro="Rather than overwhelm with an exhaustive list of similar pieces, I've selected work from previous jobs which showcase my capabilities. For more examples of more specific content please reach out."
+      intro={
+        <>
+          Technical Writing means you wear many hats. At one point, I was designing Shopify mugs...
+          <br /><br />
+          Rather than overwhelm with an exhaustive list of similar pieces, here's some selected work. For more specific examples, please reach out.
+        </>
+      }
     >
       <div className="space-y-20">
+        <ReferenceNote>
+          Zendesk articles were published under Matt Mattias due to EVORA's single-user configuration. Matt's a resume reference and former manager. Please check on reference request.
+        </ReferenceNote>
         <PortfolioSection title="Technical Blog Posts">
           <ProjectCard
             href="https://transloadit.com/blog/2022/06/image-facedetect-cdn-support/"
