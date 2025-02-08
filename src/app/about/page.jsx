@@ -6,7 +6,6 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
-  InstagramIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
@@ -75,9 +74,6 @@ const AboutContent = memo(function AboutContent() {
       </div>
       <div className="lg:pl-20">
         <ul role="list">
-          <SocialLink href="https://www.instagram.com/charliemacnamaraa/" icon={InstagramIcon} className="mt-4">
-            Follow on Instagram
-          </SocialLink>
           <SocialLink href="https://github.com/CharlieMacnamara" icon={GitHubIcon} className="mt-4">
             Follow on GitHub
           </SocialLink>

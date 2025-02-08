@@ -49,7 +49,7 @@ export default function Portfolio() {
         <>
           Technical Writing means you wear many hats. At one point, I was designing Shopify mugs...
           <br /><br />
-          Rather than overwhelm with an exhaustive list of similar pieces, here's some selected work. For more specific examples, please reach out.
+          Here's some selected varied work. For extra examples, feel free to reach out.
         </>
       }
     >

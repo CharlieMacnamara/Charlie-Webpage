@@ -9,7 +9,6 @@ import { Container } from '@/components/Container'
 import { Photos } from '@/components/Photos'
 import {
   GitHubIcon,
-  InstagramIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
 
@@ -121,18 +120,24 @@ const Resume = memo(function Resume() {
                 loading="lazy"
               />
             </div>
-            <dl className="flex flex-auto flex-wrap gap-x-2">
-              <dt className="sr-only">Company</dt>
-              <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {role.company}
-              </dd>
-              <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-                {role.title}
-              </dd>
+            <dl className="flex flex-auto items-baseline">
+              <div className="flex-1">
+                <dt className="sr-only">Company</dt>
+                <dd className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  {role.company}
+                </dd>
+                {role.title && (
+                  <>
+                    <dt className="sr-only">Role</dt>
+                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+                      {role.title}
+                    </dd>
+                  </>
+                )}
+              </div>
               <dt className="sr-only">Date</dt>
               <dd
-                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+                className="text-xs text-zinc-400 dark:text-zinc-500"
                 aria-label={`${role.start} until ${role.end}`}
               >
                 <time dateTime={role.start}>{role.start}</time>{' '}
@@ -172,11 +177,6 @@ export default async function Home() {
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://www.instagram.com/charliemacnamaraa/"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
               href="https://github.com/CharlieMacnamara"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
@@ -193,11 +193,6 @@ export default async function Home() {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
-                Personal Blog
-              </h2>
-            </div>
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))}
