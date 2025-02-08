@@ -8,7 +8,7 @@ export const metadata = {
     template: '%s - Charlie Macnamara',
     default: 'Charlie Macnamara - Technical Writer',
   },
-  description: 'Technical writer making complex systems and concepts clear and accessible.',
+  description: 'Technical writer making systems and concepts clear and accessible.',
   metadataBase: new URL('https://charliemacnamara.com'),
   icons: {
     icon: '/favicon.ico',
@@ -17,7 +17,7 @@ export const metadata = {
   manifest: '/site.webmanifest',
   openGraph: {
     title: 'Charlie Macnamara',
-    description: 'Technical writer making complex systems and concepts clear and accessible.',
+    description: 'Technical writer making systems and concepts clear and accessible.',
     url: 'https://charliemacnamara.com',
     siteName: 'Charlie Macnamara',
     locale: 'en_GB',

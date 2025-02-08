@@ -69,7 +69,7 @@ const AboutContent = memo(function AboutContent() {
             I create the documentation I wish I had: clear, accessible, and engaging.
           </p>
           <p>
-            I aim to create technical content that bridges intricate systems and users; often, understanding is the hardest part.
+            I aim to create technical content that bridge intricate systems and its users; often, understanding is the hardest part.
           </p>
         </div>
       </div>
