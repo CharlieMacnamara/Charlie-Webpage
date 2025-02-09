@@ -1,13 +1,17 @@
-import { ArticleLayout, DynamicPlayer } from '@/components/ArticleLayout'
+import { ArticleLayout } from '@/components/ArticleLayout'
 import Image from 'next/image'
 import React from 'react'
+
+// Force static generation
+export const dynamic = 'force-static'
+export const dynamicParams = false
 
 export const article = {
   author: 'Charlie Macnamara',
   date: '2023-10-23',
   title: 'A Comprehensive Look at FFmpeg: Installation to Semi-Advanced Usage',
   description:
-      'Learn FFmpeg: practical video manipulationn basics.',
+      'Learn FFmpeg: practical video manipulation basics.',
 }
 
 export const metadata = {
@@ -73,7 +77,19 @@ Watermarks can be crucial for branding or context. This command places the 'Your
 ```shell
 ffmpeg -i sample.mp4 -vf "drawtext=fontfile=/Windows/fonts/calibri.ttf:fontsize=60:fontcolor=white:x=W-tw-10:y=10:text='Your Watermark'" output_watermarked.mp4
 ```
-<DynamicPlayer mediaUrl="/videos/watermarked.mp4" mediaType="video" playing="false"/>
+
+<div className="w-full h-64 bg-zinc-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center">
+  <video
+    src="/videos/watermarked.mp4"
+    controls
+    preload="none"
+    className="max-w-full max-h-full"
+    aria-label="Video with watermark example"
+    poster="/videos/thumbnails/watermarked.jpg"
+  >
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ### 2\. Format Conversion
 
@@ -94,7 +110,19 @@ To remove a video's audio stream, include the `-an` flag.
 ```shell
 ffmpeg -i sample.mp4 -an output_silent.mp4
 ```
-<DynamicPlayer mediaUrl="/videos/silent.mp4" mediaType="video" />
+
+<div className="w-full h-64 bg-zinc-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center">
+  <video
+    src="/videos/silent.mp4"
+    controls
+    preload="none"
+    className="max-w-full max-h-full"
+    aria-label="Silent video example"
+    poster="/videos/thumbnails/silent.jpg"
+  >
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ### 4\. Combining Audio and Video
 
@@ -104,7 +132,18 @@ Combine a video and external audio files by merging `output_silent.mp4` and `tra
 ffmpeg -i output_silent.mp4 -i track.mp3 -c:v copy -c:a aac -strict experimental output_combined.mp4
 ```
 
-<DynamicPlayer mediaUrl="/videos/sample.mp4" mediaType="video" />
+<div className="w-full h-64 bg-zinc-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center">
+  <video
+    src="/videos/sample.mp4"
+    controls
+    preload="none"
+    className="max-w-full max-h-full"
+    aria-label="Combined audio and video example"
+    poster="/videos/thumbnails/sample.jpg"
+  >
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ### 5\. Extracting Specific Duration from Video
 
@@ -114,7 +153,18 @@ To extract a specific segment, use the -ss flag to set the segment start time al
 ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 output_segment.mp4
 ```
 
-<DynamicPlayer mediaUrl="/videos/segment.mp4" mediaType="video" />
+<div className="w-full h-64 bg-zinc-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center">
+  <video
+    src="/videos/segment.mp4"
+    controls
+    preload="none"
+    className="max-w-full max-h-full"
+    aria-label="Video segment example"
+    poster="/videos/thumbnails/segment.jpg"
+  >
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ### 6\. Speed Alteration
 
@@ -124,22 +174,18 @@ This command doubles the speed of `sample.mp4`. Modify the multiplier to control
 ffmpeg -i sample.mp4 -vf "setpts=0.5*PTS" -af "atempo=2.0" output_fast.mp4
 ```
 
-<DynamicPlayer mediaUrl="/videos/fast.mp4" mediaType="video" />
-
-### 7\. Video Resizing
-
-This command resizes the video to 1280x720 pixels. Adjust values as needed. Reducing resolution decreases file size without compression:
-
-```shell
-ffmpeg -i sample.mp4 -vf "scale=1280:720" output_resized.mp4
-```
-
-Inspecting the output shows the resize was successfull:
-
-```shell
-Source Image Width              : 1280
-Source Image Height             : 720
-```
+<div className="w-full h-64 bg-zinc-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center">
+  <video
+    src="/videos/fast.mp4"
+    controls
+    preload="none"
+    className="max-w-full max-h-full"
+    aria-label="Speed altered video example"
+    poster="/videos/thumbnails/fast.jpg"
+  >
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ## Video Compression
 
@@ -168,8 +214,6 @@ These commands showcase FFmpeg's efficiency and flexibility in handling multiple
 ```shell
 ffmpeg -i sample.mp4 -ss 00:00:05 -t 00:00:10 -vcodec libx264 -crf 30 -vf "drawtext=fontfile=/Windows/fonts/calibri.ttf:fontsize=60:fontcolor=white:x=W-tw-10:y=10:text='Your Watermark'" batchoutput_segment.mkv
 ```
-
-<DynamicPlayer mediaUrl="/videos/batchoutput_segment.mkv" mediaType="video" />
 
 ## Final Thoughts
 

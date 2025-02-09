@@ -3,6 +3,7 @@ const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 
 class Cache {
   static set(key, data, duration = CACHE_DURATION) {
+    if (typeof window === 'undefined') return false
     try {
       const item = {
         data,
@@ -18,6 +19,7 @@ class Cache {
   }
 
   static get(key) {
+    if (typeof window === 'undefined') return null
     try {
       const item = JSON.parse(localStorage.getItem(CACHE_PREFIX + key))
       if (!item) return null
@@ -35,6 +37,7 @@ class Cache {
   }
 
   static remove(key) {
+    if (typeof window === 'undefined') return false
     try {
       localStorage.removeItem(CACHE_PREFIX + key)
       return true
@@ -45,6 +48,7 @@ class Cache {
   }
 
   static clear() {
+    if (typeof window === 'undefined') return false
     try {
       Object.keys(localStorage)
         .filter(key => key.startsWith(CACHE_PREFIX))
@@ -57,6 +61,7 @@ class Cache {
   }
 
   static clearExpired() {
+    if (typeof window === 'undefined') return false
     try {
       Object.keys(localStorage)
         .filter(key => key.startsWith(CACHE_PREFIX))

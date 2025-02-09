@@ -5,36 +5,47 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  distDir: 'out',
+  trailingSlash: true,
   pageExtensions: ['js', 'jsx', 'mdx'],
-  reactStrictMode: true,
   images: {
-    formats: ['image/avif', 'image/webp'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    unoptimized: true,
   },
-  swcMinify: true,
-  experimental: {
-    serverActions: false,
-    serverComponents: false
-  },
-  webpack: (config, { isServer }) => {
-    config.experiments = {
-      ...config.experiments,
-      asyncWebAssembly: true,
-      layers: true,
-    }
-    
+  webpack: (config) => {
+    // Optimize bundle size
     config.optimization = {
       ...config.optimization,
       minimize: true,
+      splitChunks: {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 70000,
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          commons: {
+            name: 'commons',
+            chunks: 'all',
+            minChunks: 2,
+            reuseExistingChunk: true,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            chunks: 'all',
+          },
+        },
+      },
     }
-    
+
+    config.experiments = {
+      asyncWebAssembly: true,
+      layers: true,
+    }
+
     return config
   }
 }
 
-module.exports = withBundleAnalyzer(withMDX(nextConfig)) 
+module.exports = withBundleAnalyzer(withMDX(nextConfig))

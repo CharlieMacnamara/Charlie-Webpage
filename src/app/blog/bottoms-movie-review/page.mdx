@@ -2,6 +2,10 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 import Image from 'next/image'
 import designSystem from './bottoms.png'
 
+// Force static generation
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
 export const article = {
   author: 'Charlie Macnamara',
   date: '2023-09-24',

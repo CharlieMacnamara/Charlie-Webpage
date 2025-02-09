@@ -1,18 +1,7 @@
 'use client'
 
-import { createContext, useEffect, useRef, memo, useMemo } from 'react'
-import { usePathname } from 'next/navigation'
+import { createContext, useEffect, memo } from 'react'
 import { ThemeProvider, useTheme } from 'next-themes'
-
-const usePrevious = (value) => {
-  const ref = useRef()
-
-  useEffect(() => {
-    ref.current = value
-  }, [value])
-
-  return ref.current
-}
 
 const ThemeWatcher = memo(function ThemeWatcher() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -38,8 +27,6 @@ const ThemeWatcher = memo(function ThemeWatcher() {
   return null
 })
 
-export const AppContext = createContext(undefined)
-
 const MemoizedThemeProvider = memo(function MemoizedThemeProvider({ children }) {
   return (
     <ThemeProvider attribute="class" disableTransitionOnChange>
@@ -50,16 +37,9 @@ const MemoizedThemeProvider = memo(function MemoizedThemeProvider({ children }) 
 })
 
 export function Providers({ children }) {
-  const pathname = usePathname()
-  const previousPathname = usePrevious(pathname)
-  
-  const contextValue = useMemo(() => ({ previousPathname }), [previousPathname])
-
   return (
-    <AppContext.Provider value={contextValue}>
-      <MemoizedThemeProvider>
-        {children}
-      </MemoizedThemeProvider>
-    </AppContext.Provider>
+    <MemoizedThemeProvider>
+      {children}
+    </MemoizedThemeProvider>
   )
 }
