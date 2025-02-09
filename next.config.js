@@ -16,6 +16,25 @@ const nextConfig = {
       },
     ],
   },
+  swcMinify: true,
+  experimental: {
+    serverActions: false,
+    serverComponents: false
+  },
+  webpack: (config, { isServer }) => {
+    config.experiments = {
+      ...config.experiments,
+      asyncWebAssembly: true,
+      layers: true,
+    }
+    
+    config.optimization = {
+      ...config.optimization,
+      minimize: true,
+    }
+    
+    return config
+  }
 }
 
 module.exports = withBundleAnalyzer(withMDX(nextConfig)) 
