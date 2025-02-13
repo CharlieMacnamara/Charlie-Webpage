@@ -29,6 +29,16 @@ module.exports = {
     extend: {
       colors: {
         zinc: {
+          50: '#fafaf9',  // Softer white
+          100: '#f5f5f4', // Very light beige
+          200: '#e7e5e4', // Light beige
+          300: '#d6d3d1', // Beige
+          400: '#a8a29e', // Medium gray
+          500: '#78716c', // Darker gray
+          600: '#57534e', // Dark gray
+          700: '#44403c', // Very dark gray
+          800: '#292524', // Almost black
+          900: '#1c1917', // Black
           ...require('tailwindcss/colors').zinc,
         },
         teal: {
@@ -108,24 +118,24 @@ module.exports = {
       DEFAULT: {
         css: {
           '--tw-prose-body': theme('colors.zinc.600'),
-          '--tw-prose-headings': theme('colors.zinc.900'),
-          '--tw-prose-links': theme('colors.teal.500'),
-          '--tw-prose-links-hover': theme('colors.teal.600'),
+          '--tw-prose-headings': theme('colors.zinc.700'),
+          '--tw-prose-links': theme('colors.teal.600'),
+          '--tw-prose-links-hover': theme('colors.teal.700'),
           '--tw-prose-underline': theme('colors.teal.500 / 0.2'),
           '--tw-prose-underline-hover': theme('colors.teal.500'),
-          '--tw-prose-bold': theme('colors.zinc.900'),
-          '--tw-prose-counters': theme('colors.zinc.900'),
-          '--tw-prose-bullets': theme('colors.zinc.900'),
-          '--tw-prose-hr': theme('colors.zinc.100'),
+          '--tw-prose-bold': theme('colors.zinc.700'),
+          '--tw-prose-counters': theme('colors.zinc.600'),
+          '--tw-prose-bullets': theme('colors.zinc.500'),
+          '--tw-prose-hr': theme('colors.zinc.200'),
           '--tw-prose-quote-borders': theme('colors.zinc.200'),
-          '--tw-prose-captions': theme('colors.zinc.400'),
+          '--tw-prose-captions': theme('colors.zinc.500'),
           '--tw-prose-code': theme('colors.zinc.700'),
-          '--tw-prose-code-bg': theme('colors.zinc.300 / 0.2'),
+          '--tw-prose-code-bg': theme('colors.zinc.100'),
           '--tw-prose-pre-code': theme('colors.zinc.100'),
-          '--tw-prose-pre-bg': theme('colors.zinc.900'),
+          '--tw-prose-pre-bg': theme('colors.zinc.800'),
           '--tw-prose-pre-border': 'transparent',
-          '--tw-prose-th-borders': theme('colors.zinc.200'),
-          '--tw-prose-td-borders': theme('colors.zinc.100'),
+          '--tw-prose-th-borders': theme('colors.zinc.300'),
+          '--tw-prose-td-borders': theme('colors.zinc.200'),
 
           '--tw-prose-invert-body': theme('colors.zinc.400'),
           '--tw-prose-invert-headings': theme('colors.zinc.200'),

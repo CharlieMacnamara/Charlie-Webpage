@@ -1,10 +1,8 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route-f3956634.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/blog/page": "app/blog/page.js",
   "/blog/ffmpeg-intro/page": "app/blog/ffmpeg-intro/page.js",
   "/blog/bottoms-movie-review/page": "app/blog/bottoms-movie-review/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/about/page": "app/about/page.js",
-  "/portfolio/page": "app/portfolio/page.js"
+  "/portfolio/page": "app/portfolio/page.js",
+  "/page": "app/page.js"
 }

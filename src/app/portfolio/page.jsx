@@ -6,22 +6,27 @@ import { generateMetadata } from '@/components/SEO'
 function PortfolioSection({ children, ...props }) {
   return (
     <Section {...props}>
-      <div className="space-y-16">{children}</div>
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {children}
+      </div>
     </Section>
   )
 }
 
 function ProjectCard({ title, description, event, cta, href }) {
   return (
-    <Card as="article">
-      <Card.Title as="h3" href={href}>
-        {title}
-      </Card.Title>
-      <Card.Description>{description}</Card.Description>
+    <Card as="article" className="flex h-full flex-col justify-between">
+      <div>
+        <Card.Title as="h3" href={href}>
+          {title}
+        </Card.Title>
+        <Card.Description>{description}</Card.Description>
+      </div>
       <Card.Cta>{cta}</Card.Cta>
     </Card>
   )
 }
+
 function ReferenceNote({ children }) {
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">

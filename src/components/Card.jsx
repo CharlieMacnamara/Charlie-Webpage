@@ -24,7 +24,15 @@ const ChevronRightIcon = memo(function ChevronRightIcon(props) {
 export const Card = memo(function Card({ as: Component = 'div', className, children }) {
   return (
     <Component
-      className={clsx(className, 'group relative flex flex-col items-start')}
+      className={clsx(
+        className,
+        'group relative flex flex-col items-start',
+        'rounded-2xl p-6',
+        'bg-white ring-2 ring-zinc-200/50 transition-all duration-200',
+        'hover:bg-zinc-50 hover:ring-zinc-300/70 hover:shadow-lg',
+        'dark:bg-zinc-800/40 dark:ring-zinc-700/40',
+        'dark:hover:bg-zinc-800/60 dark:hover:ring-zinc-700'
+      )}
       role={Component === 'article' ? 'article' : undefined}
     >
       {children}
@@ -49,7 +57,7 @@ Card.Link = memo(function CardLink({ children, ...props }) {
 
 Card.Title = memo(function CardTitle({ as: Component = 'h2', href, children }) {
   return (
-    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+    <Component className="text-lg font-semibold tracking-tight text-zinc-900 transition-colors group-hover:text-teal-600 dark:text-zinc-100 dark:group-hover:text-teal-400">
       {href ? (
         <Card.Link href={href} aria-label={`Read more about ${children}`}>
           {children}
@@ -61,7 +69,7 @@ Card.Title = memo(function CardTitle({ as: Component = 'h2', href, children }) {
 
 Card.Description = memo(function CardDescription({ children }) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <p className="relative z-10 mt-3 text-sm text-zinc-700 transition-colors group-hover:text-zinc-800 dark:text-zinc-400 dark:group-hover:text-zinc-300">
       {children}
     </p>
   )
@@ -70,11 +78,11 @@ Card.Description = memo(function CardDescription({ children }) {
 Card.Cta = memo(function CardCta({ children }) {
   return (
     <div
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-600 transition-colors group-hover:text-teal-700 dark:text-teal-400 dark:group-hover:text-teal-300"
     >
       <span className="sr-only">Click to </span>
       {children}
-      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" aria-hidden="true" />
+      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current transition-transform group-hover:translate-x-1" aria-hidden="true" />
     </div>
   )
 })

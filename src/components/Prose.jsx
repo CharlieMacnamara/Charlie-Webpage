@@ -19,13 +19,13 @@ export const Prose = memo(function Prose({ className, as: Component = 'div', ...
         
         // Text styles
         'prose-p:text-zinc-600 dark:prose-p:text-zinc-400',
-        'prose-a:font-semibold prose-a:text-teal-500 hover:prose-a:text-teal-600',
+        'prose-a:font-semibold prose-a:text-teal-600 hover:prose-a:text-teal-700',
         'dark:prose-a:text-teal-400 dark:hover:prose-a:text-teal-300',
-        'prose-strong:font-semibold prose-strong:text-zinc-900 dark:prose-strong:text-zinc-100',
+        'prose-strong:font-semibold prose-strong:text-zinc-700 dark:prose-strong:text-zinc-100',
         
         // Code styles
-        'prose-code:text-zinc-900 prose-code:font-medium dark:prose-code:text-zinc-100',
-        'prose-pre:rounded-2xl prose-pre:bg-zinc-900 prose-pre:shadow-lg',
+        'prose-code:text-zinc-700 prose-code:font-medium dark:prose-code:text-zinc-100',
+        'prose-pre:rounded-2xl prose-pre:bg-zinc-100 prose-pre:shadow-sm',
         'dark:prose-pre:bg-zinc-800/80 dark:prose-pre:shadow-none',
         
         // List styles
@@ -38,9 +38,9 @@ export const Prose = memo(function Prose({ className, as: Component = 'div', ...
         'dark:prose-img:shadow-none',
         
         // Quote styles
-        'prose-blockquote:border-l-2 prose-blockquote:border-zinc-300',
-        'prose-blockquote:pl-4 prose-blockquote:italic',
-        'dark:prose-blockquote:border-zinc-600/40',
+        'prose-blockquote:border-l-2 prose-blockquote:border-zinc-200',
+        'prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-zinc-600',
+        'dark:prose-blockquote:border-zinc-600/40 dark:prose-blockquote:text-zinc-400',
         
         // Table styles
         'prose-table:text-sm',
