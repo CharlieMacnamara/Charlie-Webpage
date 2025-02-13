@@ -37,7 +37,7 @@ const Social = memo(function Social() {
       <SocialLink href="https://www.linkedin.com/in/charliemacnamara/" icon={LinkedInIcon}>
         LinkedIn
       </SocialLink>
-      <SocialLink href="mailto:macnamara.charlie@gmail.com" icon={MailIcon}>
+      <SocialLink href="mailto:mail@charliemacnamara.uk" icon={MailIcon}>
         Email
       </SocialLink>
     </div>

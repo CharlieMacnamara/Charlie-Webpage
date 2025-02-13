@@ -6,9 +6,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: true,
+  output: 'export',
   pageExtensions: ['js', 'jsx', 'mdx'],
   images: {
-    domains: ['localhost'], // You'll update this with your Amplify domain later
+    domains: ['localhost', 'charliemacnamara.uk', 'charliewebsite.s3.eu-west-2.amazonaws.com'],
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
+    unoptimized: true,
   },
   webpack: (config) => {
     // Optimize bundle size
@@ -48,7 +52,11 @@ const nextConfig = {
     removeConsole: {
       exclude: ['error', 'warn'],
     },
-  }
+  },
+  // Optimize for production
+  poweredByHeader: false,
+  reactStrictMode: true,
+  compress: true,
 }
 
 module.exports = withBundleAnalyzer(withMDX(nextConfig))

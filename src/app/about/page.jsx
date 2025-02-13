@@ -81,11 +81,11 @@ const AboutContent = memo(function AboutContent() {
             Follow on LinkedIn
           </SocialLink>
           <SocialLink
-            href="mailto:macnamara.charlie@gmail.com"
+            href="mailto:mail@charliemacnamara.uk"
             icon={MailIcon}
             className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
           >
-            macnamara.charlie@gmail.com
+            mail@charliemacnamara.uk
           </SocialLink>
         </ul>
       </div>

@@ -35,4 +35,4 @@ All npm packages and dependencies are subject to their respective licenses as sp
 3. Direct copying of blog posts, articles, and other written content is not permitted
 4. Commercial use or redistribution of the complete website design requires permission
 
-For questions about usage or licensing, please contact: macnamara.charlie@gmail.com
+For questions about usage or licensing, please contact: mail@charliemacnamara.uk

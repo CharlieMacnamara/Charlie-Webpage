@@ -29,11 +29,11 @@ function ProjectCard({ title, description, event, cta, href }) {
 
 function ReferenceNote({ children }) {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 bg-zinc-50 dark:bg-zinc-800/50">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <span>⚠️ Note on EVORA Global Articles</span>
       </h2>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+      <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">
         {children}
       </p>
     </div>

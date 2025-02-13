@@ -1,6 +1,6 @@
 # Charlie Macnamara - Personal Website
 
-Technical Writer and Developer portfolio built with Next.js, TailwindCSS, and MDX.
+Technical Writer and Developer portfolio built with Next.js, TailwindCSS, and Markdown.
 
 ## Overview
 
@@ -61,7 +61,7 @@ npm run optimize-images
 
 ## Contact
 
-- macnamara.charlie@gmail.com
+- mail@charliemacnamara.uk
 - [LinkedIn](https://www.linkedin.com/in/charliemacnamara/)
 - [@CharlieMacnamara](https://github.com/CharlieMacnamara)
 

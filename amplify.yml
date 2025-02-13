@@ -3,7 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - npm ci --no-audit --no-fund
+        - npm cache verify
     build:
       commands:
         - env | grep -e NODE_ENV -e NEXT_ >> .env.production
@@ -16,4 +17,5 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-      - .next/cache/**/* 
+      - .next/cache/**/*
+      - $HOME/.npm/**/* 
