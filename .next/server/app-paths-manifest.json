@@ -1,8 +1,7 @@
 {
   "/about/page": "app/about/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/blog/ffmpeg-intro/page": "app/blog/ffmpeg-intro/page.js",
-  "/blog/bottoms-movie-review/page": "app/blog/bottoms-movie-review/page.js",
+  "/page": "app/page.js",
   "/portfolio/page": "app/portfolio/page.js",
-  "/page": "app/page.js"
+  "/blog/bottoms-movie-review/page": "app/blog/bottoms-movie-review/page.js",
+  "/blog/ffmpeg-intro/page": "app/blog/ffmpeg-intro/page.js"
 }

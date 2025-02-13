@@ -44,7 +44,7 @@ Card.Link = memo(function CardLink({ children, ...props }) {
   return (
     <>
       <div 
-        className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" 
+        className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50/70 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/70 sm:-inset-x-6 sm:rounded-2xl" 
         aria-hidden="true"
       />
       <Link {...props}>

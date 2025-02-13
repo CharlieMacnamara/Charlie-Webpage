@@ -2,10 +2,6 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 import Image from 'next/image'
 import designSystem from './bottoms.png'
 
-// Force static generation
-export const dynamic = 'force-static'
-export const dynamicParams = false
-
 export const article = {
   author: 'Charlie Macnamara',
   date: '2023-09-24',
@@ -20,7 +16,7 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-Emma Seligman's feature film "Bottoms" is a milestone for LGBTQ+ comedy. Following the path Nicholas Stoller's "Bros" (2022) set, this film presents a refreshing departure from traditional coming-out narratives. Instead, we focusing on characters who are confidently established in their identities. Starring Ayo Edibiri (The Bear) and Rachel Sennott (Shiva Baby), the film demonstrates how queer storytelling can transcend conventional narrative frameworks while maintaining broad audience appeal.
+Emma Seligman's feature film "Bottoms" presents a refreshing departure from traditional coming-out narratives. Instead, we focusing on characters who are confidently established in their identities. Starring Ayo Edibiri (The Bear) and Rachel Sennott (Shiva Baby), the film demonstrates how queer storytelling can transcend conventional narrative frameworks while maintaining broad audience appeal.
 
 <Image src={designSystem} alt="Movie poster for Bottoms (2023)" />
 
