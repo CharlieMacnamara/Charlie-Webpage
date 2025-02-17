@@ -54,7 +54,7 @@ export default function Portfolio() {
         <>
           Technical Writers wear many hats. Once I was tasked with designing Shopify mugs...
           <br /><br />
-          Here's some selected varied work. For extra examples, feel free to reach out.
+          Here's some varied work. For extra examples, please reach out.
         </>
       }
     >
