@@ -29,7 +29,7 @@ function ProjectCard({ title, description, event, cta, href }) {
 
 function ReferenceNote({ children }) {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 bg-zinc-50 dark:bg-zinc-800/50">
+    <div className="rounded-2xl bg-zinc-100 p-6 dark:bg-zinc-800/50">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <span>⚠️ Note on EVORA Global Articles</span>
       </h2>
@@ -62,7 +62,7 @@ export default function Portfolio() {
         <ReferenceNote>
           Zendesk articles were published under Matt Mattias due to EVORA's single-user configuration. Matt's a resume reference and former manager. Please check on reference request.
         </ReferenceNote>
-        <PortfolioSection title="Technical Blog Posts">
+        <PortfolioSection title="Blog Posts">
           <ProjectCard
             href="https://transloadit.com/blog/2022/06/image-facedetect-cdn-support/"
             title="Implementing AI Face Detection in Smart CDN"
@@ -83,7 +83,7 @@ export default function Portfolio() {
           />
         </PortfolioSection>
 
-        <PortfolioSection title="Technical Documentation">
+        <PortfolioSection title="Documentation">
           <ProjectCard
             href="https://evoraglobal.github.io/sieraapi-docs/#consumption-get-consumption-summary-of-a-meter/"
             title="SIERA API Reference: Consumption Metrics"
