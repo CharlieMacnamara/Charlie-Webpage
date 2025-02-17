@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,mdx}'],
-  darkMode: 'media',
+  darkMode: 'class',
   plugins: [require('@tailwindcss/typography')],
   future: {
     hoverOnlyWhenSupported: true,
