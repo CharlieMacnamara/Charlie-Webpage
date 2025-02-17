@@ -59,7 +59,7 @@ export const Footer = memo(function Footer() {
                   © 2023-{currentYear} Charlie Macnamara. Custom Content and Code
                 </p>
                 <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500">
-                  Built on TailwindUI
+                  <a href="https://tailwindui.com" className="text-teal-500 hover:underline">Built on <span className="text-teal-500 hover:underline">TailwindUI</span></a>
                 </p>
               </div>
             </div>

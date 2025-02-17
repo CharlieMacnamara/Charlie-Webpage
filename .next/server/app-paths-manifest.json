@@ -1,3 +1,5 @@
 {
-  "/page": "app/page-src_c.js"
+  "/portfolio/page": "app/portfolio/page.js",
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js"
 }

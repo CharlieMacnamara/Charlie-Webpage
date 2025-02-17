@@ -65,10 +65,10 @@ const AboutContent = memo(function AboutContent() {
             Being a dyslexic writer—yes, I see the irony—I know firsthand how poor documentation can be a barrier. Though, I find this makes me unique.
           </p>
           <p>
-            I create the documentation I wish I had: clear, accessible, and engaging.
+            I create the documentation I need: clear, accessible, and engaging.
           </p>
           <p>
-            I aim to create technical content that bridge intricate systems and its users; often, understanding is the hardest part.
+            I aim to create technical content that bridge intricate systems and its users; often, getting the most from a product is the hardest part.
           </p>
         </div>
       </div>

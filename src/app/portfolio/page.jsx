@@ -52,7 +52,7 @@ export default function Portfolio() {
       title="Selected Works"
       intro={
         <>
-          Technical Writing means you wear many hats. At one point, I was designing Shopify mugs...
+          Technical Writers wear many hats. Once I was tasked with designing Shopify mugs...
           <br /><br />
           Here's some selected varied work. For extra examples, feel free to reach out.
         </>
