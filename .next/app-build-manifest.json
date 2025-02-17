@@ -3,6 +3,7 @@
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/vendor-node_modules_c.js",
+      "static/chunks/vendor-node_modules_headlessui_react_dist_c.js",
       "static/chunks/vendor-node_modules_headlessui_react_dist_i.js",
       "static/chunks/vendor-node_modules_next-.js",
       "static/chunks/vendor-node_modules_next_dist_client_app-b.js",
@@ -95,6 +96,7 @@
     "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/vendor-node_modules_c.js",
+      "static/chunks/vendor-node_modules_headlessui_react_dist_c.js",
       "static/chunks/vendor-node_modules_headlessui_react_dist_i.js",
       "static/chunks/vendor-node_modules_next-.js",
       "static/chunks/vendor-node_modules_next_dist_client_app-b.js",
@@ -184,6 +186,7 @@
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/vendor-node_modules_c.js",
+      "static/chunks/vendor-node_modules_headlessui_react_dist_c.js",
       "static/chunks/vendor-node_modules_headlessui_react_dist_i.js",
       "static/chunks/vendor-node_modules_next-.js",
       "static/chunks/vendor-node_modules_next_dist_client_app-b.js",

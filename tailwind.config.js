@@ -2,7 +2,10 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,mdx}'],
   darkMode: 'class',
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar')
+  ],
   future: {
     hoverOnlyWhenSupported: true,
   },

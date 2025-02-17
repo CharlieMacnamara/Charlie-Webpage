@@ -1,38 +1,93 @@
 'use client'
 
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
+import { ImageModal } from './ImageModal'
+import { Container } from '@/components/Container'
 
 // Non-critical images loaded dynamically
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 
+const images = [
+  {
+    src: image1,
+    description: 'Red Arrows flying over Edinburgh Castle during the Edinburgh Military Tattoo.',
+  },
+  {
+    src: image2,
+    description: 'A frozen waterfall in the Scottish Highlands during winter.',
+  },
+  {
+    src: image3,
+    description: 'Kayaking on Loch Lomond with other paddlers in the distance.',
+  },
+]
+
+// Reduced rotation for better mobile experience
 const rotations = ['rotate-2', '-rotate-2', 'rotate-2']
 
 export const Photos = memo(function Photos() {
+  const [selectedImage, setSelectedImage] = useState(null)
+
   return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-              rotations[imageIndex % rotations.length]
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-              priority={imageIndex === 0}
-            />
+    <>
+      <div className="mt-16 sm:mt-20">
+        <Container>
+          <div className="relative">
+            {/* Gradient shadows for scroll indication */}
+            <div className="pointer-events-none absolute -inset-x-4 top-0 h-8 bg-gradient-to-b from-white dark:from-zinc-900" />
+            <div className="pointer-events-none absolute -inset-x-4 bottom-0 h-8 bg-gradient-to-t from-white dark:from-zinc-900" />
+            
+            {/* Scrollable container */}
+            <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 pt-4
+              scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-300 
+              hover:scrollbar-thumb-zinc-400 dark:scrollbar-thumb-zinc-700 
+              dark:hover:scrollbar-thumb-zinc-600">
+              {images.map((image, imageIndex) => (
+                <div
+                  key={image.src.src}
+                  className="relative flex-none"
+                >
+                  <div
+                    className={clsx(
+                      'relative aspect-[9/10] w-72 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800',
+                      rotations[imageIndex % rotations.length],
+                      'transform transition duration-300 ease-in-out hover:-translate-y-4 hover:shadow-xl will-change-transform'
+                    )}
+                    onClick={() => setSelectedImage(image)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        setSelectedImage(image)
+                      }
+                    }}
+                    aria-label="Click to view larger image"
+                  >
+                    <Image
+                      src={image.src}
+                      alt=""
+                      sizes="(min-width: 640px) 18rem, 16rem"
+                      className="absolute inset-0 h-full w-full object-cover transition duration-300 ease-in-out hover:scale-110"
+                      priority={imageIndex === 0}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        </Container>
       </div>
-    </div>
+
+      <ImageModal
+        isOpen={selectedImage !== null}
+        onClose={() => setSelectedImage(null)}
+        image={selectedImage?.src}
+        description={selectedImage?.description}
+      />
+    </>
   )
 }) 

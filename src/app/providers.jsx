@@ -29,7 +29,7 @@ const ThemeWatcher = memo(function ThemeWatcher() {
 
 const MemoizedThemeProvider = memo(function MemoizedThemeProvider({ children }) {
   return (
-    <ThemeProvider attribute="class" disableTransitionOnChange>
+    <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
       <ThemeWatcher />
       {children}
     </ThemeProvider>
