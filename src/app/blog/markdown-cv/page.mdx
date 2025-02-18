@@ -1,11 +1,6 @@
----
-title: "Building a Markdown CV Generator with Tailwind CSS"
-date: "2025-02-16"
-description: "How I built a minimalist CV generator that converts markdown to beautifully styled PDFs"
----
-
 import { ArticleLayout } from '@/components/ArticleLayout'
 import Image from 'next/image'
+import cvOutput from './developer-john-doe-resume-1.png'
 
 export const article = {
   author: 'Charlie Macnamara',
@@ -22,28 +17,40 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-After the recent overhaul of my website with Tailwind CSS, I found myself staring at my CV 
-thinking, "This sucks, eh?" You know how it goes - one project leads to another. But hey, at 
-least this one's actually useful!
+After the recent overhaul of my website, I found myself staring at my CV 
+thinking, "This sucks, eh?" You know how it goes - one project leads to another. Why not ensure consistency?
+
+After spending way too much time tweaking margins in Google Docs, I thought: "Why not leverage 
+Markdown and Tailwind CSS to create something better?" Built using Node.js and Express for the backend, with Tailwind CSS for styling. Puppeteer handles the PDF generation.
+
 
 ## The Problem
 
 We've all been there - switching between different CV formats, trying to keep everything 
-consistent, and wondering if that one-pixel misalignment is going to cost us our dream job. 
-After spending way too much time tweaking margins in Google Docs, I thought: "Why not leverage 
-the power of Markdown and Tailwind CSS to create something better?"
+consistent. It's one of those things that's always worth improving and there's no need to pay for a nice looking CV.
+
+Fun fact: this project was born from my £60 mistake with resume.io. I forgot to cancel my 
+subscription after a free trial, and six months later... Well, let's just say that expensive 
+oversight motivated me to build something better. Now I can laugh about it (mostly).
 
 ## The Solution
 
-Enter the Markdown CV Generator - a simple tool that takes your CV written in Markdown and 
-transforms it into a beautifully styled PDF. Here's how it works:
+Enter my Markdown CV Generator - a simple tool that takes your CV written in Markdown and 
+transforms it into a pretty PDF. Here's how it works:
 
-1. Write your CV in Markdown (because life's too short for Word formatting)
+1. Write your CV in Markdown
 2. Run a simple command
 3. Get a professionally styled PDF that actually looks good
 
-Here's what the Markdown looks like:
+## The Markdown
 
+Here's what the Markdown looks like :
+
+<div className="my-8 overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700/40 dark:bg-zinc-900/70">
+  <div className="border-b border-zinc-200 bg-zinc-50 px-4 py-2 dark:border-zinc-700/40 dark:bg-zinc-800/70">
+    <span className="font-mono text-sm text-zinc-500 dark:text-zinc-400">markdown</span>
+  </div>
+  <div className="p-4 bg-white/80 text-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-200">
 ```markdown
 # Developer|John Doe
 
@@ -62,47 +69,61 @@ Here's what the Markdown looks like:
 - System Design
 - API Development
 ```
+  </div>
+</div>
 
-And here's what it produces:
-
-![CV Output](developer-john-doe-resume-1.png)
-
-## How to Use It
+## Quickstart.
 
 Getting started is straightforward. First, clone the repo:
 
+<div className="my-8 overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700/40 dark:bg-zinc-900/70">
+  <div className="border-b border-zinc-200 bg-zinc-50 px-4 py-2 dark:border-zinc-700/40 dark:bg-zinc-800/70">
+    <span className="font-mono text-sm text-zinc-500 dark:text-zinc-400">bash</span>
+  </div>
+  <div className="p-4 bg-white/80 text-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-200">
 ```bash
 git clone https://github.com/yourusername/Markdown-CV-Generator.git
 cd Markdown-CV-Generator
 npm install
 ```
+  </div>
+</div>
 
-Then, either edit the example.md file or create your own, and run:
+Then, edit the example.md file and run:
 
+<div className="my-8 overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700/40 dark:bg-zinc-900/70">
+  <div className="border-b border-zinc-200 bg-zinc-50 px-4 py-2 dark:border-zinc-700/40 dark:bg-zinc-800/70">
+    <span className="font-mono text-sm text-zinc-500 dark:text-zinc-400">bash</span>
+  </div>
+  <div className="p-4 bg-white/80 text-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-200">
 ```bash
 markdowncv build --default
 ```
+  </div>
+</div>
 
-That's it! Your CV will be generated as a PDF, looking sharp and professional.
+That's it! Your CV will be generated as a PDF.
 
-## The Tech Stack
-
-I built this using Node.js and Express for the backend, with Tailwind CSS for styling. The PDF 
-generation is handled by Puppeteer, which ensures pixel-perfect rendering every time.
-
-The best part? It's all open source, so you can customize it to your heart's content. Want to 
-add your own theme? Just create a new CSS file in the themes directory.
+<div className="my-8">
+  <Image 
+    src={cvOutput} 
+    alt="Example CV output showing a clean, professional design" 
+    className="rounded-xl shadow-lg dark:shadow-zinc-800/30"
+    priority
+  />
+</div>
 
 ## What's Next?
 
-I'm planning to add more themes (because who doesn't love options?), and maybe even a web 
+This is all open source. Customize to your heart's content. Want to 
+add your own theme? Create a new CSS file in the themes directory.
+
+I'm planning to add more themes, and maybe even a web 
 interface for those who prefer clicking to command lines. If you have any suggestions or want 
-to contribute, the repo is open for PRs!
+to contribute, access the [repo](https://github.com/charlie-macnamara/markdown-cv).
+
+
 
 ## Try It Out
 
-If you're tired of fighting with Word templates or just want a CV that looks as good as your 
-code, give it a try. The source code is available on GitHub, and I'd love to hear what you 
-think.
-
-Remember, your CV is often your first impression - might as well make it a good one! 
+If you're tired of fighting with Word templates, subscription fees, or just want a CV that looks good, give it a try. 

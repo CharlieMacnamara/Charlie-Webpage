@@ -27,7 +27,7 @@ export const Prose = memo(function Prose({ className, as: Component = 'div', ...
         'prose-code:rounded-md prose-code:bg-zinc-100 prose-code:px-1.5 prose-code:py-0.5',
         'prose-code:text-zinc-900 prose-code:before:content-none prose-code:after:content-none',
         'dark:prose-code:bg-zinc-800 dark:prose-code:text-zinc-200',
-        'prose-pre:mt-6 prose-pre:rounded-xl prose-pre:bg-zinc-900 prose-pre:px-6 prose-pre:py-4',
+        'prose-pre:mt-6 prose-pre:rounded-xl prose-pre:bg-zinc-50 prose-pre:px-6 prose-pre:py-4',
         'dark:prose-pre:bg-zinc-800/80 dark:prose-pre:ring-1 dark:prose-pre:ring-zinc-300/10',
         
         // List styles
