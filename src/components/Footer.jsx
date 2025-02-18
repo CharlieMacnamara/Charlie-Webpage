@@ -43,8 +43,8 @@ const navigation = {
 
 export const Footer = memo(function Footer() {
   return (
-    <footer className="mt-32">
-      <div className="bg-white dark:bg-zinc-900">
+    <footer className="mt-32 relative">
+      <div className="relative bg-white dark:bg-zinc-900">
         <Container.Outer>
           <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
             <Container.Inner>
@@ -55,12 +55,12 @@ export const Footer = memo(function Footer() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="group"
+                        className="group relative inline-block"
                         aria-label={item.name}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <item.icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+                        <item.icon className="h-6 w-6 fill-zinc-500 transition-colors duration-150 ease-in-out group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
                       </Link>
                     ))}
                   </div>
@@ -74,7 +74,7 @@ export const Footer = memo(function Footer() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="text-sm font-medium text-zinc-600 transition hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
+                      className="relative text-sm font-medium text-zinc-600 transition-colors duration-150 ease-in-out hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
