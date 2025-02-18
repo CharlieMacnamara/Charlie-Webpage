@@ -1,5 +1,11 @@
 {
-  "/blog/page": "app/blog/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/portfolio/page": "app/portfolio/page.js",
   "/blog/bottoms-movie-review/page": "app/blog/bottoms-movie-review/page.js",
-  "/blog/markdown-cv/page": "app/blog/markdown-cv/page.js"
+  "/blog/ffmpeg-intro/page": "app/blog/ffmpeg-intro/page.js",
+  "/blog/markdown-cv/page": "app/blog/markdown-cv/page.js",
+  "/blog/page": "app/blog/page.js"
 }
