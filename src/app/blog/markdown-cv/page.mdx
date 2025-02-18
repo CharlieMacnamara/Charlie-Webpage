@@ -4,7 +4,7 @@ import cvOutput from './developer-john-doe-resume-1.png'
 
 export const article = {
   author: 'Charlie Macnamara',
-  date: '2024-03-20',
+  date: '2025-02-17',
   title: 'Building a Markdown CV Generator with Tailwind CSS',
   description:
     'How I built a minimalist CV generator that converts markdown to beautifully styled PDFs',
@@ -20,9 +20,11 @@ export default (props) => <ArticleLayout article={article} {...props} />
 After the recent overhaul of my website, I found myself staring at my CV 
 thinking, "This sucks, eh?" You know how it goes - one project leads to another. Why not ensure consistency?
 
-After spending way too much time tweaking margins in Google Docs, I thought: "Why not leverage 
-Markdown and Tailwind CSS to create something better?" Built using Node.js and Express for the backend, with Tailwind CSS for styling. Puppeteer handles the PDF generation.
-
+After spending what felt like ages tweaking margins in Google Docs (we've all been there), 
+I thought there had to be a better way. So I built this little tool that combines the 
+simplicity of Markdown with the power of Tailwind CSS. Under the hood, it's running on 
+Node.js and Express, with Puppeteer doing the heavy lifting for PDF generation. Simple, 
+but it gets the job done nicely.
 
 ## The Problem
 
