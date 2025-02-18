@@ -15,19 +15,19 @@ import image4 from '@/images/photos/image-4.jpg'
 const images = [
   {
     src: image1,
-    description: 'Red Arrows flying over Edinburgh Castle during the Edinburgh Military Tattoo.',
+    description: 'Red Arrows over Edinburgh Castle during the Tattoo.',
   },
   {
     src: image2,
-    description: 'A frozen waterfall in the Scottish Highlands during winter.',
+    description: 'Frozen waterfall in the Highlands.',
   },
   {
     src: image3,
-    description: 'Kayaking on Loch Lomond with other paddlers in the distance.',
+    description: 'Kayaking on Loch Lomond.',
   },
   {
     src: image4,
-    description: 'Fresh sourdough loaves cooling on a wire rack, showcasing the art of home baking.',
+    description: 'Fresh sourdough cooling on a rack.',
   },
 ]
 

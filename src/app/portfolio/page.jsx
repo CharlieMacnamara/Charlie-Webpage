@@ -62,6 +62,7 @@ export default function Portfolio() {
         <ReferenceNote>
           Zendesk articles were published under Matt Mattias due to EVORA's single-user configuration. Matt's a resume reference and former manager. Please check on reference request.
         </ReferenceNote>
+
         <PortfolioSection title="Blog Posts">
           <ProjectCard
             href="https://transloadit.com/blog/2022/06/image-facedetect-cdn-support/"
@@ -83,19 +84,7 @@ export default function Portfolio() {
           />
         </PortfolioSection>
 
-        <PortfolioSection title="Documentation">
-          <ProjectCard
-            href="https://evoraglobal.github.io/sieraapi-docs/#consumption-get-consumption-summary-of-a-meter/"
-            title="SIERA API Reference: Consumption Metrics"
-            description="API documentation for meter consumption data analysis."
-            cta="View"
-          />
-          <ProjectCard
-            href="https://transloadit.com/docs/transcoding/document-processing/document-convert/"
-            title="Document Conversion API Reference"
-            description="Guide to document conversion API with implementation examples."
-            cta="View"
-          />
+        <PortfolioSection title="ESG Technical Content">
           <ProjectCard
             href="https://sieraglobal.zendesk.com/hc/en-gb/articles/11107134286877-Gap-Filling-Methodology/"
             title="Data Gap Analysis Methodology"
@@ -103,32 +92,39 @@ export default function Portfolio() {
             cta="View"
           />
           <ProjectCard
-            href="https://docs.wisej.com/docs/releases/whats-new-in-3.0"
-            title="Wisej.NET 3.0 Release Documentation"
-            description="Release documentation covering new features and migration guidelines."
+            href="https://sieraglobal.zendesk.com/hc/en-gb/articles/12938753435677-Unit-Conversion"
+            title="Unit Conversion Guide"
+            description="Comprehensive documentation on unit conversion methodologies for environmental data."
+            cta="View"
+          />
+          <ProjectCard
+            href="https://evoraglobal.github.io/sieraapi-docs/#consumption-get-consumption-summary-of-a-meter/"
+            title="SIERA API Reference: Consumption Metrics"
+            description="API documentation for meter consumption data analysis."
             cta="View"
           />
         </PortfolioSection>
 
-        <PortfolioSection title="Technical Content">
+        <PortfolioSection title="Technical Showcases">
           <ProjectCard
             href="https://www.youtube.com/watch?v=yj36Ki0V2MI&t=207s/"
             title="Wisej.NET Visual Studio Integration Guide"
             description="Video guide on setting up Wisej.NET in Visual Studio."
             cta="Watch"
           />
-         <ProjectCard
+          <ProjectCard
+            href="https://docs.wisej.com/docs/releases/whats-new-in-4.0"
+            title="Wisej.NET 4.0 Release Documentation"
+            description="Release documentation covering new features and migration guidelines."
+            cta="View"
+          />
+          <ProjectCard
             href="https://transloadit.com/demos/video-encoding/encode-blurout-effect/"
             title="Advanced Video Processing with FFmpeg"
             description="Technical Demo on implementing complex video effects using FFmpeg."
             cta="View"
           />
         </PortfolioSection>
-
-        <p>Check out this informative article about the many positives of .NET and C#:</p>
-        <a href="https://tracebit.com/blog/why-tracebit-is-written-in-c-sharp" target="_blank" rel="noopener noreferrer">
-          Why Tracebit is Written in C#
-        </a>
       </div>
     </SimpleLayout>
   )

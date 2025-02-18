@@ -14,58 +14,79 @@ const MailIcon = memo(function MailIcon(props) {
   )
 })
 
-const SocialLink = memo(function SocialLink({ icon: Icon, href, children }) {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Icon className="h-5 w-5 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
-      <span className="ml-2">{children}</span>
-    </Link>
-  )
-})
-
-const Social = memo(function Social() {
-  return (
-    <div className="flex gap-x-4">
-      <SocialLink href="https://github.com/CharlieMacnamara" icon={GitHubIcon}>
-        GitHub
-      </SocialLink>
-      <SocialLink href="https://www.linkedin.com/in/charliemacnamara/" icon={LinkedInIcon}>
-        LinkedIn
-      </SocialLink>
-      <SocialLink href="mailto:mail@charliemacnamara.uk" icon={MailIcon}>
-        Email
-      </SocialLink>
-    </div>
-  )
-})
+const navigation = {
+  social: [
+    {
+      name: 'GitHub',
+      href: 'https://github.com/CharlieMacnamara',
+      icon: GitHubIcon
+    },
+    {
+      name: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/charliemacnamara/',
+      icon: LinkedInIcon
+    },
+    {
+      name: 'Email',
+      href: 'mailto:mail@charliemacnamara.uk',
+      icon: MailIcon
+    }
+  ],
+  tech: [
+    { name: 'Next.js', href: 'https://nextjs.org' },
+    { name: 'React', href: 'https://react.dev' },
+    { name: 'TailwindCSS', href: 'https://tailwindcss.com' },
+    { name: 'MDX', href: 'https://mdxjs.com' },
+    { name: 'AWS', href: 'https://aws.amazon.com' }
+  ]
+}
 
 export const Footer = memo(function Footer() {
-  const currentYear = new Date().getFullYear()
-  
   return (
-    <footer className="mt-32 flex-none" role="contentinfo" aria-label="Site footer">
-      <Container.Outer>
-        <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
-          <Container.Inner>
-            <div className="flex flex-col items-center justify-between gap-6">
-              <Social />
-              <div className="text-center">
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                  © 2023-{currentYear} Charlie Macnamara. Custom Content and Code
-                </p>
-                <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500">
-                  <a href="https://tailwindui.com" className="text-teal-500 hover:underline">Built on <span className="text-teal-500 hover:underline">TailwindUI</span></a>
-                </p>
+    <footer className="mt-32">
+      <div className="bg-white dark:bg-zinc-900">
+        <Container.Outer>
+          <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
+            <Container.Inner>
+              <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+                <div className="flex flex-col items-center gap-6 sm:items-start">
+                  <div className="flex gap-6">
+                    {navigation.social.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="group"
+                        aria-label={item.name}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <item.icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+                      </Link>
+                    ))}
+                  </div>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                    &copy; {new Date().getFullYear()} Charlie Macnamara. All rights reserved.
+                  </p>
+                </div>
+                <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-end">
+                  <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Built on: </span>
+                  {navigation.tech.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm font-medium text-zinc-600 transition hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </nav>
               </div>
-            </div>
-          </Container.Inner>
-        </div>
-      </Container.Outer>
+            </Container.Inner>
+          </div>
+        </Container.Outer>
+      </div>
     </footer>
   )
 })
