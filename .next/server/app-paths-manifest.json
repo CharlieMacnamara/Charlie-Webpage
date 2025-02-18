@@ -1,5 +1,5 @@
 {
-  "/blog/bottoms-movie-review/page": "app/blog/bottoms-movie-review/page.js",
   "/blog/page": "app/blog/page.js",
+  "/blog/bottoms-movie-review/page": "app/blog/bottoms-movie-review/page.js",
   "/blog/markdown-cv/page": "app/blog/markdown-cv/page.js"
 }
