@@ -62,13 +62,13 @@ const AboutContent = memo(function AboutContent() {
         </h1>
         <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
           <p>
-            Being a dyslexic writer—yes, I see the irony—I know firsthand how poor documentation can be a barrier. Though, I find this makes me unique.
+            Being a dyslexic writer—yes, I see the irony—I know firsthand how poor documentation can be a barrier... though, I find this makes me unique.
           </p>
           <p>
-            I create the documentation I need: clear, accessible, and engaging.
+            I design text I need: clear, accessible, and engaging.
           </p>
           <p>
-          My objective is to develop technical content that facilitates effective interaction between users and complex systems.
+          My aim's to develop technical content that facilitates effective interaction between users and complex systems.
           </p>
         </div>
       </div>

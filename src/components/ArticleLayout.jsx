@@ -26,34 +26,47 @@ export const ArticleLayout = memo(function ArticleLayout({ children, article, is
 
   return (
     <Container className="mt-16 lg:mt-32">
-      <div className="xl:relative">
-        <div className="mx-auto max-w-2xl">
-          <Link
-            href="/blog"
-            aria-label="Return to blog"
-            className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0"
-          >
-            <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
-          </Link>
-          <article>
-            <header className="flex flex-col">
-              <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+      <div className="relative mx-auto max-w-3xl">
+        <Link
+          href="/blog"
+          aria-label="Return to blog"
+          className="group absolute -left-2 -top-2 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition hover:shadow-lg dark:bg-zinc-800 dark:ring-white/10 dark:hover:ring-white/20 sm:-left-6 lg:-left-8"
+        >
+          <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-400 dark:group-hover:stroke-zinc-300" />
+        </Link>
+
+        <article className="relative">
+          <header className="space-y-6 border-b border-zinc-200 pb-8 dark:border-zinc-700/40">
+            <div className="space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
                 {article.title}
               </h1>
-              <time
-                dateTime={article.date}
-                className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
-                aria-label={`Published on ${formatDate(article.date)}`}
-              >
-                <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" aria-hidden="true" />
-                <span className="ml-3">{formatDate(article.date)}</span>
-              </time>
-            </header>
-            <Prose className="mt-8" data-mdx-content>
-              <MDXContent>{children}</MDXContent>
-            </Prose>
-          </article>
-        </div>
+              <div className="flex items-center space-x-4 text-sm">
+                <time
+                  dateTime={article.date}
+                  className="flex items-center text-zinc-500 dark:text-zinc-400"
+                >
+                  <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+                  <span className="ml-3">{formatDate(article.date)}</span>
+                </time>
+                {article.readingTime && (
+                  <span className="text-zinc-500 dark:text-zinc-400">
+                    {article.readingTime} min read
+                  </span>
+                )}
+              </div>
+            </div>
+            {article.description && (
+              <p className="text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                {article.description}
+              </p>
+            )}
+          </header>
+
+          <Prose className="mt-8 sm:mt-10">
+            <MDXContent>{children}</MDXContent>
+          </Prose>
+        </article>
       </div>
     </Container>
   )

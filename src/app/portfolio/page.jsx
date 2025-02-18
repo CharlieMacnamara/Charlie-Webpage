@@ -124,6 +124,11 @@ export default function Portfolio() {
             cta="View"
           />
         </PortfolioSection>
+
+        <p>Check out this informative article about the many positives of .NET and C#:</p>
+        <a href="https://tracebit.com/blog/why-tracebit-is-written-in-c-sharp" target="_blank" rel="noopener noreferrer">
+          Why Tracebit is Written in C#
+        </a>
       </div>
     </SimpleLayout>
   )

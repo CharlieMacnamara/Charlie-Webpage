@@ -5,6 +5,8 @@ import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 
 export function ImageModal({ isOpen, onClose, image, description }) {
+  if (!image) return null
+
   return (
     <Transition show={isOpen} as={Fragment}>
       <Dialog onClose={onClose} className="relative z-50">
@@ -32,13 +34,14 @@ export function ImageModal({ isOpen, onClose, image, description }) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-zinc-50 p-6 text-left align-middle shadow-xl transition-all dark:bg-zinc-900">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
+                <div className="relative w-full overflow-hidden rounded-lg" style={{ maxHeight: '80vh' }}>
                   <Image
                     src={image}
-                    alt=""
-                    className="object-cover"
-                    fill
-                    sizes="(min-width: 1024px) 896px, 100vw"
+                    alt={description || ""}
+                    className="object-contain"
+                    width={1200}
+                    height={800}
+                    style={{ width: '100%', height: 'auto', maxHeight: '80vh' }}
                     priority
                   />
                 </div>

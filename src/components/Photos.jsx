@@ -10,6 +10,7 @@ import { Container } from '@/components/Container'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
+import image4 from '@/images/photos/image-4.jpg'
 
 const images = [
   {
@@ -23,6 +24,10 @@ const images = [
   {
     src: image3,
     description: 'Kayaking on Loch Lomond with other paddlers in the distance.',
+  },
+  {
+    src: image4,
+    description: 'Fresh sourdough loaves cooling on a wire rack, showcasing the art of home baking.',
   },
 ]
 
@@ -38,11 +43,11 @@ export const Photos = memo(function Photos() {
         <Container>
           <div className="relative">
             {/* Gradient shadows for scroll indication */}
-            <div className="pointer-events-none absolute -inset-x-4 top-0 h-8 bg-gradient-to-b from-white dark:from-zinc-900" />
-            <div className="pointer-events-none absolute -inset-x-4 bottom-0 h-8 bg-gradient-to-t from-white dark:from-zinc-900" />
+            <div className="pointer-events-none absolute -inset-x-4 top-0 h-8 bg-gradient-to-b from-zinc-50 dark:from-zinc-900" />
+            <div className="pointer-events-none absolute -inset-x-4 bottom-0 h-8 bg-gradient-to-t from-zinc-50 dark:from-zinc-900" />
             
             {/* Scrollable container */}
-            <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 pt-4
+            <div className="-mx-4 flex snap-x snap-mandatory items-center gap-4 overflow-x-auto px-4 pb-4 pt-4
               scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-300 
               hover:scrollbar-thumb-zinc-400 dark:scrollbar-thumb-zinc-700 
               dark:hover:scrollbar-thumb-zinc-600">
@@ -53,7 +58,7 @@ export const Photos = memo(function Photos() {
                 >
                   <div
                     className={clsx(
-                      'relative aspect-[9/10] w-72 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800',
+                      'relative h-72 w-72 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800',
                       rotations[imageIndex % rotations.length],
                       'transform transition duration-300 ease-in-out hover:-translate-y-4 hover:shadow-xl will-change-transform'
                     )}
@@ -72,6 +77,7 @@ export const Photos = memo(function Photos() {
                       alt=""
                       sizes="(min-width: 640px) 18rem, 16rem"
                       className="absolute inset-0 h-full w-full object-cover transition duration-300 ease-in-out hover:scale-110"
+                      style={{ transform: 'translate3d(0, 0, 0)' }}
                       priority={imageIndex === 0}
                     />
                   </div>
@@ -85,7 +91,7 @@ export const Photos = memo(function Photos() {
       <ImageModal
         isOpen={selectedImage !== null}
         onClose={() => setSelectedImage(null)}
-        image={selectedImage?.src}
+        image={selectedImage?.src?.src || null}
         description={selectedImage?.description}
       />
     </>
