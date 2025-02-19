@@ -18,35 +18,31 @@ export const metadata = {
 export default (props) => <ArticleLayout article={article} {...props} />
 
 After the recent overhaul of my website, I found myself staring at my CV 
-thinking, "This sucks, eh?" You know how it goes - one project leads to another. Why not ensure consistency?
+thinking, "This sucks, eh." Why not ensure consistency?
 
-After spending what felt like ages tweaking margins in Google Docs (we've all been there), 
-I thought there had to be a better way. So I built this little tool that combines the 
+So I built this little tool. It combines the 
 simplicity of Markdown with the power of Tailwind CSS. Under the hood, it's running on 
-Node.js and Express, with Puppeteer doing the heavy lifting for PDF generation. Simple, 
-but it gets the job done nicely.
+Node.js and Express, with Puppeteer for PDF generation. Simple.
 
 ## The Problem
 
-We've all been there - switching between different CV formats, trying to keep everything 
-consistent. It's one of those things that's always worth improving and there's no need to pay for a nice looking CV.
+Resumes are one of those things; always worth improving. Unfortunetly, google docs template designs suck. You've probably looked for a replacement. No need to fall for that oximoron. The end goal is getting a job. 
 
-Fun fact: this project was born from my £60 mistake with resume.io. I forgot to cancel my 
+Fun fact: this project was largely born from my £60 mistake with resume.io. I forgot to cancel my 
 subscription after a free trial, and six months later... Well, let's just say that expensive 
-oversight motivated me to build something better. Now I can laugh about it (mostly).
+oversight motivated me.
 
 ## The Solution
 
-Enter my Markdown CV Generator - a simple tool that takes your CV written in Markdown and 
-transforms it into a pretty PDF. Here's how it works:
+Enter my Markdown CV Generator - a simple tool to build your CV. Here's how it works:
 
 1. Write your CV in Markdown
-2. Run a simple command
-3. Get a professionally styled PDF that actually looks good
+2. Run command
+3. Get a professionally styled resume
 
 ## The Markdown
 
-Make sure you have your resume text at hand; edit the layout for other sections. Here's what the Markdown looks like:
+Make sure you have your resume text at hand; edit the layout for new additional sections. Here's the Markdown:
 
 <div className="my-8 overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700/40 dark:bg-zinc-900/70">
   <div className="border-b border-zinc-200 bg-zinc-50 px-4 py-2 dark:border-zinc-700/40 dark:bg-zinc-800/70">
@@ -104,7 +100,7 @@ markdowncv build --default
   </div>
 </div>
 
-That's it! Your CV will be generated as a PDF.
+That's it! Your CV will be generated.
 
 <div className="my-8">
   <Image 
@@ -117,15 +113,10 @@ That's it! Your CV will be generated as a PDF.
 
 ## What's Next?
 
-This is all open source. Customize to your heart's content. Want to 
-add your own theme? Create a new CSS file in the themes directory.
+This is all open source. Customize away. Create new CSS designs in the `themes` directory.
 
-I'm planning to add more themes, and maybe even a web 
-interface for those who prefer clicking to command lines. If you have any suggestions or want 
-to contribute, access the [repo](https://github.com/CharlieMacnamara/Markdown-CV-Generator).
+I'm planning to add more themes - maybe a web 
+interface. If you have any suggestions or want 
+to contribute, access [here](https://github.com/CharlieMacnamara/Markdown-CV-Generator).
 
-
-
-## Try It Out
-
-If you're tired of fighting with Word templates, subscription fees, or just want a CV that looks good, give it a try. 
+Thanks!
