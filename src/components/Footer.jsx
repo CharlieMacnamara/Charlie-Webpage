@@ -36,7 +36,6 @@ const navigation = {
     { name: 'Next.js', href: 'https://nextjs.org' },
     { name: 'React', href: 'https://react.dev' },
     { name: 'TailwindCSS', href: 'https://tailwindcss.com' },
-    { name: 'MDX', href: 'https://mdxjs.com' },
     { name: 'AWS', href: 'https://aws.amazon.com' }
   ]
 }
