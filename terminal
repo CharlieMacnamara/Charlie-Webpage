@@ -1,0 +1,142 @@
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Reload shell configuration
+source ~/.bashrc
+
+# Check current node version
+node -v
+
+# Install a newer version of Node (at least 16.x)
+nvm install 18
+nvm use 18
+
+# Clear npm cache and node_modules
+rm -rf node_modules package-lock.json
+npm cache clean --force
+
+# Reinstall dependencies
+npm install
+
+# Verify Next.js version
+npm list next
+
+# Try running dev server again
+npm run dev
+
+# Install and use the LTS version
+nvm install --lts
+nvm use --lts
+
+# Clear npm cache and node_modules
+rm -rf node_modules package-lock.json
+npm cache clean --force
+
+# Reinstall dependencies
+npm install
+
+# Install specific version of heroicons
+npm install @heroicons/react@2.1.1
+
+# Verify the installation
+npm list @heroicons/react
+
+# Also install any other potentially missing peer dependencies
+npm install @headlessui/react clsx
+
+# Check if you have a .babelrc file that might be causing issues
+ls -la .babelrc
+
+# If it exists, verify its contents
+cat .babelrc
+
+# Also check your package.json for the correct dependencies
+cat package.json
+
+# First, clean everything
+rm -rf public/images/blog/sourdough*
+rm -rf public/videos/blog/sourdough*
+rm -rf .next
+rm -rf out
+
+# Create directory structure
+mkdir -p public/images/blog/sourdough/diagrams
+mkdir -p public/videos/blog/sourdough
+
+# Check if images exist in the correct location
+find public/images/blog/sourdough -type f -name "*.jpg"
+find public/images/blog/sourdough/diagrams -type f -name "*.png"
+
+# Generate placeholder images for testing
+for day in {1..3}; do
+  for num in {1..12}; do
+    convert -size 800x600 xc:gray -pointsize 72 -gravity center \
+    -draw "text 0,0 'Day ${day}-${num}'" \
+    public/images/blog/sourdough/day${day}-${num}.jpg
+  done
+done
+
+# Verify the generated images
+ls -la public/images/blog/sourdough/day1-*.jpg
+
+# Generate diagrams
+convert -size 800x600 xc:gray -pointsize 72 -gravity center \
+-draw "text 0,0 'Oven Diagram'" \
+public/images/blog/sourdough/diagrams/day3-oven.png
+
+convert -size 800x600 xc:gray -pointsize 72 -gravity center \
+-draw "text 0,0 'Scoring Diagram'" \
+public/images/blog/sourdough/diagrams/day3-scoring.png
+
+# Verify diagrams
+ls -la public/images/blog/sourdough/diagrams/*.png
+
+# Generate test video
+ffmpeg -f lavfi -i color=c=gray:s=800x600:d=5 \
+public/videos/blog/sourdough/day1-6.mp4
+
+# Verify video
+ls -la public/videos/blog/sourdough/*.mp4
+
+# Check all paths are consistent
+echo "Checking for any sourdough-journey references..."
+grep -r "sourdough-journey" src/app/blog/sourdough-journey/page.mdx
+
+# Build and check for 404s
+npm run build
+echo "Checking for 404s..."
+grep -r "404" .next/server/pages
+
+# Remove old node_modules and lock files
+rm -rf node_modules package-lock.json
+
+# Install Node 18 LTS specifically
+nvm install 18.19.1
+nvm use 18.19.1
+
+# Clear npm cache
+npm cache clean --force
+
+# Install dependencies fresh
+npm install
+
+# Install Node 16
+nvm install 16.20.2
+nvm use 16.20.2
+
+# Clear npm cache and reinstall
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+
+# Check current image locations
+find public/images/blog/sourdough -type f -name "*.jpg"
+find public/images/blog/sourdough/diagrams -type f -name "*.png"
+find public/videos/blog/sourdough -type f -name "*.mp4"
+
+# Verify no old paths exist
+find public -type f -path "*/bread-blog/*"
+
+# Verify all files exist
+find public/images/blog/sourdough -type f
+find public/videos/blog/sourdough -type f 
