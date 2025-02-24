@@ -1,4 +1,3 @@
 {
-  "/page": "app/page.js",
-  "/about/page": "app/about/page.js"
+  "/blog/sourdough-journey/page": "app/blog/sourdough-journey/page-src_c.js"
 }
