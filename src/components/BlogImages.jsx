@@ -136,19 +136,4 @@ export function ThreeColGrid({
       ))}
     </div>
   )
-}
-
-export function VideoPlayer({ src, poster }) {
-  return (
-    <div className="my-8">
-      <video 
-        controls
-        className="w-full rounded-xl"
-        poster={poster}
-      >
-        <source src={src} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  )
 } 
