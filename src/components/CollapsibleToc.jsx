@@ -4,18 +4,18 @@ import { useState, useEffect } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 
-// Client-side only component to avoid hydration issues
-export default function ClientToc({ children }) {
-  const [isMounted, setIsMounted] = useState(false)
+// Client component that completely avoids any server rendering
+export default function ClientToc({children}) {
+  const [mounted, setMounted] = useState(false)
   
   useEffect(() => {
-    setIsMounted(true)
+    setMounted(true)
   }, [])
   
-  if (!isMounted) {
+  if (!mounted) {
     return (
       <div className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-        <h2 className="mb-4 text-lg font-semibold text-gray-900">Table of Contents</h2>
+        <div className="h-6 w-48 bg-gray-200 mb-4 rounded"></div>
         <div className="h-20 bg-gray-50"></div>
       </div>
     )
@@ -24,6 +24,7 @@ export default function ClientToc({ children }) {
   return children
 }
 
+// Utility function to create slug IDs from text
 function slugify(text) {
   return text
     .toLowerCase()
@@ -31,16 +32,77 @@ function slugify(text) {
     .replace(/(^-|-$)/g, '')
 }
 
-export function CollapsibleTocSection({ title, children }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const sectionId = slugify(title)
-
-  const handleClick = (e) => {
-    e.preventDefault()
-    if (typeof window === 'undefined') return
+// Create a simplified, error-resistant TOC component
+export function TableOfContents() {
+  const [sections, setSections] = useState([])
+  const [mounted, setMounted] = useState(false)
+  
+  useEffect(() => {
+    setMounted(true)
     
     try {
-      const element = document.getElementById(sectionId)
+      // Ensure we're in the browser
+      if (typeof window === 'undefined') return
+      
+      // Function to process headings
+      const processHeadings = () => {
+        const headings = Array.from(document.querySelectorAll('h2, h3'))
+        if (!headings || headings.length === 0) return
+        
+        const processedSections = []
+        let currentSection = null
+        
+        for (const heading of headings) {
+          const title = heading.textContent || ''
+          if (!title || title === 'Table of Contents') continue
+          
+          const id = heading.id || slugify(title)
+          if (!heading.id) heading.id = id
+          
+          if (heading.tagName === 'H2') {
+            if (currentSection) processedSections.push(currentSection)
+            currentSection = { title, id, subsections: [] }
+          } else if (heading.tagName === 'H3' && currentSection) {
+            currentSection.subsections.push({ title, id })
+          }
+        }
+        
+        if (currentSection) processedSections.push(currentSection)
+        setSections(processedSections)
+      }
+      
+      // Process headings after a small delay to ensure DOM is ready
+      const timer = setTimeout(processHeadings, 100)
+      return () => clearTimeout(timer)
+    } catch (error) {
+      console.error('Error in TOC generation:', error)
+    }
+  }, [])
+  
+  // Show placeholder during SSR/mounting
+  if (!mounted) {
+    return (
+      <div className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+        <div className="h-6 w-48 bg-gray-200 mb-4 rounded"></div>
+        <div className="space-y-3">
+          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+          <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+        </div>
+      </div>
+    )
+  }
+  
+  // Don't render anything if no sections found
+  if (!sections || sections.length === 0) {
+    return null
+  }
+  
+  // Function for smooth scrolling
+  const handleClick = (e, id) => {
+    e.preventDefault()
+    try {
+      const element = document.getElementById(id)
       if (element) {
         const offset = 80
         const elementPosition = element.getBoundingClientRect().top + window.scrollY
@@ -53,141 +115,39 @@ export function CollapsibleTocSection({ title, children }) {
       console.error('Error scrolling to section:', error)
     }
   }
-
+  
   return (
-    <div className="mb-2">
-      <div className="group flex w-full items-center justify-between py-2 text-left text-sm font-medium text-gray-900">
-        <a 
-          href={`#${sectionId}`}
-          onClick={handleClick}
-          className="transition-colors duration-200 hover:text-teal-500"
-        >
-          {title}
-        </a>
-        <button
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          className="ml-2 flex h-6 w-6 items-center justify-center rounded-md text-gray-400 hover:bg-gray-100 hover:text-gray-500"
-        >
-          <ChevronDownIcon
-            className={clsx(
-              'h-4 w-4 transition-transform duration-200',
-              isOpen ? 'rotate-180 transform' : ''
-            )}
-          />
-          <span className="sr-only">Toggle section</span>
-        </button>
-      </div>
-      <div
-        className={clsx(
-          'overflow-hidden transition-all duration-200 ease-in-out',
-          isOpen ? 'max-h-96' : 'max-h-0'
-        )}
-      >
-        <div className="pl-4 pb-2">
-          {children}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export function TableOfContents() {
-  const [sections, setSections] = useState([])
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    
-    try {
-      // Use a timeout to ensure DOM is fully available
-      const timer = setTimeout(() => {
-        const headings = Array.from(document.querySelectorAll('h2, h3'))
-        const groupedSections = []
-        let currentSection = null
-
-        headings.forEach((heading) => {
-          const title = heading.textContent
-          if (!title || title === 'Table of Contents') return
-
-          const id = slugify(title)
-          
-          // Set ID directly on the heading element
-          if (!heading.id) {
-            heading.id = id
-          }
-
-          if (heading.tagName.toLowerCase() === 'h2') {
-            if (currentSection) {
-              groupedSections.push(currentSection)
-            }
-            currentSection = {
-              title,
-              id,
-              subsections: []
-            }
-          } else if (currentSection && heading.tagName.toLowerCase() === 'h3') {
-            currentSection.subsections.push({
-              title,
-              id
-            })
-          }
-        })
-
-        if (currentSection) {
-          groupedSections.push(currentSection)
-        }
-
-        setSections(groupedSections)
-      }, 100)
-
-      return () => clearTimeout(timer)
-    } catch (error) {
-      console.error('Error processing headings:', error)
-      return []
-    }
-  }, [])
-
-  return (
-    <ClientToc>
-      <nav className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-        <h2 className="mb-4 text-lg font-semibold text-gray-900">Table of Contents</h2>
-        
+    <nav className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+      <h2 className="mb-4 text-lg font-semibold text-gray-900">Table of Contents</h2>
+      
+      <div className="space-y-2">
         {sections.map((section) => (
-          <CollapsibleTocSection 
-            key={section.id} 
-            title={section.title}
-          >
-            {section.subsections.map((subsection) => (
-              <a
-                key={subsection.id}
-                href={`#${subsection.id}`}
-                onClick={(e) => {
-                  e.preventDefault()
-                  if (typeof window === 'undefined') return
-                  
-                  try {
-                    const element = document.getElementById(subsection.id)
-                    if (element) {
-                      const offset = 80
-                      const elementPosition = element.getBoundingClientRect().top + window.scrollY
-                      window.scrollTo({
-                        top: elementPosition - offset,
-                        behavior: 'smooth'
-                      })
-                    }
-                  } catch (error) {
-                    console.error('Error scrolling to subsection:', error)
-                  }
-                }}
-                className="block py-1 text-sm text-gray-600 transition-colors duration-200 hover:text-teal-500 pl-4"
-              >
-                {subsection.title}
-              </a>
-            ))}
-          </CollapsibleTocSection>
+          <div key={section.id} className="mb-2">
+            <a
+              href={`#${section.id}`}
+              onClick={(e) => handleClick(e, section.id)}
+              className="block py-1 text-sm font-medium text-gray-900 hover:text-teal-500"
+            >
+              {section.title}
+            </a>
+            
+            {section.subsections.length > 0 && (
+              <div className="ml-4 mt-1 space-y-1">
+                {section.subsections.map((subsection) => (
+                  <a
+                    key={subsection.id}
+                    href={`#${subsection.id}`}
+                    onClick={(e) => handleClick(e, subsection.id)}
+                    className="block py-1 text-sm text-gray-600 hover:text-teal-500"
+                  >
+                    {subsection.title}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
-      </nav>
-    </ClientToc>
+      </div>
+    </nav>
   )
 } 

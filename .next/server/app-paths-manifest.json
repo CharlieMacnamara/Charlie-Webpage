@@ -1,3 +1,7 @@
 {
-  "/blog/sourdough-journey/page": "app/blog/sourdough-journey/page-src_c.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/blog/sourdough-journey/page": "app/blog/sourdough-journey/page-src_components_A.js",
+  "/blog/page": "app/blog/page.js"
 }
