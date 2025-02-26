@@ -18,6 +18,9 @@ export function CollapsibleTocSection({ title, children }) {
   const handleClick = useCallback((e) => {
     e.preventDefault()
     e.stopPropagation()
+    
+    if (typeof window === 'undefined') return
+    
     const element = document.getElementById(sectionId)
     if (element) {
       const offset = 80
@@ -66,47 +69,72 @@ export function CollapsibleTocSection({ title, children }) {
 
 export function TableOfContents() {
   const [sections, setSections] = useState([])
+  const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
+    setHasMounted(true)
+    
+    // Only run this on the client
+    if (typeof window === 'undefined') return
+    
     // Client-side only: find and process headings
     const processHeadings = () => {
-      const headings = Array.from(document.querySelectorAll('h2, h3'))
-      const groupedSections = []
-      let currentSection = null
+      try {
+        const headings = Array.from(document.querySelectorAll('h2, h3'))
+        const groupedSections = []
+        let currentSection = null
 
-      headings.forEach((heading) => {
-        const title = heading.textContent
-        if (title === 'Table of Contents') return
+        headings.forEach((heading) => {
+          const title = heading.textContent
+          if (!title || title === 'Table of Contents') return
 
-        const id = slugify(title)
-        heading.id = id
+          const id = slugify(title)
+          heading.id = id
 
-        if (heading.tagName.toLowerCase() === 'h2') {
-          if (currentSection) {
-            groupedSections.push(currentSection)
+          if (heading.tagName.toLowerCase() === 'h2') {
+            if (currentSection) {
+              groupedSections.push(currentSection)
+            }
+            currentSection = {
+              title,
+              id,
+              subsections: []
+            }
+          } else if (currentSection && heading.tagName.toLowerCase() === 'h3') {
+            currentSection.subsections.push({
+              title,
+              id
+            })
           }
-          currentSection = {
-            title,
-            id,
-            subsections: []
-          }
-        } else if (currentSection && heading.tagName.toLowerCase() === 'h3') {
-          currentSection.subsections.push({
-            title,
-            id
-          })
+        })
+
+        if (currentSection) {
+          groupedSections.push(currentSection)
         }
-      })
 
-      if (currentSection) {
-        groupedSections.push(currentSection)
+        setSections(groupedSections)
+      } catch (error) {
+        console.error('Error processing headings:', error)
       }
-
-      setSections(groupedSections)
     }
 
-    processHeadings()
+    // Add a small delay to ensure DOM is fully available
+    const timer = setTimeout(() => {
+      processHeadings()
+    }, 100)
+
+    return () => clearTimeout(timer)
   }, [])
+
+  // Don't render anything during SSR
+  if (!hasMounted) {
+    return (
+      <nav className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+        <h2 className="mb-4 text-lg font-semibold text-gray-900">Table of Contents</h2>
+        <div className="h-20"></div>
+      </nav>
+    )
+  }
 
   return (
     <nav className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
@@ -123,6 +151,8 @@ export function TableOfContents() {
               href={`#${subsection.id}`}
               onClick={(e) => {
                 e.preventDefault()
+                if (typeof window === 'undefined') return
+                
                 const element = document.getElementById(subsection.id)
                 if (element) {
                   const offset = 80
