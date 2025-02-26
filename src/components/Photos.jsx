@@ -32,7 +32,7 @@ const images = [
 ]
 
 // Reduced rotation for better mobile experience
-const rotations = ['rotate-2', '-rotate-2', 'rotate-2']
+const rotations = ['rotate-2', '-rotate-2', 'rotate-2', '-rotate-2']
 
 export const Photos = memo(function Photos() {
   const [selectedImage, setSelectedImage] = useState(null)
@@ -40,27 +40,27 @@ export const Photos = memo(function Photos() {
   return (
     <>
       <div className="mt-16 sm:mt-20">
-        <Container>
-          <div className="relative">
+        <Container className="pb-4">
+          <div className="relative py-4">
             {/* Gradient shadows for scroll indication */}
             <div className="pointer-events-none absolute -inset-x-4 top-0 h-8 bg-gradient-to-b from-zinc-50 dark:from-zinc-900" />
             <div className="pointer-events-none absolute -inset-x-4 bottom-0 h-8 bg-gradient-to-t from-zinc-50 dark:from-zinc-900" />
             
             {/* Scrollable container */}
-            <div className="-mx-4 flex snap-x snap-mandatory items-center gap-4 overflow-x-auto px-4 pb-4 pt-4
+            <div className="-mx-4 flex snap-x snap-mandatory items-center gap-4 overflow-x-auto overflow-y-visible px-4 pb-16 pt-8
               scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-300 
               hover:scrollbar-thumb-zinc-400 dark:scrollbar-thumb-zinc-700 
               dark:hover:scrollbar-thumb-zinc-600">
               {images.map((image, imageIndex) => (
                 <div
                   key={image.src.src}
-                  className="relative flex-none"
+                  className="relative flex-none z-0 hover:z-10 pt-6 -mt-6"
                 >
                   <div
                     className={clsx(
                       'relative h-72 w-72 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800',
                       rotations[imageIndex % rotations.length],
-                      'transform transition duration-300 ease-in-out hover:-translate-y-4 hover:shadow-xl will-change-transform'
+                      'transform transition duration-300 ease-in-out hover:-translate-y-4 hover:shadow-xl'
                     )}
                     onClick={() => setSelectedImage(image)}
                     role="button"
