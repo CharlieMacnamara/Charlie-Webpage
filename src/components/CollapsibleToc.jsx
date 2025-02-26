@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 
 // Client component that completely avoids any server rendering
@@ -14,9 +14,12 @@ export default function ClientToc({children}) {
   
   if (!mounted) {
     return (
-      <div className="my-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-        <div className="h-6 w-48 bg-gray-200 mb-4 rounded"></div>
-        <div className="h-20 bg-gray-50"></div>
+      <div className="mt-0 mb-4 rounded-lg border border-gray-200 bg-white p-3 shadow-sm">
+        <div className="space-y-2">
+          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+          <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+        </div>
       </div>
     )
   }
@@ -36,7 +39,6 @@ function slugify(text) {
 export function TableOfContents() {
   const [sections, setSections] = useState([])
   const [mounted, setMounted] = useState(false)
-  const [expandedSections, setExpandedSections] = useState({})
   
   useEffect(() => {
     setMounted(true)
@@ -53,9 +55,6 @@ export function TableOfContents() {
         const processedSections = []
         let currentSection = null
         
-        // Initial state for expanded sections
-        const initialExpandedState = {}
-        
         for (const heading of headings) {
           const title = heading.textContent || ''
           if (!title || title === 'Table of Contents') continue
@@ -66,13 +65,6 @@ export function TableOfContents() {
           if (heading.tagName === 'H2') {
             if (currentSection) processedSections.push(currentSection)
             currentSection = { title, id, subsections: [] }
-            
-            // Set Day sections to be initially collapsed
-            if (title.startsWith('Day')) {
-              initialExpandedState[id] = false
-            } else {
-              initialExpandedState[id] = true
-            }
           } else if (heading.tagName === 'H3' && currentSection) {
             currentSection.subsections.push({ title, id })
           }
@@ -80,7 +72,6 @@ export function TableOfContents() {
         
         if (currentSection) processedSections.push(currentSection)
         setSections(processedSections)
-        setExpandedSections(initialExpandedState)
       }
       
       // Process headings after a small delay to ensure DOM is ready
@@ -94,9 +85,8 @@ export function TableOfContents() {
   // Show placeholder during SSR/mounting
   if (!mounted) {
     return (
-      <div className="my-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-        <div className="h-6 w-48 bg-gray-200 mb-4 rounded"></div>
-        <div className="space-y-3">
+      <div className="mt-0 mb-4 rounded-lg border border-gray-200 bg-white p-3 shadow-sm">
+        <div className="space-y-2">
           <div className="h-4 bg-gray-200 rounded w-3/4"></div>
           <div className="h-4 bg-gray-200 rounded w-1/2"></div>
           <div className="h-4 bg-gray-200 rounded w-2/3"></div>
@@ -128,47 +118,21 @@ export function TableOfContents() {
     }
   }
   
-  // Toggle section expansion
-  const toggleSection = (e, sectionId) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionId]: !prev[sectionId]
-    }))
-  }
-  
   return (
-    <nav className="my-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-      <h2 className="mb-3 text-lg font-semibold text-gray-900">Table of Contents</h2>
-      
-      <div className="space-y-1">
+    <nav className="mt-0 mb-6 rounded-lg border border-gray-200 bg-white p-3 shadow-sm">
+      <div className="space-y-2">
         {sections.map((section) => (
-          <div key={section.id} className="mb-1">
-            <div className="flex items-center">
-              <button
-                onClick={(e) => toggleSection(e, section.id)}
-                className="mr-1 p-1 text-gray-500 hover:text-teal-500 focus:outline-none"
-                aria-label={expandedSections[section.id] ? "Collapse section" : "Expand section"}
-              >
-                {expandedSections[section.id] ? (
-                  <ChevronDownIcon className="h-4 w-4" />
-                ) : (
-                  <ChevronRightIcon className="h-4 w-4" />
-                )}
-              </button>
-              
-              <a
-                href={`#${section.id}`}
-                onClick={(e) => handleClick(e, section.id)}
-                className="py-1 text-sm font-medium text-gray-900 hover:text-teal-500"
-              >
-                {section.title}
-              </a>
-            </div>
+          <div key={section.id} className="mb-2">
+            <a
+              href={`#${section.id}`}
+              onClick={(e) => handleClick(e, section.id)}
+              className="block py-1 text-sm font-medium text-gray-900 hover:text-teal-500"
+            >
+              {section.title}
+            </a>
             
-            {section.subsections.length > 0 && expandedSections[section.id] && (
-              <div className="ml-6 mt-1 space-y-1 border-l-2 border-gray-100 pl-2">
+            {section.subsections.length > 0 && (
+              <div className="ml-4 mt-1 space-y-1">
                 {section.subsections.map((subsection) => (
                   <a
                     key={subsection.id}

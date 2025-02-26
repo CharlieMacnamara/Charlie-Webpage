@@ -25,12 +25,12 @@ export const ArticleLayout = memo(function ArticleLayout({ children, article, is
   }
 
   return (
-    <Container className="mt-16 lg:mt-32">
+    <Container className="mt-8 lg:mt-16">
       <div className="relative mx-auto max-w-3xl">
         <Link
           href="/blog"
           aria-label="Return to blog"
-          className="group absolute -left-2 -top-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition hover:shadow-lg dark:bg-zinc-800 dark:ring-white/10 dark:hover:ring-white/20 sm:-left-6 sm:-top-10 lg:-left-8 lg:-top-12"
+          className="group absolute -left-2 -top-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition hover:shadow-lg dark:bg-zinc-800 dark:ring-white/10 dark:hover:ring-white/20 sm:-left-6 lg:-left-8"
         >
           <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-400 dark:group-hover:stroke-zinc-300" />
         </Link>
