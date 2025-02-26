@@ -1,3 +1,6 @@
 {
-  "/blog/sourdough-journey/page": "app/blog/sourdough-journey/page-src_c.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/blog/sourdough-journey/page": "app/blog/sourdough-journey/page-src_components_B.js",
+  "/blog/markdown-cv/page": "app/blog/markdown-cv/page.js"
 }
