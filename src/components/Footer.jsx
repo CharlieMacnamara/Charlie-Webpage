@@ -42,8 +42,8 @@ const navigation = {
 
 export const Footer = memo(function Footer() {
   return (
-    <footer className="mt-32 relative">
-      <div className="relative bg-white dark:bg-zinc-900">
+    <footer className="mt-32 w-full">
+      <div className="w-full bg-white dark:bg-zinc-900">
         <Container.Outer>
           <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
             <Container.Inner>
@@ -67,20 +67,22 @@ export const Footer = memo(function Footer() {
                     &copy; {new Date().getFullYear()} Charlie Macnamara. All rights reserved.
                   </p>
                 </div>
-                <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-end">
-                  <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Built on: </span>
-                  {navigation.tech.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="relative text-sm font-medium text-zinc-600 transition-colors duration-150 ease-in-out hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </nav>
+                <div className="flex flex-wrap justify-center sm:justify-end">
+                  <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-end">
+                    <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Built on: </span>
+                    {navigation.tech.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="relative text-sm font-medium text-zinc-600 transition-colors duration-150 ease-in-out hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
               </div>
             </Container.Inner>
           </div>

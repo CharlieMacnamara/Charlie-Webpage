@@ -1,8 +1,28 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
+
+// Client-side only component to avoid hydration issues
+export default function ClientToc({ children }) {
+  const [isMounted, setIsMounted] = useState(false)
+  
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+  
+  if (!isMounted) {
+    return (
+      <div className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+        <h2 className="mb-4 text-lg font-semibold text-gray-900">Table of Contents</h2>
+        <div className="h-20 bg-gray-50"></div>
+      </div>
+    )
+  }
+  
+  return children
+}
 
 function slugify(text) {
   return text
@@ -15,29 +35,28 @@ export function CollapsibleTocSection({ title, children }) {
   const [isOpen, setIsOpen] = useState(false)
   const sectionId = slugify(title)
 
-  const handleClick = useCallback((e) => {
+  const handleClick = (e) => {
     e.preventDefault()
-    e.stopPropagation()
-    
     if (typeof window === 'undefined') return
     
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 80
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth'
-      })
+    try {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const offset = 80
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        })
+      }
+    } catch (error) {
+      console.error('Error scrolling to section:', error)
     }
-  }, [sectionId])
+  }
 
   return (
     <div className="mb-2">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="group flex w-full items-center justify-between py-2 text-left text-sm font-medium text-gray-900"
-      >
+      <div className="group flex w-full items-center justify-between py-2 text-left text-sm font-medium text-gray-900">
         <a 
           href={`#${sectionId}`}
           onClick={handleClick}
@@ -45,14 +64,21 @@ export function CollapsibleTocSection({ title, children }) {
         >
           {title}
         </a>
-        <ChevronDownIcon
-          className={clsx(
-            'h-5 w-5 text-gray-400 transition-all duration-200',
-            'group-hover:text-gray-600',
-            isOpen ? 'rotate-180 transform' : ''
-          )}
-        />
-      </button>
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          className="ml-2 flex h-6 w-6 items-center justify-center rounded-md text-gray-400 hover:bg-gray-100 hover:text-gray-500"
+        >
+          <ChevronDownIcon
+            className={clsx(
+              'h-4 w-4 transition-transform duration-200',
+              isOpen ? 'rotate-180 transform' : ''
+            )}
+          />
+          <span className="sr-only">Toggle section</span>
+        </button>
+      </div>
       <div
         className={clsx(
           'overflow-hidden transition-all duration-200 ease-in-out',
@@ -69,17 +95,13 @@ export function CollapsibleTocSection({ title, children }) {
 
 export function TableOfContents() {
   const [sections, setSections] = useState([])
-  const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
-    setHasMounted(true)
-    
-    // Only run this on the client
     if (typeof window === 'undefined') return
     
-    // Client-side only: find and process headings
-    const processHeadings = () => {
-      try {
+    try {
+      // Use a timeout to ensure DOM is fully available
+      const timer = setTimeout(() => {
         const headings = Array.from(document.querySelectorAll('h2, h3'))
         const groupedSections = []
         let currentSection = null
@@ -89,7 +111,11 @@ export function TableOfContents() {
           if (!title || title === 'Table of Contents') return
 
           const id = slugify(title)
-          heading.id = id
+          
+          // Set ID directly on the heading element
+          if (!heading.id) {
+            heading.id = id
+          }
 
           if (heading.tagName.toLowerCase() === 'h2') {
             if (currentSection) {
@@ -113,63 +139,55 @@ export function TableOfContents() {
         }
 
         setSections(groupedSections)
-      } catch (error) {
-        console.error('Error processing headings:', error)
-      }
+      }, 100)
+
+      return () => clearTimeout(timer)
+    } catch (error) {
+      console.error('Error processing headings:', error)
+      return []
     }
-
-    // Add a small delay to ensure DOM is fully available
-    const timer = setTimeout(() => {
-      processHeadings()
-    }, 100)
-
-    return () => clearTimeout(timer)
   }, [])
 
-  // Don't render anything during SSR
-  if (!hasMounted) {
-    return (
+  return (
+    <ClientToc>
       <nav className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
         <h2 className="mb-4 text-lg font-semibold text-gray-900">Table of Contents</h2>
-        <div className="h-20"></div>
+        
+        {sections.map((section) => (
+          <CollapsibleTocSection 
+            key={section.id} 
+            title={section.title}
+          >
+            {section.subsections.map((subsection) => (
+              <a
+                key={subsection.id}
+                href={`#${subsection.id}`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  if (typeof window === 'undefined') return
+                  
+                  try {
+                    const element = document.getElementById(subsection.id)
+                    if (element) {
+                      const offset = 80
+                      const elementPosition = element.getBoundingClientRect().top + window.scrollY
+                      window.scrollTo({
+                        top: elementPosition - offset,
+                        behavior: 'smooth'
+                      })
+                    }
+                  } catch (error) {
+                    console.error('Error scrolling to subsection:', error)
+                  }
+                }}
+                className="block py-1 text-sm text-gray-600 transition-colors duration-200 hover:text-teal-500 pl-4"
+              >
+                {subsection.title}
+              </a>
+            ))}
+          </CollapsibleTocSection>
+        ))}
       </nav>
-    )
-  }
-
-  return (
-    <nav className="my-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-      <h2 className="mb-4 text-lg font-semibold text-gray-900">Table of Contents</h2>
-      
-      {sections.map((section) => (
-        <CollapsibleTocSection 
-          key={section.id} 
-          title={section.title}
-        >
-          {section.subsections.map((subsection) => (
-            <a
-              key={subsection.id}
-              href={`#${subsection.id}`}
-              onClick={(e) => {
-                e.preventDefault()
-                if (typeof window === 'undefined') return
-                
-                const element = document.getElementById(subsection.id)
-                if (element) {
-                  const offset = 80
-                  const elementPosition = element.getBoundingClientRect().top + window.scrollY
-                  window.scrollTo({
-                    top: elementPosition - offset,
-                    behavior: 'smooth'
-                  })
-                }
-              }}
-              className="block py-1 text-sm text-gray-600 transition-colors duration-200 hover:text-teal-500 pl-4"
-            >
-              {subsection.title}
-            </a>
-          ))}
-        </CollapsibleTocSection>
-      ))}
-    </nav>
+    </ClientToc>
   )
 } 

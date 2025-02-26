@@ -2,6 +2,7 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 import { SingleImage, TwoColGrid, ThreeColGrid } from '@/components/BlogImages'
 import { VideoPlayer } from '@/components/VideoPlayer'
 import { TableOfContents } from '@/components/CollapsibleToc'
+import ClientToc from '@/components/CollapsibleToc'
 
 export const article = {
   author: 'Charlie Macnamara',
@@ -24,7 +25,9 @@ I'm sure this isn't the "Charlie" method, but I have to start the fame somehow: 
 
 Here's my complete process, from mixing to final proof.
 
-<TableOfContents />
+<ClientToc>
+  <TableOfContents />
+</ClientToc>
 
 This hybrid approach offers several advantages:
 
